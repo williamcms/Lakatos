@@ -1,0 +1,230 @@
+@charset "utf-8";
+:root{
+	--loginForm-background-color: #474A51;
+	--loginForm-box-background-color: #FFFFFF;
+	--loginForm-text-color: #000000;
+	--background-color: rgb(32, 33, 37);
+	--second-background-color: #FFFFFF;
+	--text-color: #FFFFFF;
+	--second-text-color: #000000;
+	--text-featured: #C71F1F;
+}
+body{
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
+main{
+	padding-top: 74px;
+}
+main > h2{
+	color: var(--text-color);
+}
+/* Login Form */
+.loginForm{
+	padding: 100px;
+	background-color: var(--loginForm-background-color);
+	color: var(--loginForm-text-color);
+}
+.loginForm .loginBox{
+	padding: 80px 40px;
+	width: 30%;
+	margin: 0 auto;
+	border-radius: 3px;
+	background-color: var(--loginForm-box-background-color);
+}
+.loginForm .loginBox .logo img{
+	position: relative;
+	display: block;
+	width: 50%;
+	height: auto;
+	margin: -40px auto 20px auto;
+}
+.loginForm .loginBox .button{
+	background-color: transparent;
+}
+/* Buttons & Font-Awesome icons */
+.button.confirm, .button.confirm span{
+	background-color: var(--green);
+	color: var(--white);
+}
+.button.confirmRMV, .button.confirmRMV span,
+.button2.confirmRMV, .button2.confirmRMV span{
+	background-color: var(--danger) !important;
+	color: var(--white) !important;
+}
+.button2.reset, .button2.reset span{
+	background-color: var(--danger);
+	color: var(--white);
+}
+.cardbtn{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	right:0;
+	top: 0;
+	width: 42px;
+	font-size: 42px;
+	line-height:42px;
+	color: var(--green);
+	text-align: center;
+	cursor: pointer;
+}
+.fa.editbtn::before{
+	content: "\f044";
+}
+.fa.cardbtn.smallbtn{
+	top: -4px;
+	font-size: 25px; 
+}
+.fa.removebtn::before{
+	content: '\f235';
+	color: var(--red);
+}
+.fa.cardbtn.removebtn{
+	font-size: 22px; 
+}
+.fa.sendbtn::before{
+	content: '\f1d8';
+}
+.fa.info{
+	position: relative;
+	display: initial;
+}
+.fa.info::before{
+	position: absolute;
+	top: 0;
+	content: "\f05a";
+	font-size: 13px;
+    color: var(--warning);
+}
+.fa.info span{
+	display: none;
+	position: absolute;
+    right: 0;
+    left: 0;
+    min-width: 500px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--second-background-color);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1.5px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.fa.info span p:not(:last-child){
+	padding-bottom: 10px;
+}
+.fa.info:hover span{
+	display: block;
+}
+.fa.exclamation-triangle{
+	color: var(--warning);
+	display: inline;
+}
+.fa.exclamation-triangle::before{
+	content: '\f071';
+}
+.fa.exclamation-triangle::after{
+	font-size: 0.90rem;
+	padding-left: 6px;
+	content: 'Atenção! Informação não encontrada, adicione-a o quanto antes';
+}
+.closebtn{
+	color: var(--red);
+	background-color: rgba(0,0,0,0);
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+.closebtn::before{
+	content: '\00d7';
+}
+.card_button-add{
+	float: right;
+	background-color: var(--green);
+	color: var(--white);
+}
+.card_button-add span{
+	color: var(--white);
+}
+/* Menu */
+.currentPage{
+	color: var(--focus-color) !important;
+}
+/* Card-Box */
+.card-box{
+	position: relative;
+    background-color: var(--second-background-color);
+    margin: 40px 150px;
+    padding: 15px 25px;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    color: var(--second-text-color);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 10px -1px rgba(69, 90, 100, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.card-box:hover{
+	box-shadow: 0 5px 11px 0px rgba(69, 90, 100, 0.3);
+}
+.card-box-results{
+	color: var(--second-text-color);
+	justify-content: center;
+	margin: 0px 150px;
+	position: relative;
+}
+.card-result-body{
+	position: relative;
+	display: block;
+	background-color: var(--second-background-color);
+	height: auto;
+	min-width: 250px;
+	margin: 10px;
+	padding: 10px;
+	overflow: hidden;
+	border-radius: 0.2rem;
+}
+.card-result-title{
+	font-weight: 700;
+	margin-right: 40px;
+}
+.card-result-content{
+	margin-top: 20px;
+}
+/* Other */
+.featured{
+	color: var(--text-featured);
+}
+#confirmPassword,
+#confirmPassword2{
+	float: right;
+	color: var(--red);
+}
+.overlayform .form-group .confirmPassword2{
+	display: none;
+}
+/* New */
+
+@media screen and (max-width: 900px){
+	/* Login Form */
+	.loginForm{
+		padding: 60px 10px;
+	}
+	.loginForm .loginBox{
+		width: auto;
+		margin: 10px;
+		padding: 80px 20px 20px 20px;
+	}
+	/* Pages Card-Box */
+	.card-box{
+		margin: 30px 10px;
+	}
+	.card-box-results{
+		margin: 0px;
+	}
+	.card-result-content{
+		line-break: anywhere;
+	}
+	.form-group.col{
+		flex-basis: 100%;
+	}
+	/* New */
+}

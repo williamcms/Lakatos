@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /_cp*
+
+Sitemap: http://williamcms.com.br/sitemap.xml
