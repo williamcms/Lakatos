@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Lakatos</title>
+
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+	<script src="https://jrxeventos.com.br/js/autogrow.js"></script> <!-- Autogrows the textarea field in the whatsapp floating button -->
+
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+	<header>
+		<div class="logo-wrapper">
+			<img src="images/logo.png" alt="logo" title="Lakatos | Termoformadoras" />
+		</div>
+		<nav class="menu" id="menubar">
+			<button class="js--open-menu" role="none" aria-label="Abrir menu" aria-controls="csm-navigation" aria-expanded="false">
+	            <span></span>
+	            <span></span>
+	            <span></span>
+	        </button>
+			<ul role="menu" tabindex="-1" class="csm-navigation" id="csm-navigation">
+				<li class="active" role="none"><a href="#" target="_self" role="menuitem">Home</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Sobre nós</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Aplicações</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Máquinas</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Moldes</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Peças para máquinas</a></li>
+				<li role="none"><a href="#" target="_self" role="menuitem">Blog</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="whatsappButton" title="Fale Conosco">
+		<i class="fab fa-whatsapp" id="whatsappButton"></i>
+
+		<div class="whatsapp-outer-message" id="whatsapp-outer-message">
+			<p class="header">Lakatos</p>
+			<p>Fale Conosco pelo Whatsapp</p>
+		</div>
+
+		<div class="whatsapp-conversation" id="whatsapp-conversation">
+			<div class="header"><div class="photo"></div><div class="name">Lakatos</div></div>
+			<div class="message-bubble"><textarea type="text" id="whatsapp-input-message" autofocus>Olá, Meu Nome é...</textarea></div>
+
+			
+			<a href="https://web.whatsapp.com/send?phone=5511968435868&text=Olá, Meu Nome é..." id="whatsapp-link" target="_blank" class="send-message">
+				<span>Enviar Mensagem</span>
+				<i class="fas fa-paper-plane"></i>
+			</a>
+		</div>
+	</div>
+	<main>
+		<div class="home-top_video">
+			<div class="info">
+				<h2>Inovando a sua Produtividade</h2>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam</p>
+				<button>Reproduzir vídeo</button>
+			</div>
+		</div>
+		<div class="section-separator"></div>
+		<div class="home-mid-categories">
+			<div class="categories_text-wrapper">
+				<div class="categories_text">
+					<h2>Qual a sua necessidade?</h2>
+					<p>A Lakatos Termoformadoras possui know how para desenvolver</p>
+					<p>moldes e máquinas capazes de produzir aplicações para diversas áreas!</p>
+				</div>
+			</div>
+			<div class="section-separator"></div>
+			<div class="categories_selection">
+				<div>
+					<i class="fas fa-birthday-cake"></i>
+					<p>Alimentício</p>
+				</div>
+				<div>
+					<i class="fas fa-utensils"></i>
+					<p>Descartáveis</p>
+				</div>
+				<div>
+					<i class="fas fa-cubes"></i>
+					<p>Embalagens blister</p>
+				</div>
+				<div>
+					<i class="fas fa-home"></i>
+					<p>Casa e construção</p>
+				</div>
+
+				<div>
+					<i class="fas fa-square-full"></i>
+					<p>Refrigeradores</p>
+				</div>
+				<div>
+					<i class="fas fa-car"></i>
+					<p>Autopeças</p>
+				</div>
+				<div>
+					<i class="fas fa-seedling"></i>
+					<p>Agro-mudas</p>
+				</div>
+				<div>
+					<i class="fas fa-plane"></i>
+					<p>Aeronáutico</p>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="section-separator"></div>
+	<footer>
+		<div class="footer-wrapper">
+			<div class="desc">
+				<h4>A Lakatos</h4>
+				<p>Reconhecida por seu padrão de qualidade, a Lakatos produz máquinas termoformadoras e moldes, de alto desempenho e com boa relação custo-benefício. A empresa atende diversos nichos de mercado... <a href="#">saiba mais</a>.</p>
+			</div>
+			<div class="contactus">
+				<h4>Informações de contato</h4>
+				<ul>
+					<li><i class="fas fa-envelope"></i> <a href="mailto:info@lakatos.com" target="_blank">info@lakatos.com</a></li>
+					<li><i class="fas fa-phone-square-alt"></i> <a href="https://wa.me/5511968435868" target="_blank">+55 11 4704 3699</a></li>
+					<li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/LakatosTermoformadoras" target="_blank">Lakatos</a></li>
+					<li><i class="fas fa-map-marked"></i> Av. Dona Cesária Camargo de Oliveira, 745 - CEP 06807-320 Embu das Artes, São Paulo - Brasil</li>
+				</ul>
+			</div>
+			<div class="social">
+				<h4>Redes sociais</h4>
+				<div class="social-icons-wrapper">
+					<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
