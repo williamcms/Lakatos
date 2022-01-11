@@ -44,13 +44,24 @@ $(document).ready(function(){
             top = $(window).scrollTop();
         });
     })();
+    // Home - Play Video
+	var playVideo = $('#playVideo').on('click', function(){
+		var video = $('#homeVideo').get(0);
+
+		if(video.paused){
+			video.play();
+			$(this).text('Pausar vídeo');
+		}else{
+			video.pause();	
+			$(this).text('Reproduzir vídeo');
+		}
+	})
 	// WhatsappButton
 	$('#whatsappButton, #whatsapp-outer-message').click(function(){
 		$('#whatsapp-outer-message').css('display', 'none');
 		$('#whatsapp-conversation').toggle('slow');
 		$('#whatsapp-input-message').focus().val('Olá, Meu Nome é...');
-	});
-	
+	});	
 	$('#whatsapp-input-message').on('input', function(){
 		var href, splitArray;
 		href = $('#whatsapp-link').attr('href');

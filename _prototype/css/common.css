@@ -314,18 +314,28 @@ div.section-separator{
 }
 /*Main*/
 main div.home-top_video{
+	position: relative;
 	display: flex;
 	height: 90vh;
 	background-color: #E6E6E6;
+	overflow: hidden;
+}
+main div.home-top_video .video video#homeVideo{
+	position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 main div.home-top_video .info{
-	display: flex;
-	flex-direction: column;
-	justify-content: end;
-	grid-row-gap: 1rem;
-	row-gap: 1rem;
-	width: 40%;
-	margin: 0 0 5rem 5rem;
+	display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 1rem 5rem 2rem 2rem;
+    background: rgba(255, 255, 255, 0.8);
 }
 main div.home-top_video .info p{
 	font-weight: 600;
@@ -502,9 +512,24 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a > i:hover{
         -ms-transform: rotate(45deg) translate(-0.5rem, -0.5rem);
         background-color: var(--brand) !important;
     }
+    main div.home-top_video{
+    	height: auto;
+    	flex-direction: column;
+    }
+    main div.home-top_video .video video#homeVideo{
+    	position: relative;
+	    min-width: auto;
+	    min-height: auto;
+	    max-width: 100%;
+    }
     main div.home-top_video .info{
-    width: 100%;
-    margin: 0 0 1rem 1rem;
+    	position: relative;
+    	padding: 1rem;
+    	background-color: #E6E6E6;
+    }
+    main div.home-top_video .info button{
+    	margin-top: .5rem;
+    	width: 100%;
     }
     main div.home-mid-categories .categories_text-wrapper .categories_text > *{
     	margin: 0 1rem;
