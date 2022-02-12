@@ -40,7 +40,6 @@ class _account {
                     $stmt->fetch();
 
                     if(password_verify($password, $db_account_password)){
-                        session_regenerate_id();
 
                         $_SESSION['loggedin'] = TRUE;
                         $_SESSION['id'] = $db_account_id;
@@ -75,12 +74,12 @@ class _account {
                         return TRUE;
                     } else{
                     	$stmt->close();
-				        $conn->disconnect($conn->link);
+				        $conn->close($conn->link);
                         throw new Exception(ERROR_LOGIN_PASSWORD);
                     }
                 } else{
                 	$stmt->close();
-			        $conn->disconnect($conn->link);
+			        $conn->close($conn->link);
                     throw new Exception(ERROR_LOGIN_USERNAME);
                 }
             }
@@ -118,7 +117,7 @@ class _account {
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
 				$stmt->close();
-				$conn->disconnect($conn->link);
+				$conn->close($conn->link);
 				return TRUE;
 			}
 		}
@@ -141,11 +140,11 @@ class _account {
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
 			}
 			$stmt->close();
-			$conn->disconnect($conn->link);
+			$conn->close($conn->link);
 			return TRUE;
 		}
 		$stmt->close();
-		$conn->disconnect($conn->link);
+		$conn->close($conn->link);
 		return FALSE;
 	}
 
@@ -208,7 +207,7 @@ class _account {
 					$this->logout();
 				}
 				$stmt->close();
-				$conn->disconnect($conn->link);
+				$conn->close($conn->link);
 			}
 			$this->logout();
 		}
@@ -280,7 +279,7 @@ class _account {
 				session_destroy();
 
 				$stmt->close();
-				$conn->disconnect($conn->link);
+				$conn->close($conn->link);
 			}
 			echo '<script>window.location = "./cpanel?return='.($this->getFileName()).'";</script>';
 		} else {
@@ -315,7 +314,7 @@ class _account {
 				//session_unset();
 				//session_destroy();
 				$stmt->close();
-				$conn->disconnect($conn->link);
+				$conn->close($conn->link);
 			}
 		}
 		return TRUE;
@@ -343,7 +342,7 @@ class _account {
 				//session_unset();
 				//session_destroy();
 				$stmt->close();
-				$conn->disconnect($conn->link);
+				$conn->close($conn->link);
 			}
 		}
 		return TRUE;
@@ -389,11 +388,11 @@ class _account {
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
 			}
 			$stmt->close();
-			$conn->disconnect($conn->link);
+			$conn->close($conn->link);
 			return TRUE;
 		}
 		$stmt->close();
-		$conn->disconnect($conn->link);
+		$conn->close($conn->link);
 	}
 
 	public function changePassword(string $id, string $password): bool {
@@ -416,11 +415,11 @@ class _account {
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
 			}
 			$stmt->close();
-			$conn->disconnect($conn->link);
+			$conn->close($conn->link);
 			return TRUE;
 		}
 		$stmt->close();
-		$conn->disconnect($conn->link);
+		$conn->close($conn->link);
 	}
 
 	public function rmvUser(string $username, string $user_id): bool {

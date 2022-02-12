@@ -84,7 +84,7 @@ class _conn{
 	private $host = 'localhost';
 	private $username = 'root';
 	private $password = '';
-	private $database = 'yourDatabase';
+	private $database = 'lakatos';
 	public $link;
 
 	public function getter($var){
@@ -150,6 +150,64 @@ function get_result($statement){
 	$conn->close($conn->link);
 })();
 
+/* Get Language */
+(function(){
+	global $conn;
+	$conn->link = $conn->connect();
+
+	//Set default language
+	$default_lang = 'pt_BR';
+
+	//Try to get language by url's var
+	$lang_get = (isset($_GET['lang']) ? $_GET['lang'] : 0);
+	//Try to get language by session's var
+	$lang_session = (isset($_SESSION['lang']) ? $_SESSION['lang'] : 0);
+	//Verify if language is available  by session, if not try language by web's var, if not try default
+	$lang = ($lang_get ? $lang_get : ($lang_session ? $lang_session : 'pt_BR'));
+
+	//verify if the selected language is valid and apply it
+	if($lang){
+		switch($lang ? $lang : $default_lang){
+			case 'en_US':
+				$_SESSION['lang'] = 'en_US';
+				break;
+			default:
+				$_SESSION['lang'] = $default_lang;
+				break;
+		}
+	}
+
+	if($stmt = $conn->link->prepare("SELECT lang_name, lang_value, lang_translation FROM website_lang")){
+		try{
+			$stmt->execute();
+			$result = get_result($stmt);
+
+		    foreach($result as $i => $v){
+		    	if($_SESSION['lang'] == 'pt_BR'){
+		    		//Formating bold text
+		    		$v['lang_value'] = preg_replace("/\*(.*?)\*/", '<strong>$1</strong>', $v['lang_value']);
+		    		//Formating italic text
+		    		$v['lang_value'] = preg_replace("/\_(.*?)\_/", '<i>$1</i>', $v['lang_value']);
+
+					define(strtoupper($v['lang_name']), $v['lang_value']);
+				}else{
+					//Formating bold text
+		    		$v['lang_translation'] = preg_replace("/\*(.*?)\*/", '<strong>$1</strong>', $v['lang_translation']);
+		    		//Formating italic text
+		    		$v['lang_translation'] = preg_replace("/\_(.*?)\_/", '<i>$1</i>', $v['lang_translation']);
+
+					define(strtoupper($v['lang_name']), $v['lang_translation']);
+				}
+		    }
+		}
+		catch(Exception $e){
+			throw new Exception('Erro ao conectar com a base de dados: '. $e);
+		}
+	}
+	$stmt->close();
+	$conn->close($conn->link);
+})();
+
 class _website{
 	public $title = WEBSITE_TITLE; 				//og:title
 	public $iconVersion = ''; 					//If you need to update an old version of your icon in browsers that may have cached it ex: ?v=E6myLpg8vn
@@ -173,6 +231,7 @@ class _social{
 	public $twitter = SOCIAL_TWITTER;
 	public $linkedin = SOCIAL_LINKEDIN;
 	public $instagram = SOCIAL_INSTAGRAM;
+	public $youtube = SOCIAL_YOUTUBE;
 }
 class _mkt{
 	public $gAnalytics = MKT_GANALYTICS;
@@ -230,7 +289,7 @@ if(!$social->instagram == ''){
 	$social_link_instagram = '';
 }
 if(!$social->facebook == ''){
-	$social_link_facebook = '<a href="'.$social->facebook.'" target="_blank" class="fab fa-facebook" aria-hidden="true"></a>';
+	$social_link_facebook = '<a href="'.$social->facebook.'" target="_blank" class="fab fa-facebook-f" aria-hidden="true"></a>';
 }else{
 	$social_link_facebook = '';
 }
@@ -240,9 +299,14 @@ if(!$social->twitter == ''){
 	$social_link_twitter = '';
 }
 if(!$social->linkedin == ''){
-	$social_link_linkedin = '<a href="'.$social->linkedin.'" target="_blank" class="fab fa-linkedin" aria-hidden="true"></a>';
+	$social_link_linkedin = '<a href="'.$social->linkedin.'" target="_blank" class="fab fa-linkedin-in" aria-hidden="true"></a>';
 }else{
 	$social_link_linkedin = '';
+}
+if(!$social->youtube == ''){
+	$social_link_youtube = '<a href="'.$social->youtube.'" target="_blank" class="fab fa-youtube" aria-hidden="true"></a>';
+}else{
+	$social_link_youtube = '';
 }
 
 /*

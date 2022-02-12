@@ -1,3 +1,10 @@
+(formOn = (num) => {
+	document.getElementById("form"+num).style.display = "block";
+});
+(formOff = (num) => {
+	document.getElementById("form"+num).style.display = "none";
+	window.location = window.location;
+});
 $(document).ready(function(){
 	$('#password, #password2').on('input', function(e){
 		if($('#password').val() !== $('#password2').val()){
@@ -21,5 +28,9 @@ $(document).ready(function(){
 			$('#confirmPassword').html('As senhas não coincidem');
 			$('#confirmPassword2').html('As senhas não coincidem');
 		}
+	});
+	//Range
+	$('.range_input').on('input', function(e){
+		$(this).prev().html(this.value);
 	});
 });
