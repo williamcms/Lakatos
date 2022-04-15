@@ -12,7 +12,10 @@
 					echo '<li><i class="fas fa-envelope"></i> <a href="mailto:'. $email->address .'" target="_blank">'. $email->address .'</a></li>';
 				}
 				if($location->phoneNumber){
-					echo '<li><i class="fas fa-phone-square-alt"></i> <a href="https://wa.me/'. $location->phoneNumber .'" target="_blank">'. $location->phoneNumber .'</a></li>';
+					echo '<li><i class="fas fa-phone-square-alt"></i> <a href="tel:'. $location->phoneNumber .'" target="_blank">'. $location->phoneNumber .'</a></li>';
+				}
+				if($location->whastapp){
+					echo '<li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/'. $location->cleanWhatsapp .'" target="_blank">'. $location->whastapp .'</a></li>';
 				}
 				if($social->facebook){
 					echo '<li><i class="fab fa-facebook-square"></i> <a href="'. $social->facebook .'" target="_blank">Lakatos</a></li>';
@@ -36,5 +39,5 @@
 			</div>
 		</div>
 	</div>
-	<p class="center pt-5 italic">Website feito por <a href="https://www.linkedin.com/in/williambogik/">William</a> - 2022.</p>
+	<p class="center pt-5 italic">Website feito por <a href="https://www.linkedin.com/in/williambogik/" target="_blank">William</a> - 2022.</p>
 </footer>

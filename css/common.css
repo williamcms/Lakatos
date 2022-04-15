@@ -38,10 +38,18 @@
 ::before{
 	box-sizing: border-box;
 }
+img{
+	height: auto;
+	width: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
 a{
 	color: inherit;
 	background-color: transparent;
 	text-decoration: none;
+	font-size: inherit;
+	font-weight: inherit;
 }
 a:hover{
 	color: inherit;
@@ -64,8 +72,8 @@ button,
 input{
 	overflow: visible;
 }
-button:focus,
-*[role="button"]:focus:not(.carousel-control-prev, .carousel-control-next){
+button:focus:not([role="tab"], .slick-next, .slick-prev, .carousel-control-prev, .carousel-control-next),
+*[role="button"]:focus:not(.slick-next, .slick-prev, .carousel-control-prev, .carousel-control-next){
 	outline: none;
 	box-shadow: 0 0 0 3px rgba(236, 66, 0, 40%), 0 0 0 1.5px rgba(236, 66, 0, 40%);
 }
@@ -75,6 +83,7 @@ label{
 }
 input[type=text],
 input[type=number],
+input[type=telephone],
 input[type=email],
 input[type=tel],
 input[type=password],
@@ -446,6 +455,10 @@ header nav.menu ul li a{
 .font-weight-bold{
 	font-weight: 600 !important;
 }
+.bolder,
+.font-weight-bolder{
+	font-weight: 700 !important;
+}
 /* Fixação em input */
 .input-group{
 	position: relative;
@@ -461,7 +474,8 @@ header nav.menu ul li a{
 	border-bottom-right-radius: 0;
 }
 .input-group > input:not(:last-child),
-.input-group > textarea:not(:last-child){
+.input-group > textarea:not(:last-child),
+.input-group > select:not(:last-child){
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
@@ -472,7 +486,8 @@ header nav.menu ul li a{
 	border-bottom-left-radius: 0;
 }
 .input-group > input:not(:first-child),
-.input-group > textarea:not(:first-child){
+.input-group > textarea:not(:first-child),
+.input-group > select:not(:first-child){
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
@@ -807,6 +822,14 @@ div.section-separator{
 	display: block;
 	padding: 3rem 0;
 }
+div.section-separator-1{
+	display: block;
+	padding: 1rem 0;
+}
+div.section-separator-2{
+	display: block;
+	padding: 2rem 0;
+}
 div.text-separator{
 	display: block;
 	padding: .5rem 0;
@@ -855,6 +878,10 @@ div.text-separator{
 	padding: .5rem;
 	top: 50%;
 	z-index: 1;
+}
+.slick-slider button.slick-next.slick-arrow:hover,
+.slick-slider button.slick-prev.slick-arrow:hover{
+	border-color: var(--brand);
 }
 .slick-slider button.slick-next{
 	transform: rotate(-45deg);
@@ -1076,7 +1103,7 @@ div.text-separator{
 .nowrap{
 	white-space: nowrap;
 }
-/*Main*/
+/*Top video*/
 main div.home-top_video{
 	position: relative;
 	display: flex;
@@ -1124,6 +1151,7 @@ main div.home-top_video .info button:hover:after{
 	opacity: 1;
 	left: 0;
 }
+/*About us*/
 main div.home-mid-aboutus{
 	padding: 2rem 0;
 	background-color: var(--gray-lighter);
@@ -1137,21 +1165,35 @@ main div.home-mid-aboutus .row .col:first-child .text{
 main div.home-mid-aboutus .row .col:first-child .text p{
 	font-size: 0.92rem;
 }
-main div.home-mid-categories .categories_text-wrapper{
+/*Sections*/
+main > div.section > .text-wrapper{
+	position: relative;
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
-main div.home-mid-categories .categories_text-wrapper .categories_text{
-	padding-bottom: 1rem;
+main > div.section > .text-wrapper > .seemore{
+	padding-right: 1rem;
+	color: var(--brand);
+	text-transform: uppercase;
+}
+main > div.section > .text-wrapper .text{
+	padding: 0 .5rem 1rem 0;
 	border-bottom: .025rem solid var(--brand);
 }
-main div.home-mid-categories .categories_text-wrapper .categories_text > *{
+main > div.section > .text-wrapper .text > *{
 	margin-left: 2rem;
 }
-main div.home-mid-categories .categories_text-wrapper .categories_text p{
+main > div.section > .text-wrapper .text p{
 	font-size: 1.3rem;
 	font-weight: 300;
 }
-main div.home-mid-categories .categories_selection{
+main > div.section > .text-wrapper .text p a:hover{
+	text-decoration: none;
+	color: var(--brand);
+	font-weight: 500;
+}
+main > div.section > .selection{
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -1160,30 +1202,87 @@ main div.home-mid-categories .categories_selection{
 	grid-row-gap: 4rem;
 	row-gap: 4rem;
 }
-main div.home-mid-categories .categories_selection > div{
+main > div.section > .selection > div{
 	flex: 1 1 25%;
 }
-main div.home-mid-categories .categories_selection > div i.fas{
+main > div.section > .selection > div i.fas{
 	font-size: 3.5rem;
 	padding: 2rem 3.5rem;
 	color: #FFF;
 	background-color: var(--brand);
 	border-radius: 0.75rem;
 }
-main div.home-mid-categories .categories_selection > div p{
+main > div.section > .selection > div p{
 	font-weight: 600;
 	color: var(--brand);
 	padding-top: .85rem;
 }
-main div.applications-detailed{
-	height: auto;
-	width: 50vw;
+/*Últimas Máquinas*/
+main > div.section.home-mid-machines > .slick-slider img {
+	height: 33.313rem;
+	width: auto;
+}
+main > div.section.home-mid-machines > .slick-slider div.name,
+main > div.section.home-mid-machines > .slick-slider div.name > a{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	margin: 0 auto;
+	font-size: 1.25rem;
+	color: var(--brand);
+}
+main > div.section.home-mid-machines > .slick-slider div.desc{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
 	margin: 0 auto;
 }
+main > div.section.home-mid-machines > .slick-slider .slick-dots{
+	bottom: 7.025rem;
+}
+/*Moldes*/
+main > div.home-mid-moldes{
+
+}
+main > div.home-mid-moldes div.row{
+	max-width: 75vw;
+	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+}
+main > div.home-mid-moldes div.row > div.col{
+	padding: 0 3rem;
+}
+main > div.home-mid-moldes div.row > div.col > p{
+	font-size: .9rem;
+	margin-bottom: 1rem;
+}
+/*Contact us*/
+main > div.contactus .contact-options > div > h3{
+	color: inherit;
+	border-bottom: 0.175rem solid var(--red);
+	margin-bottom: 1.5rem;
+}
+main > div.contactus > form{
+	padding: 0rem 6rem;
+}
+main > div.contactus > form > div.form-group.row{
+	grid-column-gap: 1rem;
+	column-gap: 1rem;
+}
+main > div.section > form > div.fornecedores{
+	max-width: 50%;
+}
+/*Footer*/
 footer{
 	background-color: var(--brand);
 	color: #FFFFFF !important;
 	padding: 3rem 3rem 0 3rem;
+	min-width: 30rem;
 }
 footer .footer-wrapper{
 	display: flex;
@@ -1229,6 +1328,19 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	opacity: 1;
 }
 @media screen and (max-width: 831px) and (orientation : portrait){
+	/*Default*/
+	body{
+		overflow-x: hidden;
+	}
+	.col{
+		flex-basis: auto;
+	}
+	main,
+	footer{
+		min-width: initial;
+		max-width: 100%;
+	}
+	/*Header/menu*/
 	header{
 		position: fixed;
 		background-color: #FFFFFF;
@@ -1301,6 +1413,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		-ms-transform: rotate(45deg) translate(-0.5rem, -0.5rem);
 		background-color: var(--brand) !important;
 	}
+	/*Top video*/
 	main div.home-top_video{
 		height: auto;
 		flex-direction: column;
@@ -1320,15 +1433,47 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		margin-top: .5rem;
 		width: 100%;
 	}
+	/*Sections*/
+	main > div.section > .text-wrapper .text{
+		padding: 0 0 1rem 0;
+	}
+	/*Aboutus*/
 	main div.home-mid-aboutus .row .col{
 		flex-basis: auto;
 	}
-	main div.home-mid-categories .categories_text-wrapper .categories_text > *{
+	main > div.section > .text-wrapper .text > *{
 		margin: 0 1rem;
 	}
-	main div.home-mid-categories .categories_text-wrapper .categories_text p{
+	main > div.section > .text-wrapper .text p{
 		font-size: 1.2rem;
 	}
+	/*Últimas Máquinas*/
+	main > div.section.home-mid-machines > .slick-slider img {
+		height: 16.438rem;
+		width: auto;
+	}
+	main > div.section.home-mid-machines > .slick-slider div.name,
+	main > div.section.home-mid-machines > .slick-slider div.name > a{
+		-webkit-line-clamp: 2;
+	}
+	/*Moldes*/
+	main > div.home-mid-moldes div.row{
+		max-width: 100%;
+	}
+	main > div.home-mid-moldes div.row > div.col > p{
+		font-size: initial;
+	}
+	/*Contact us*/
+	main > div.contactus > form{
+		padding: 0 2rem;
+	}
+	main > div.contactus > form > div.form-group.row > .col:not(:last-child){
+		margin-bottom: 1rem;
+	}
+	main > div.section > form > div.fornecedores{
+		max-width: 100%;
+	}
+	/*Footer*/
 	footer{
 		padding: 3rem 2rem;
 	}

@@ -251,6 +251,8 @@ class _locationDetails{
 	public $postalCode = LOCATION_POSTALCODE;	//94304
 	public $country = LOCATION_COUNTRY;			//USA
 	public $phoneNumber = LOCATION_PHONENUMBER;	//+1-650-123-4567
+	public $whastapp = LOCATION_WHATSAPP;	//+1-650-123-4567
+	public $cleanWhatsapp = LOCATION_WHATSAPP;
 }
 
 $website = new _website;
@@ -259,6 +261,11 @@ $email = new _email;
 $mkt = new _mkt;
 $fb = new _fb;
 $location = new _locationDetails;
+
+//Removes special characters from phone number
+$location->cleanWhatsapp = str_replace(' ', '', $location->cleanWhatsapp);
+$location->cleanWhatsapp = str_replace('-', '', $location->cleanWhatsapp);
+$location->cleanWhatsapp = preg_replace('/[^A-Za-z0-9\-]/', '', $location->cleanWhatsapp);
 
 //Social media icons SVG
 if(!$social->instagram == ''){
