@@ -9,19 +9,19 @@
 			<ul>
 				<?php
 				if($email->address){
-					echo '<li><i class="fas fa-envelope"></i> <a href="mailto:'. $email->address .'" target="_blank">'. $email->address .'</a></li>';
+					echo '<li aria-label="Endereço de email"><i class="fas fa-envelope"></i> <a href="mailto:'. $email->address .'" target="_blank">'. $email->address .'</a></li>';
 				}
 				if($location->phoneNumber){
-					echo '<li><i class="fas fa-phone-square-alt"></i> <a href="tel:'. $location->phoneNumber .'" target="_blank">'. $location->phoneNumber .'</a></li>';
+					echo '<li aria-label="Telefone para contato"><i class="fas fa-phone-square-alt"></i> <a href="tel:'. $location->phoneNumber .'" target="_blank">'. $location->phoneNumber .'</a></li>';
 				}
 				if($location->whastapp){
-					echo '<li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/'. $location->cleanWhatsapp .'" target="_blank">'. $location->whastapp .'</a></li>';
+					echo '<li aria-label="Telefone whastapp"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/'. $location->cleanWhatsapp .'" target="_blank">'. $location->whastapp .'</a></li>';
 				}
 				if($social->facebook){
-					echo '<li><i class="fab fa-facebook-square"></i> <a href="'. $social->facebook .'" target="_blank">Lakatos</a></li>';
+					echo '<li aria-label="Página do facebook"><i class="fab fa-facebook-square"></i> <a href="'. $social->facebook .'" target="_blank">Lakatos</a></li>';
 				}
 				if($location->stAddress){
-					echo '<li><i class="fas fa-map-marked"></i> '. $location->stAddress .' - CEP '. $location->postalCode .' '. $location->locality .', '. $location->region .' - '. $location->country .'</li>';
+					echo '<li aria-label="Endereço Completo"><i class="fas fa-map-marked"></i> '. $location->stAddress .' - CEP '. $location->postalCode .' '. $location->locality .', '. $location->region .' - '. $location->country .'</li>';
 				}
 				?>
 			</ul>

@@ -97,7 +97,20 @@ $(document).ready(function(){
 			video.pause();	
 			$(this).text('Reproduzir vídeo');
 		}
-	})
+	});
+	// MouseOver in images
+	var onMouseOver = $('img[mousein]').on({
+		mouseenter: function(e){
+			let h = $(this).attr('mousein');
+			
+			h != '' && $(this).attr('src', h)
+		},
+		mouseleave: function(e){
+			let s = $(this).attr('mouseout');
+			
+			s != '' && $(this).attr('src', s)
+		}
+	});
 	// WhatsappButton
 	$('#whatsappButton, #whatsapp-outer-message').click(function(){
 		$('#whatsapp-outer-message').css('display', 'none');

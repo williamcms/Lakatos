@@ -269,49 +269,53 @@ $location->cleanWhatsapp = preg_replace('/[^A-Za-z0-9\-]/', '', $location->clean
 
 //Social media icons SVG
 if(!$social->instagram == ''){
-	$social_instagram = '<a href="'.$social->instagram.'" target="_blank"><img src="'.url().'/images/instagram-brands.svg" alt="Instagram" aria-hidden="true"/></a>';
+	$social_instagram = '<a href="'.$social->instagram.'" target="_blank" aria-label="Página do Instagram">
+		<img src="'.url().'/images/instagram-brands.svg" alt="Instagram" aria-hidden="true"/></a>';
 }else{
 	$social_instagram = '';
 }
 if(!$social->facebook == ''){
-	$social_facebook = '<a href="'.$social->facebook.'" target="_blank"><img src="'.url().'/images/facebook-square-brands.svg" alt="Facebook" aria-hidden="true"/></a>';
+	$social_facebook = '<a href="'.$social->facebook.'" target="_blank" aria-label="Página do Facebook">
+		<img src="'.url().'/images/facebook-square-brands.svg" alt="Facebook" aria-hidden="true"/></a>';
 }else{
 	$social_facebook = '';
 }
 if(!$social->twitter == ''){
-	$social_twitter = '<a href="'.$social->twitter.'" target="_blank"><img src="'.url().'/images/twitter-brands.svg" alt="Twitter" aria-hidden="true"/></a>';
+	$social_twitter = '<a href="'.$social->twitter.'" target="_blank" aria-label="Página do Twitter">
+		<img src="'.url().'/images/twitter-brands.svg" alt="Twitter" aria-hidden="true"/></a>';
 }else{
 	$social_twitter = '';
 }
 if(!$social->linkedin == ''){
-	$social_linkedin = '<a href="'.$social->linkedin.'" target="_blank"><img src="'.url().'/images/linkedin-brands.svg" alt="Linkedin" aria-hidden="true"/></a>';
+	$social_linkedin = '<a href="'.$social->linkedin.'" target="_blank" aria-label="Página do Linkedin">
+		<img src="'.url().'/images/linkedin-brands.svg" alt="Linkedin" aria-hidden="true"/></a>';
 }else{
 	$social_linkedin = '';
 }
 
 //Social media icons CSS
 if(!$social->instagram == ''){
-	$social_link_instagram = '<a href="'.$social->instagram.'" target="_blank" class="fab fa-instagram" aria-hidden="true"></a>';
+	$social_link_instagram = '<a href="'.$social->instagram.'" target="_blank" class="fab fa-instagram" aria-label="Página do Instagram"></a>';
 }else{
 	$social_link_instagram = '';
 }
 if(!$social->facebook == ''){
-	$social_link_facebook = '<a href="'.$social->facebook.'" target="_blank" class="fab fa-facebook-f" aria-hidden="true"></a>';
+	$social_link_facebook = '<a href="'.$social->facebook.'" target="_blank" class="fab fa-facebook-f" aria-label="Página do Facebook"></a>';
 }else{
 	$social_link_facebook = '';
 }
 if(!$social->twitter == ''){
-	$social_link_twitter = '<a href="'.$social->twitter.'" target="_blank" class="fab fa-twitter" aria-hidden="true"></a>';
+	$social_link_twitter = '<a href="'.$social->twitter.'" target="_blank" class="fab fa-twitter" aria-label="Página do Twitter"></a>';
 }else{
 	$social_link_twitter = '';
 }
 if(!$social->linkedin == ''){
-	$social_link_linkedin = '<a href="'.$social->linkedin.'" target="_blank" class="fab fa-linkedin-in" aria-hidden="true"></a>';
+	$social_link_linkedin = '<a href="'.$social->linkedin.'" target="_blank" class="fab fa-linkedin-in" aria-label="Página do Linkedin"></a>';
 }else{
 	$social_link_linkedin = '';
 }
 if(!$social->youtube == ''){
-	$social_link_youtube = '<a href="'.$social->youtube.'" target="_blank" class="fab fa-youtube" aria-hidden="true"></a>';
+	$social_link_youtube = '<a href="'.$social->youtube.'" target="_blank" class="fab fa-youtube" aria-label="Página do Youtube"></a>';
 }else{
 	$social_link_youtube = '';
 }

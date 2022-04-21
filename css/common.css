@@ -285,6 +285,7 @@ header div.language-wrapper{
 header div.language-wrapper .row .col .info,
 header div.language-wrapper .row .col .language{
 	display: flex;
+	list-style: none;
 }
 header div.language-wrapper .row .col .info{
 	grid-column-gap: 1.5rem;

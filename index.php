@@ -106,7 +106,7 @@
 	<noscript><p class="center popup popup-red">Oh não! Um erro ocorreu, para visualizar melhor está página é necessário ativar o javascript. Saiba mais <a href="https://www.enable-javascript.com/pt/" target="_blank">clicando aqui</a>.</p></noscript>
 </head>
 <body>
-	<?php require_once('menu.php'); ?>
+	<?php require_once('menu_static.php'); ?>
 
 	<main>
 		<div class="home-top_video" id="home">
@@ -147,7 +147,7 @@
 			<div class="text-wrapper">
 				<div class="text">
 					<h2>Qual a sua necessidade?</h2>
-					<p>A Lakatos Termoformadoras possui know how para desenvolver</p>
+					<p>A Lakatos Termoformadoras possui know-how para desenvolver</p>
 					<p>moldes e máquinas capazes de produzir aplicações para diversas áreas!</p>
 				</div>
 				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais máquinas" title="Ver mais máquinas"><span>Ver mais</span></a></div>
@@ -197,14 +197,14 @@
 						global $conn;
 						$conn->link = $conn->connect();
 
-						if($stmt = $conn->link->prepare("SELECT mac_id, mac_name, mac_image, mac_short_desc, mac_desc, mac_applications FROM machines WHERE mac_active = 1 ORDER BY mac_id DESC LIMIT 5")){
+						if($stmt = $conn->link->prepare("SELECT * FROM machines WHERE mac_active = 1 ORDER BY mac_id DESC LIMIT 5")){
 							try{
 								$stmt->execute();
 								$result = get_result($stmt);
 
 								foreach($result as $i => $v){
 									echo '<div data-apId="'. $v['mac_id'] .'" data-applications="'. $v['mac_applications'] .'">
-									<img src="'. $v['mac_image'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" />
+									<img src="'. $v['mac_image'] .'" mouseout="'. $v['mac_image'] .'" mousein="'. $v['mac_image_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" />
 									<div class="name w-75 center bold"><a href="#">'. $v['mac_name'] .'</a></div>
 									<div class="desc w-75">'. $v['mac_short_desc'] .'</div></div>';
 								}
@@ -217,7 +217,7 @@
 			</div>
 		</div>
 		<div class="section-separator"></div>
-		<div class="section home-mid-moldes">
+		<div class="section home-mid-moldes" id="moldes">
 			<div class="text-wrapper">
 				<div class="text">
 					<h2>Moldes</h2>
@@ -283,7 +283,7 @@
 				<button class="button2 btn-green"><span>Enviar</span></button>
 			</form>
 			<div class="section-separator"></div>
-			<div class="text-wrapper">
+			<div class="text-wrapper" id="redesContato">
 				<div class="text">
 					<h2>Redes de contato</h2>
 					<p>Está procurando por um representante específico?</p>
