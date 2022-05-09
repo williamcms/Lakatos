@@ -13,8 +13,8 @@ $account->sessionLogin();
 	<meta name="robots" content="noindex, nofollow">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Styles -->
-	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.css">
-	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.edit.css">
+	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.min.css">
+	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.edit.min.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<!-- Scripts -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

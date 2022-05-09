@@ -8,7 +8,7 @@
 	<meta name="robots" content="index, follow">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Styles -->
-	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.css">
+	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.min.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<!-- Scripts -->    
 	<script src="<?php echo url(); ?>/js/jquery-3.6.0.min.js"></script>
