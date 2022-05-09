@@ -82,7 +82,7 @@ $(document).ready(function(){
 	var hideMenuOnScroll = (hideMenuOnScroll = () => {
 		var top = 0;
 		$(window).on("scroll", function() {
-			$(window).scrollTop() > top && 1 < $(window).scrollTop() ? ($("header").slideUp()) : $(window).scrollTop() === 0 ? ($("header").slideDown()) : $("header").slideDown();
+			$(window).scrollTop() > top && 1 < $(window).scrollTop() ? ($("header .wrapper").slideUp()) : $(window).scrollTop() === 0 ? ($("header .wrapper").slideDown()) : $("header .wrapper").slideDown();
 			top = $(window).scrollTop();
 		});
 	})();

@@ -14,10 +14,18 @@ $account->sessionLogin();
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Styles -->
 	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.css">
+	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.edit.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<!-- Scripts -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="<?php echo url(); ?>/js/common.js"></script> 
+	<script src="<?php echo url(); ?>/js/common.js"></script>
+	<!-- Preload font -->
+	<link rel="preload" href="https://use.fontawesome.com/releases/v5.5.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="https://use.fontawesome.com/releases/v5.5.0/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="https://use.fontawesome.com/releases/v5.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 	<!-- Icons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo url(); ?>/apple-touch-icon.png<?php echo $website->iconVersion; ?>">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo url(); ?>/favicon-32x32.png<?php echo $website->iconVersion; ?>">
@@ -85,11 +93,11 @@ $account->sessionLogin();
 <body>
 	<?php require_once('menu.php'); ?>
 	<main>
-		<div class="d-block pt-5 pb-5 w-25 m-auto">
+		<div class="d-block p-3 w-25 loginPanel">
 			<form action="#" method="POST" target="_self">
 				<div class="form-group">Nome <input type="text" name="username"></div>
 				<div class="form-group">Senha <input type="password" name="password"></div>
-				<button class="button btn-green" name="SubmitLoginButton"><span>LOGIN</span></button>
+				<button class="button2 btn-green" name="SubmitLoginButton"><span>LOGIN</span></button>
 			</form>
 			<div class="text-center" style="margin-top: 20px;"><a href="#" class="text-muted">Esqueceu sua senha?</a></div>
 			<?php
@@ -117,8 +125,7 @@ $account->sessionLogin();
 						}
 					}
 					catch (Exception $e){
-						echo '<div class="box-msg error">'. $e->getMessage() .'</div>';
-						die();
+						echo '<div class="box-msg error center">'. $e->getMessage() .'</div>';
 					}
 				}
 			?>
