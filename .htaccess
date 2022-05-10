@@ -10,3 +10,7 @@ RewriteRule ^(.*)/$ /$1 [L,R]
 
 #Permite o uso das páginas sem a extensão
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+#Substituições comuns
+RewriteRule ^home index.php [NC,L]
+RewriteRule ^inicio index.php [NC,L]

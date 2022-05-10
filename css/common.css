@@ -155,7 +155,7 @@ input[type=range]:focus{
 	background-color: var(--black);
 	outline: none;
 	box-shadow: none;
-	border-bottom: 0.0625rem solid var(--orange);
+	border-bottom: 0.0625rem solid var(--brand);
 }
 input[type=range]::-webkit-slider-thumb{
 	-webkit-appearance: none;
@@ -163,7 +163,7 @@ input[type=range]::-webkit-slider-thumb{
 	width: 1.5625rem;
 	height: 1.5625rem;
 	border-radius: 50%;
-	background-color: var(--orange);
+	background-color: var(--brand);
 	cursor: pointer;
 }
 input[type=range]::-moz-range-thumb{
@@ -173,7 +173,7 @@ input[type=range]::-moz-range-thumb{
 	width: 1.5625rem;
 	height: 1.5625rem;
 	border-radius: 50%;
-	background-color: var(--orange);
+	background-color: var(--brand);
 	cursor: pointer;
 }
 input:focus,
@@ -1280,6 +1280,22 @@ main > div.contactus > form > div.form-group.row{
 }
 main > div.section > form > div.fornecedores{
 	max-width: 50%;
+}
+/*Painel - Login*/
+.loginPanel{
+	background-color: var(--light);
+	border-radius: 0.3125rem;
+	box-shadow: rgb(0 0 0 / 40%) 0rem 0.09375rem 0.5rem;
+	margin: 1rem auto;
+}
+.loginPanel .psw{
+	margin: 1rem 0 .5rem 0;
+}
+.loginPanel .box-msg.error{
+	color: var(--danger);
+}
+.loginPanel .box-msg.success{
+	color: var(--success);
 }
 /*Footer*/
 footer{

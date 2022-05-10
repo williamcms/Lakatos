@@ -25,28 +25,29 @@ class _account {
 		global $conn;
 		$conn->link = $conn->connect();
 
-        if(!empty($username) && !empty($password)){
-            if($stmt = $conn->link->prepare("SELECT id, password FROM users WHERE username = ?")){
-                $stmt->bind_param('s', $username);
-                try{
-	                $stmt->execute();
-	                $stmt->store_result();
+		if(!empty($username) && !empty($password)){
+			if($stmt = $conn->link->prepare("SELECT id, password FROM users WHERE username = ?")){
+				$stmt->bind_param('s', $username);
+				try{
+					$stmt->execute();
+					$stmt->store_result();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
-                if($stmt->num_rows > 0){
-                    $stmt->bind_result($db_account_id, $db_account_password);
-                    $stmt->fetch();
+				if($stmt->num_rows > 0){
+					$stmt->bind_result($db_account_id, $db_account_password);
+					$stmt->fetch();
 
-                    if(password_verify($password, $db_account_password)){
+					if(password_verify($password, $db_account_password)){
 
-                        $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['id'] = $db_account_id;
-                        $_SESSION['username'] = $username;
-                        if(!isset($_SESSION['updateTime'])) $_SESSION['updateTime'] = strtotime('NOW');
+						$_SESSION['loggedin'] = TRUE;
+						$_SESSION['id'] = $db_account_id;
+						$_SESSION['username'] = $username;
+						if(!isset($_SESSION['updateTime'])) $_SESSION['updateTime'] = strtotime('NOW');
 
-                        $this->id = $db_account_id;
+						$this->id = $db_account_id;
 						$this->username = $username;
 						$this->authenticated = TRUE;
 						$this->updateTime = $_SESSION['updateTime'];
@@ -56,36 +57,36 @@ class _account {
 							$this->logout();
 						}
 
-                        //Verify if the current password's hash needs to be updated to newest algorithm
-                        if(password_needs_rehash($db_account_password, $password)){
-                            if($stmt = $conn->link->prepare("UPDATE users SET password = ? WHERE id = ?")){
-                                $stmt->bind_param('si', $new_hash, $refer_id);
+						//Verify if the current password's hash needs to be updated to newest algorithm
+						if(password_needs_rehash($db_account_password, $password)){
+							if($stmt = $conn->link->prepare("UPDATE users SET password = ? WHERE id = ?")){
+								$stmt->bind_param('si', $new_hash, $refer_id);
 
-                                $new_hash = password_hash($password, PASSWORD_DEFAULT);
-                                $refer_id = $db_account_id;
-                                $stmt->execute();
-                                echo '<div class="popup popup-green">Obaa! seu hash foi atualizado para a versão mais recente!</div>';
-                            }
-                        }
+								$new_hash = password_hash($password, PASSWORD_DEFAULT);
+								$refer_id = $db_account_id;
+								$stmt->execute();
+								echo '<div class="popup popup-green">Obaa! seu hash foi atualizado para a versão mais recente!</div>';
+							}
+						}
 
-                        /* Register the current Sessions on the database */
+						/* Register the current Sessions on the database */
 						$this->registerLoginSession();
 
-                        return TRUE;
-                    } else{
-                    	$stmt->close();
-				        $conn->close($conn->link);
-                        throw new Exception(ERROR_LOGIN_PASSWORD);
-                    }
-                } else{
-                	$stmt->close();
-			        $conn->close($conn->link);
-                    throw new Exception(ERROR_LOGIN_USERNAME);
-                }
-            }
-        } else {
-            throw new Exception(ERROR_LOGIN_BLANK);
-        }
+						return TRUE;
+					} else{
+						$stmt->close();
+						$conn->close($conn->link);
+						throw new Exception(ERROR_LOGIN_PASSWORD);
+					}
+				} else{
+					$stmt->close();
+					$conn->close($conn->link);
+					throw new Exception(ERROR_LOGIN_USERNAME);
+				}
+			}
+		} else {
+			throw new Exception(ERROR_LOGIN_BLANK);
+		}
 	}
 
 	private function registerLoginSession(){
@@ -104,17 +105,18 @@ class _account {
 				/*
 				$browser->setUserAgent($user_agent);
 
-		        echo $browser->getName();
-		        echo $browser->getVersion();
-		        echo $browser->getPlatform();
-		        echo $browser->getPlatformVersion(true);
-        		*/
+				echo $browser->getName();
+				echo $browser->getVersion();
+				echo $browser->getPlatform();
+				echo $browser->getPlatformVersion(true);
+				*/
 
 				try{
 					$stmt->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
 				$stmt->close();
 				$conn->close($conn->link);
@@ -138,6 +140,7 @@ class _account {
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
 			}
 			$stmt->close();
 			$conn->close($conn->link);
@@ -150,18 +153,18 @@ class _account {
 
 	//Workaround when mysqlnd not working
 	function get_result($statement){
-	    $RESULT = array();
-	    $statement->store_result();
-	    for ($i=0; $i<$statement->num_rows; $i++) {
-	        $Metadata = $statement->result_metadata();
-	        $PARAMS = array();
-	        while ($field = $Metadata->fetch_field()){
-	            $PARAMS[] = &$RESULT[$i][$field->name];
-	        }
-	        call_user_func_array( array( $statement, 'bind_result' ), $PARAMS );
-	        $statement->fetch();
-	    }
-	    return $RESULT;
+		$RESULT = array();
+		$statement->store_result();
+		for ($i=0; $i<$statement->num_rows; $i++) {
+			$Metadata = $statement->result_metadata();
+			$PARAMS = array();
+			while ($field = $Metadata->fetch_field()){
+				$PARAMS[] = &$RESULT[$i][$field->name];
+			}
+			call_user_func_array( array( $statement, 'bind_result' ), $PARAMS );
+			$statement->fetch();
+		}
+		return $RESULT;
 	}
 
 	public function sessionLogin(): bool{ //It is called in every page that needs auth
@@ -182,6 +185,7 @@ class _account {
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
 				if($stmt->num_rows > 0){
 
@@ -242,6 +246,7 @@ class _account {
 			}
 			catch(Exception $e){
 				throw new Exception('Error Processing Request: '. $e);
+				die();
 			}
 			return $user_active;
 		}
@@ -274,6 +279,7 @@ class _account {
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
 				session_unset();
 				session_destroy();
@@ -310,6 +316,7 @@ class _account {
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
 				//session_unset();
 				//session_destroy();
@@ -338,6 +345,7 @@ class _account {
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
 				}
 				//session_unset();
 				//session_destroy();
@@ -348,12 +356,12 @@ class _account {
 		return TRUE;
 	}
 
-	public function addUser(string $username, string $name, string $email, string $password, string $permissions, string $active): bool {
+	public function addUser(string $username, string $name, string $email, string $password, string $active): bool {
 		global $conn;
 		$conn->link = $conn->connect();
 
-		if($stmt = $conn->link->prepare("INSERT INTO users (username, name, email, password, permissions, active) VALUES (?, ?, ?, ?, ?, ?)")){
-			$stmt->bind_param('ssssii', $username, $name, $email, $hash, $permissions, $active);
+		if($stmt = $conn->link->prepare("INSERT INTO users (username, name, email, password, active) VALUES (?, ?, ?, ?, ?)")){
+			$stmt->bind_param('ssssi', $username, $name, $email, $hash, $active);
 
 			$username = stripslashes($username);
 
@@ -363,8 +371,6 @@ class _account {
 
 			$password = stripslashes($password);
 			$hash = password_hash($password, PASSWORD_DEFAULT);
-
-			$permissions = stripslashes($permissions);
 
 			$active = stripslashes($active);
 
@@ -386,33 +392,55 @@ class _account {
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
 			}
 			$stmt->close();
 			$conn->close($conn->link);
 			return TRUE;
 		}
-		$stmt->close();
 		$conn->close($conn->link);
+		return false;
 	}
 
-	public function changePassword(string $id, string $password): bool {
+	public function changePassword(string $id, string $new, string $old): bool {
 		global $conn;
 		$conn->link = $conn->connect();
 
-		if($stmt = $conn->link->prepare("UPDATE users SET password = ? WHERE id = ?")){
-			$stmt->bind_param('si', $hash, $id);
+		$id = stripslashes($id);
+		$old = stripslashes($old);
 
-			$id = stripslashes($id);
+		$new = stripslashes($new);
+		$newHash = password_hash($new, PASSWORD_DEFAULT);
 
-			$password = stripslashes($password);
-			$hash = password_hash($password, PASSWORD_DEFAULT);
-
+		if($stmt = $conn->link->prepare("SELECT password FROM users WHERE id = ?")){
+			$stmt->bind_param('i', $id);
 			try{
 				$stmt->execute();
-				
+				$stmt->store_result();
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
+			}
+			if($stmt->num_rows > 0){
+				$stmt->bind_result($oldHash);
+				$stmt->fetch();
+
+				if(!password_verify($old, $oldHash)){
+					throw new Exception('<p class="pill-notification popup popup-red">A senha antiga que você digitou não é válida.</p>');
+				}
+			}
+		}
+
+		if($stmt = $conn->link->prepare("UPDATE users SET password = ? WHERE id = ?")){
+			$stmt->bind_param('si', $newHash, $id);
+
+			try{
+				$stmt->execute();	
+			}
+			catch(Exception $e){
+				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
 			}
 			$stmt->close();
 			$conn->close($conn->link);
@@ -439,6 +467,7 @@ class _account {
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
 			}
 			return TRUE;
 		}
@@ -490,6 +519,7 @@ class _account {
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				die();
 			}
 
 			if($stmt->num_rows > 0){

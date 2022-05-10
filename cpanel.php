@@ -14,7 +14,6 @@ $account->sessionLogin();
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Styles -->
 	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.min.css">
-	<link rel="stylesheet" href="<?php echo url(); ?>/css/common.edit.min.css">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<!-- Scripts -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -95,17 +94,14 @@ $account->sessionLogin();
 	<main>
 		<div class="d-block p-3 w-25 loginPanel">
 			<form action="#" method="POST" target="_self">
-				<div class="form-group">Nome <input type="text" name="username"></div>
+				<div class="form-group">Nome <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : null; ?>"></div>
 				<div class="form-group">Senha <input type="password" name="password"></div>
 				<button class="button2 btn-green" name="SubmitLoginButton"><span>LOGIN</span></button>
 			</form>
-			<div class="text-center" style="margin-top: 20px;"><a href="#" class="text-muted">Esqueceu sua senha?</a></div>
+			<div class="center psw"><a href="#" class="text-muted">Esqueceu sua senha?</a></div>
 			<?php
-				if(isset($_SESSION['exceptional_error'])){
-					echo '<div class="box-msg error"  style="top:105%;">'.$_SESSION['exceptional_error'].'</div>';
-				}
 				if($account->isAuthenticated()){
-					echo '<div class="box-msg success">'.LOGIN_SUCCESS_SESSION.'</div>';
+					echo '<div class="box-msg success center">'.LOGIN_SUCCESS_SESSION.'</div>';
 					echo '<script>setTimeout(function(){ window.location.replace("./cp-home");}, 2000)</script>';
 				}
 
@@ -121,7 +117,11 @@ $account->sessionLogin();
 					try{
 						if($newLogin = $account->login($username, $password)){
 							echo '<div class="box-msg success">'.LOGIN_SUCCESS.'</div>';
-							echo '<script>setTimeout(function(){ window.location.replace("./cp-home");}, 2000)</script>';
+							if(!isset($_GET['return'])){
+								echo '<script>setTimeout(function(){ window.location.replace("./cp-home");}, 2000)</script>';
+							}else{
+								echo '<script>setTimeout(function(){ window.location.replace("./'.$_GET['return'].'");}, 2000)</script>';
+							}
 						}
 					}
 					catch (Exception $e){
