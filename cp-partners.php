@@ -78,21 +78,19 @@ $account->sessionLogin();
 			if($stmt->num_rows > 0){
 				for($i = 0; $i < $stmt->num_rows; $i++){
 					($row[$i]['cliente_active'] == 0 ? $NOTACTIVE = 'opacity: 0.7;' : $NOTACTIVE = '');
-					echo '<div class="col card-result-body" style="'.$NOTACTIVE.'"><div class="card-result-title">'.$row[$i]['cliente_name'].'</div>
+					echo '<div class="col card-result-body" style="'.$NOTACTIVE.'">
+					<div class="card-result-top">
+					<div class="card-result-title">'.$row[$i]['cliente_name'].'</div>
 					<form method="POST">
 					<input name="cliente_name" type="text" value="'.$row[$i]['cliente_name'].'" hidden>
-					<input name="cliente_image" type="text" value="'.$row[$i]['cliente_image'].'" hidden>
-					<input name="cliente_description" type="text" value="'.$row[$i]['cliente_description'].'" hidden>
-					<input name="cliente_url" type="text" value="'.$row[$i]['cliente_url'].'" hidden>
-					<input name="cliente_active" type="text" value="'.$row[$i]['cliente_active'].'" hidden>
 					<div class="buttonsContainer">
 						<button class="closebtn smallbtn" name="REMOVE_PARTNER" value="'.$row[$i]['cliente_id'].'" style="right: 35px;">
 							<i class="far fa-trash-alt"></i></button>
 						<button class="editbtn smallbtn" name="EDIT_PARTNER" value="'.$row[$i]['cliente_id'].'" title="Editar">
 							<i class="far fa-edit"></i></button>
 					</div>
-					</form>
-					<hr><div class="card-result-content"><div class="card-result-content-bg" style="background:url(./uploads/'.$row[$i]['cliente_image'].');"></div></div></div>';
+					</form></div>
+					<hr><div class="card-result-content"><div class="card-result-content-bg" style="background:url('.$row[$i]['cliente_image'].');"></div></div></div>';
 				}
 
 			} else{
@@ -101,35 +99,40 @@ $account->sessionLogin();
 		}
 
 		if(isset($_POST['EDIT_PARTNER'])){
-			$cliente_name = $_POST['cliente_name'];
-			$cliente_image = $_POST['cliente_image'];
-			$cliente_description = $_POST['cliente_description'];
-			$cliente_url = $_POST['cliente_url'];
-			$cliente_active = $_POST['cliente_active'];
 			$cliente_id = $_POST['EDIT_PARTNER'];
 
-			echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
-			<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
-			<form method="POST" id="form">
-				<h2 class="text-center">Editar parceiro</h2>
-				<div class="form-group"><label>Id do parceiro <span class="text-muted">(não editável)</span></label> <input type="text" name="cliente_id" value="'.$cliente_id.'" readonly></div>
-				<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" value="'.$cliente_name.'" required></div>
-				<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" value="'.$cliente_image.'" required></div>
-				<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description">'.$cliente_description.'</textarea></div>
-				<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" value="'.$cliente_url.'"></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site. <span id="range_input_value">'.$cliente_active.'</span>/1</label><input type="range" min="0" max="1" value="'.$cliente_active.'" name="cliente_active" id="range_input"></div>
+			if($stmt = $conn->link->prepare("SELECT * FROM clientes WHERE cliente_id = ?")){
+				try{
+					$stmt->bind_param('i', $cliente_id);
+					$stmt->execute();
+					$row = get_result($stmt);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
 
-				
-				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
-			</form></div></div></div>';
-			echo '<script>formOn(1);</script>';
+				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
+				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
+				<form method="POST" id="form">
+					<h2 class="text-center">Editar parceiro</h2>
+					<div class="form-group"><label>Id do parceiro <span class="text-muted">(não editável)</span></label> <input type="text" name="cliente_id" value="'.$row[0]['cliente_id'].'" readonly></div>
+					<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" value="'.$row[0]['cliente_name'].'" required></div>
+					<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" value="'.$row[0]['cliente_image'].'" required></div>
+					<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description">'.$row[0]['cliente_description'].'</textarea></div>
+					<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" value="'.$row[0]['cliente_url'].'"></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site. <span id="range_input_value">'.$row[0]['cliente_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" id="range_input"></div>
+
+					
+					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
+				</form></div></div></div>';
+				echo '<script>formOn(1);</script>';
+			}
 		}
 		if(isset($_POST['CONFIRM_PARTNER_EDIT'])){
 
 			$conn->link = $conn->connect();
 			if($stmt = $conn->link->prepare("UPDATE clientes SET cliente_name = ?, cliente_image = ?, cliente_url = ?, cliente_description = ?, cliente_active = ? WHERE cliente_id = ?")){
 
-				echo '<div class="overlayform" id="form2"><div class="modalform"><div class="modaldados text-center"><button aria-hidden="true" class="closebtn" onclick="formOff(2);" aria-label="Fechar Janela">&times;</button><h2>Criando...</h2></div></div></div>';
 				try{
 					$stmt->bind_param('ssssii', $cliente_name, $cliente_image, $cliente_url, $cliente_description, $cliente_active, $cliente_id);
 					$cliente_name = $_POST['cliente_name'];
@@ -160,7 +163,7 @@ $account->sessionLogin();
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
-				echo '<script>formOff(2);</script>';
+				echo '<script>reload();</script>';
 			}
 		}
 		if(isset($_POST['REMOVE_PARTNER'])){
@@ -176,7 +179,6 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_CLIENTE_REM'])){
 			$conn->link = $conn->connect();
 			if($stmt = $conn->link->prepare("DELETE FROM clientes WHERE cliente_id = ?")){
-				echo '<div class="overlayform" id="form4"><div class="modalform"><div class="modaldados text-center"><button aria-hidden="true" class="closebtn" onclick="formOff(4);" aria-label="Fechar Janela">&times;</button><h2>Excluindo Cliente (id: '.$_POST['CONFIRM_CLIENTE_REM'].')</h2></div></div></div>';
 				try{
 					$stmt->bind_param('i', stripslashes($_POST['CONFIRM_CLIENTE_REM']));
 					$stmt->execute();
@@ -184,7 +186,7 @@ $account->sessionLogin();
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
-				echo '<script>formOff(4);</script>';
+				echo '<script>reload();</script>';
 			}
 		}
 
@@ -237,6 +239,7 @@ $account->sessionLogin();
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
+				echo '<script>reload();</script>';
 			}
 		}
 

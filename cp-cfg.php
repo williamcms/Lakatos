@@ -89,71 +89,58 @@ $account->sessionLogin();
 					(empty($row[$i]['config_value']) ? $VALUE_REPAIR = '<i class="fas fa-exclamation-triangle"></i>' : $VALUE_REPAIR = '');
 
 					echo '<div class="col col-100 card-result-body" style="'.$NOTACTIVE.'">
+					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['config_description'].' ('.($row[$i]['config_active'] ? 'Ativo' : 'Desativado'). ')</div>
 					<form method="POST">
-						<input name="config_name" type="text" value="'.$row[$i]['config_name'].'" hidden>
-						<textarea name="config_value" style="display:none;">'.$row[$i]['config_value'].'</textarea>
-						<input name="config_description" type="text" value="'.$row[$i]['config_description'].'" hidden>
-						<input name="config_active" type="text" value="'.$row[$i]['config_active'].'" hidden>
 						<div class="buttonsContainer">
 							<button class="editbtn smallbtn" name="EDIT_CONFIG" value="'.$row[$i]['config_id'].'" title="Editar">
 							<i class="far fa-edit"></i></button>
 						</div>
-					</form>
+					</form></div>
 					<hr><div class="card-result-content">
 					<span class="bold">Valor:</span> <xmp class="italic" style="line-break: anywhere;white-space: normal;display:inline;">'.$row[$i]['config_value'].'</xmp> '.$VALUE_REPAIR.'
 					</div></div>';
 				}
-
-			} else{
-					echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
+			}else{
+				echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
 			}
 		}
 		
 
 		if(isset($_POST['EDIT_CONFIG'])){
-			$config_name = $_POST['config_name'];
-			$config_value = $_POST['config_value'];
-			$config_description = $_POST['config_description'];
-			$config_help = $_POST['config_help'];
-			$config_customplaceholder = $_POST['config_customplaceholder'];
-			$config_active = $_POST['config_active'];
 			$config_id = $_POST['EDIT_CONFIG'];
 
-			echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
-			<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
-			<form method="POST" id="form">
-				<h2 class="text-center">Editando &rarr; '.$config_description.'</h2>';
+			if($stmt = $conn->link->prepare("SELECT * FROM website_configs WHERE config_id = ?")){
+				try{
+					$stmt->bind_param('i', $config_id);
+					$stmt->execute();
+					$row = get_result($stmt);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
 
-			if(!empty($config_help) OR !$config_help == 0){
-				echo '<div class="cfg-help_text">' .$config_help. '</div>';
+				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
+				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
+				<form method="POST" id="form">
+					<h2 class="text-center">Editando &rarr; '.$row[0]['config_description'].'</h2>';
+
+				if(!empty($row[0]['config_help']) OR !$row[0]['config_help'] == 0){
+					echo '<div class="cfg-help_text">' .$row[0]['config_help']. '</div>';
+				}
+
+				echo '<div class="form-group"><label>Descrição <span class="text-muted">(não editável)</span></label>
+						<input type="text" name="config_description" value="'.$row[0]['config_description'].'" readonly></div>
+						<div class="form-group"><label>Valor</label>
+						<textarea type="text" name="config_value" id="config_value" placeholder="'.$row[0]['config_customplaceholder'].'">'.$row[0]['config_value'].'</textarea></div>
+						<div class="form-group"><label>Ativo? Isto podera afetar a estabilidade do website</label>
+						<span id="range_input_value">'.$row[0]['config_active'].'</span>/1
+						<input type="range" min="0" max="1" value="'.$row[0]['config_active'].'" name="config_active" class="range_input"></div>
+					
+						<button class="button btn-success" value="'.$row[0]['config_id'].'" name="CONFIRM_CONFIG_EDIT"><span>Confirmar</span></button>
+				</form></div><p class="text-muted text-center">Caso o valor deste formulário esteja em branco, essa configuração será desativada automáticamente!</p></div></div>';
+				echo '<script>formOn(1);</script>';
 			}
-
-			echo '<div class="form-group"><label>Descrição <span class="text-muted">(não editável)</span></label>
-					<input type="text" name="config_description" value="'.$config_description.'" readonly></div>
-					<div class="form-group"><label>Valor</label>
-					<textarea type="text" name="config_value" id="config_value" placeholder="'.$config_customplaceholder.'">'.$config_value.'</textarea></div>
-					<div class="form-group"><label>Ativo? Isto podera afetar a estabilidade do website</label>
-					<span id="range_input_value">'.$config_active.'</span>/1
-					<input type="range" min="0" max="1" value="'.$config_active.'" name="config_active" class="range_input"></div>
-				
-					<button class="button btn-success" value="'.$config_id.'" name="CONFIRM_CONFIG_EDIT"><span>Confirmar</span></button>
-			</form></div><p class="text-muted text-center">Caso o valor deste formulário esteja em branco, essa configuração será desativada automáticamente!</p></div></div>';
-			echo '<!-- Autosize Script -->
-				<script>
-					var textarea = document.getElementById("config_value");
-
-					textarea.addEventListener("click", autosize);
-								 
-					function autosize(){
-					  var el = this;
-					  setTimeout(function(){
-						el.style.cssText = "height:auto";
-						el.style.cssText = "height:" + (el.scrollHeight + 10) + "px";
-					  }, 0);
-					}
-					formOn(1);
-				</script>';
 		}
 		if(isset($_POST['CONFIRM_CONFIG_EDIT'])){
 

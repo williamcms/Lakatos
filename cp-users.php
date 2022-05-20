@@ -93,12 +93,10 @@ $account->sessionLogin();
 					(empty($row[$i]['email']) ? $EMAIL_REPAIR = '<i class="fas fa-exclamation-triangle"></i>' : $EMAIL_REPAIR = '');
 
 					echo '<div class="col col-100 card-result-body" style="'.$NOTACTIVE.'">
+					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['username'].'</div>
 					<form method="POST">
 					<input name="user_username" type="text" value="'.$row[$i]['username'].'" hidden>
-					<input name="user_name" type="text" value="'.$row[$i]['name'].'" hidden>
-					<input name="user_email" type="text" value="'.$row[$i]['email'].'" hidden>
-					<input name="user_active" type="text" value="'.$row[$i]['active'].'" hidden>
 					<div class="buttonsContainer">';
 					if(!($row[$i]['id'] == 1) && !($row[$i]['id'] == 2)){
 						echo '<button class="closebtn smallbtn" name="REMOVE_USER" value="'.$row[$i]['id'].'">
@@ -106,7 +104,7 @@ $account->sessionLogin();
 					}                        
 					echo '<button class="editbtn smallbtn" name="EDIT_USER" value="'.$row[$i]['id'].'" title="Editar">
 							<i class="far fa-edit"></i></button>
-							</div></form>
+							</div></form></div>
 							<hr><div class="card-result-content">
 							<p>Identificação: '.$row[$i]['id'].'</p>
 							<p>Nome: '.$row[$i]['name'].$NAME_REPAIR. '</p>
@@ -121,37 +119,35 @@ $account->sessionLogin();
 		}
 
 		if(isset($_POST['EDIT_USER'])){
-			$user_username = $_POST['user_username'];
-			$user_username = stripslashes($user_username);
-			$user_username = mysqli_real_escape_string($conn->link, $user_username);
-
-			$user_name = $_POST['user_name'];
-			$user_name = stripslashes($user_name);
-			$user_name = mysqli_real_escape_string($conn->link, $user_name);
-
-			$user_email = $_POST['user_email'];
-			$user_email = stripslashes($user_email);
-			$user_email = mysqli_real_escape_string($conn->link, $user_email);
-
-			$user_active = $_POST['user_active'];
-			$user_active = stripslashes($user_active);
-			$user_active = mysqli_real_escape_string($conn->link, $user_active);
-
+			
 			$user_id = $_POST['EDIT_USER'];
-			echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
-			<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
-			<form method="POST" id="form">
-				<h2 class="text-center">Alterar usuário</h2>
-				<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$user_id.'" readonly></div>
-				<div class="form-group"><label>Usuário</label> <input type="text" name="user_username" value="'.$user_username.'"></div>
-				<div class="form-group"><label>Nome</label> <input type="text" name="user_name" value="'.$user_name.'"></div>
-				<div class="form-group"><label>Email</label> <input type="text" name="user_email" value="'.$user_email.'"></div>
-				<div class="form-group"><label>Ativo? Isto afetara se o usuário pode entrar no painel de controle. <span id="range_input_value">'.$user_active.'</span>/1</label><input type="range" min="0" max="1" value="'.$user_active.'" name="user_active" id="range_input"></div>
-				
-				<button class="button btn-success" name="CONFIRM_USER_EDIT"><span>Confirmar</span></button>
-				<button class="button2 btn-warning" name="RESET_PASW_USER"><span>Alterar Senha</span></button>
-			</form></div></div></div>';
-			echo '<script>formOn(1);</script>';
+
+			if($stmt = $conn->link->prepare("SELECT * FROM users WHERE id = ?")){
+				try{
+					$stmt->bind_param('i', $user_id);
+					$stmt->execute();
+					$row = get_result($stmt);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
+				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
+				<form method="POST" id="form">
+					<h2 class="text-center">Alterar usuário</h2>
+					<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$row[0]['id'].'" readonly></div>
+					<div class="form-group"><label>Usuário</label> <input type="text" name="user_username" value="'.$row[0]['username'].'"></div>
+					<div class="form-group"><label>Nome</label> <input type="text" name="user_name" value="'.$row[0]['name'].'"></div>
+					<div class="form-group"><label>Email</label> <input type="text" name="user_email" value="'.$row[0]['email'].'"></div>
+					<div class="form-group"><label>Ativo? Isto afetara se o usuário pode entrar no painel de controle.</label>
+					<span class="range_input_value">'.$row[0]['active'].'</span>/1
+					<input type="range" min="0" max="1" value="'.$row[0]['active'].'" name="user_active" class="range_input"></div>
+					
+					<button class="button btn-success" name="CONFIRM_USER_EDIT"><span>Confirmar</span></button>
+					<button class="button2 btn-warning" name="CHANGE_PASW_USER"><span>Alterar Senha</span></button>
+				</form></div></div></div>';
+				echo '<script>formOn(1);</script>';
+			}
 		}
 		if(isset($_POST['CONFIRM_USER_EDIT'])){
 
@@ -183,7 +179,7 @@ $account->sessionLogin();
 				echo '<script>reload();</script>';
 			}
 		}
-		if(isset($_POST['RESET_PASW_USER'])){
+		if(isset($_POST['CHANGE_PASW_USER'])){
 			$user_id = $_POST['user_id'];
 			$user_id = stripslashes($user_id);
 			$user_id = mysqli_real_escape_string($conn->link, $user_id);
@@ -207,11 +203,11 @@ $account->sessionLogin();
 					</div>
 				</div>
 				
-				<button class="button btn-success" name="CONFIRM_RESET_PASW_USER"><span>Confirmar</span></button>
+				<button class="button btn-success" name="CONFIRM_CHANGE_PASW_USER"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(2);</script>';
 		}
-		if(isset($_POST['CONFIRM_RESET_PASW_USER'])){
+		if(isset($_POST['CONFIRM_CHANGE_PASW_USER'])){
 			$user_id = $_POST['user_id'];
 			$user_id = stripslashes($user_id);
 			$user_id = mysqli_real_escape_string($conn->link, $user_id);

@@ -22,6 +22,22 @@ var closeOnEsc = $(document).on('keydown', function(evt){
 	}
 })
 $(document).ready(function(){
+	var darkMode = (() =>{
+		if($('#darkmode').is(':checked')){
+			$('body').addClass('darkmode');
+		}
+	})();
+	var openMenu = $('.js--open-menu').on('click', function(){
+		$('header, header button.js--open-menu').toggleClass('change');
+		$('body').toggleClass('noscroll');
+		// Atributos para Leitores de tela
+		$x = $(this).hasClass('change');
+		$(this).attr('aria-expanded', $x);
+	});
+	var closeMenu = $('main, header nav.menu ul li').on('click', function(){
+		$('body').removeClass('noscroll');
+		$('header, header button.js--open-menu').removeClass('change');
+	})
 	$('#password, #password2').on('input', function(e){
 		if($('#password').val().length < 6 || $('#password2').val().length < 6){
 			$('#confirmPassword').text('A senha deve possuir no mínimo 6 caracteres');
@@ -51,5 +67,11 @@ $(document).ready(function(){
 	//Range
 	$('.range_input').on('input', function(e){
 		$(this).prev().html(this.value);
+	});
+	//Summernote
+	$('.summernote').summernote({
+		height: 450,
+		tabsize: 2,
+		lang: 'pt-BR'
 	});
 });

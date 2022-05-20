@@ -66,7 +66,8 @@ if($location->phoneNumber){
 	echo '<meta name="og:phone_number" content="'.$location->phoneNumber.'"/>';
 }
 ?>
-
+<!-- summernote -->
+<?php require_once('summernote-head-codes.php'); ?>
 <noscript><p class="text-center popup popup-red">
 	Oh não! Um erro ocorreu, para viualizar melhor está página é necessário ativar o javascript. 
 	Saiba mais <a href="https://www.enable-javascript.com/pt/" target="_blank">clicando aqui</a>.</p>

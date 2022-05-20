@@ -13,7 +13,7 @@ $account->sessionLogin();
 <body>
 	<?php include('hm_menu_cpanel.php'); ?>
 <main class="notes">
-	<h2 class="text-center pt-3">Bem-vindo, <span class="destaque"><?php echo $_SESSION['username']; ?></span>! </h2>
+	<h2 class="text-center pt-3">Bem-vindo, <?php echo $_SESSION['username']; ?>! </h2>
 	<div class="card-box">
 		<div class="row">
 			<div class="col"><h4>Quadro de Avisos</h4></div>
@@ -85,14 +85,17 @@ $account->sessionLogin();
 
 			if($stmt->num_rows > 0){
 				for($i = 0; $i < $stmt->num_rows; $i++){
-					echo '<div class="col card-result-body"><div class="card-result-title">'.$row[$i]['note_title'].'</div>
-							<form method="POST">
-								<input name="note_name" type="text" value="'.$row[$i]['note_title'].'" hidden>
-								<div class="buttonsContainer">
-									<button class="closebtn smallbtn" name="REMOVE_NOTE" value="'.$row[$i]['note_id'].'">
-									<i class="far fa-trash-alt"></i></button>
-								</div>
-							</form><hr><div class="card-result-content">'.$row[$i]['note_content'].'</div></div>';
+					echo '<div class="col card-result-body">
+					<div class="card-result-top">
+					<div class="card-result-title">'.$row[$i]['note_title'].'</div>
+						<form method="POST">
+							<input name="note_name" type="text" value="'.$row[$i]['note_title'].'" hidden>
+							<div class="buttonsContainer">
+								<button class="closebtn smallbtn" name="REMOVE_NOTE" value="'.$row[$i]['note_id'].'">
+								<i class="far fa-trash-alt"></i></button>
+							</div>
+						</form></div>
+						<hr><div class="card-result-content">'.$row[$i]['note_content'].'</div></div>';
 				}
 
 			} else{

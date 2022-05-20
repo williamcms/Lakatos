@@ -15,7 +15,7 @@ $(document).ready(function(){
 	});
 	$('.slick-carousel-arrows').slick({
 		lazyLoad: 'ondemand',
-		autoplay: false,
+		autoplay: true,
 		autoplaySpeed: 3000,
 		dots: false,
 		arrows: true,

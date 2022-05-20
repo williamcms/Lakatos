@@ -23,10 +23,10 @@
 		</div>
 		<nav class="menu" id="menubar">
 			<button class="js--open-menu" role="none" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false">
-		        <span></span>
-		        <span></span>
-		        <span></span>
-		    </button>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
 			<ul role="menu" tabindex="-1" class="navigation" id="navigation">
 				<li role="none" class="menuitem"><a href="./home" role="menuitem">Home</a></li>
 				<li role="none" class="menuitem"><a href="./aboutus" role="menuitem">Sobre nós</a></li>

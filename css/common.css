@@ -68,6 +68,26 @@ i{
 small{
 	font-size: smaller;
 }
+pre{
+	display: block;
+	padding: 0.59375rem;
+	margin: 0 0 0.625rem;
+	font-size: 0.8125rem;
+	line-height: 1.42857143;
+	color: #333333;
+	word-break: break-all;
+	word-wrap: break-word;
+	overflow: auto;
+	background-color: #F5F5F5;
+	border: 0.0625rem solid #CCCCCC;
+	border-radius: 0.25rem;
+}
+code, 
+kbd, 
+pre, 
+samp{
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
 button,
 input{
 	overflow: visible;
@@ -79,6 +99,8 @@ button:focus:not([role="tab"], .slick-next, .slick-prev, .carousel-control-prev,
 }
 label{
 	display: inline-block;
+	font-size: .9em;
+	font-weight: 700;
 	margin-bottom: .2rem;
 }
 input[type=text],
@@ -1361,10 +1383,6 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		max-width: 100%;
 	}
 	/*Header/menu*/
-	header{
-		position: fixed;
-		background-color: var(--white);
-	}
 	header div.language-wrapper .row .col:first-child{
 		display: none;
 	}
