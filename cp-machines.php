@@ -69,7 +69,7 @@ $account->sessionLogin();
 		if($stmt = $conn->link->prepare("SELECT * FROM machines ORDER BY ".$sqlOpt." ". $sqlOptOrder)){
 			try{
 				$stmt->execute();
-				$row = $account->get_result($stmt);
+				$row = get_result($stmt);
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
@@ -121,8 +121,8 @@ $account->sessionLogin();
 					<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" value="'.$row[0]['mac_name'].'" required></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required></div>
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
-					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc">'.$row[0]['mac_short_desc'].'</textarea></div>
-					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote">'.$row[0]['mac_short_desc'].'</textarea></div>
+					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
+					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_short_desc'].'</textarea></div>
 					<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications" value="'.$row[0]['mac_applications'].'"></div>
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
 
@@ -210,8 +210,8 @@ $account->sessionLogin();
 				<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" required></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" required></div>
 				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
-				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc"></textarea></div>
-				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote"></textarea></div>
+				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" maxlength="390"></textarea></div>
+				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990"></textarea></div>
 				<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications"></div>
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="mac_active" class="range_input"></div>
 

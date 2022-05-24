@@ -32,6 +32,7 @@
 	--dark: #343A40;
 
 	--menu-size: 13.625rem;
+	--menu-size-collapsed: 4rem;
 }
 *{
 	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
@@ -55,6 +56,9 @@ body{
 main{
 	min-height: 100vh;
 	margin-left: var(--menu-size);
+}
+body.collapsed-menu main{
+	margin-left: var(--menu-size-collapsed);
 }
 a{
 	color: inherit;
@@ -813,6 +817,32 @@ header > nav#menubar > ul#navigation > li > a > :nth-child(1){
 header > nav#menubar > ul#navigation li.currentPage{
 	color: var(--brand);
 }
+/* Collapsed Menu */
+body.collapsed-menu header > nav#menubar{
+	text-align: center;
+}
+body.collapsed-menu header > nav#menubar > ul#navigation li .menu-logo,
+body:not(.collapsed-menu) header > nav#menubar > ul#navigation li .menu-logo-collapsed,
+body.collapsed-menu header > nav#menubar > ul#navigation li > ul.personal-card > li:first-child,
+body.collapsed-menu header > nav#menubar > ul#navigation > li > a > span{
+	display: none;
+}
+body.collapsed-menu header > nav#menubar > ul#navigation li > ul.personal-card{
+	position: absolute;
+	right: 0;
+	bottom: 1rem;
+	left: 0;
+}
+body.collapsed-menu header > nav#menubar > ul#navigation li > ul.personal-card ul{
+	flex-direction: column;
+}
+body.collapsed-menu header > nav#menubar > ul#navigation li > ul.personal-card ul > li > a > i{
+	font-size: 1.3rem;
+	padding: .5rem 0;
+}
+body.collapsed-menu header > nav#menubar > ul#navigation > li > a{
+	display: block;
+}
 
 /* New */
 .icon-only > span{
@@ -855,6 +885,9 @@ header > nav#menubar > ul#navigation li.currentPage{
 	border-radius: 0.25rem;
 	box-shadow: 0 0.125rem 0.625rem -0.063rem rgba(69, 90, 100, 0.3);
 	transition: box-shadow 0.3s ease-in-out;
+}
+.card-box > .card-box{
+	margin: 1rem;
 }
 .card-box:hover{
 	box-shadow: 0 0.313rem 0.688rem 0rem rgba(69, 90, 100, 0.3);
@@ -899,11 +932,6 @@ header > nav#menubar > ul#navigation li.currentPage{
 	background-position: center !important;
 	background-repeat: no-repeat !important;
 }
-.partners .card-result-body{
-	background-color: #202125;
-	min-width: 16.875rem;
-	max-width: 16.875rem;
-}
 .card-result-title{
 	font-weight: 900;
 	line-clamp: 1;
@@ -911,14 +939,8 @@ header > nav#menubar > ul#navigation li.currentPage{
     overflow: hidden;
     white-space: nowrap;
 }
-.partners .card-result-title{
-	color: var(--light);
-}
 .card-result-content{
 	margin-top: 1.25rem;
-}
-.partners .card-result-content{
-	height: 17.5rem;
 }
 .partners-logo{
 	display: block;
@@ -988,9 +1010,9 @@ input:checked+.slider{
 .extra .switch{
 	float: right;
 }
-.extra .card-box{
-	width: 50rem;
-	margin: 2.5rem auto;
+.extra details > summary{
+	cursor: pointer;
+	user-select: none;
 }
 .cfg-help_text{
 	margin: 1.25rem 0;
@@ -1049,7 +1071,7 @@ footer{
 	}
 	main{
 		margin: 0rem;
-		padding: 1.875rem 2.813rem
+		padding: 1.875rem 0.813rem
 	}
 	/*Menu*/
 	header:not(.change){
@@ -1116,6 +1138,10 @@ footer{
 	.card-box{
 		margin: 1.875rem 0rem;
 	}
+	.card-box > .card-box{
+		padding: .5rem;
+		margin: 1rem .5rem;
+	}
 	.card-box-results{
 		margin: 0rem;
 	}
@@ -1135,11 +1161,6 @@ footer{
 	}
 	.users .overlayform .form-group .confirmPassword2{
 		display: block;
-	}
-	.extra .card-box{
-		width: auto;
-		height: 5.875rem;
-		margin: 2.5rem auto;
 	}
 	.extra .switch{
 		margin: 0.938rem 0;

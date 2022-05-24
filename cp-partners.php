@@ -7,20 +7,20 @@ $account->sessionLogin();
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title><?php echo $website->title; ?>: Parceiros</title>
+	<title><?php echo $website->title; ?>: Clientes</title>
 	<?php require_once('header-cpainel.php'); ?>
 </head>
 <body>
 	<?php include('hm_menu_cpanel.php'); ?>
 <main class="partners">
-	<h2 class="text-center pt-3">Gerenciamento de Parceiros</h2>
+	<h2 class="text-center pt-3">Gerenciamento de Clientes</h2>
 	<div class="card-box">
 		<div class="row">
-			<div class="col"><h4>Parceiros</h4></div>
+			<div class="col"><h4>Clientes</h4></div>
 			<div class="col">
 				<form method="POST" id="NEW_PARTNER">
 					<input type="text" name="ADD_PARTNER" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_PARTNER').submit();">
-					<span>Novo Parceiro</span></a>
+					<span>Novo Cliente</span></a>
 				</form></div>
 		</div>
 		<div class="row">
@@ -69,7 +69,7 @@ $account->sessionLogin();
 		if($stmt = $conn->link->prepare("SELECT * FROM clientes ORDER BY ".$sqlOpt." ". $sqlOptOrder)){
 			try{
 				$stmt->execute();
-				$row = $account->get_result($stmt);
+				$row = get_result($stmt);
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
@@ -90,7 +90,7 @@ $account->sessionLogin();
 							<i class="far fa-edit"></i></button>
 					</div>
 					</form></div>
-					<hr><div class="card-result-content"><div class="card-result-content-bg" style="background:url('.$row[$i]['cliente_image'].');"></div></div></div>';
+					<hr><div class="card-result-content"><img src="'.$row[$i]['cliente_image'].'" class="w-100"/></div></div>';
 				}
 
 			} else{
@@ -118,9 +118,9 @@ $account->sessionLogin();
 					<div class="form-group"><label>Id do parceiro <span class="text-muted">(não editável)</span></label> <input type="text" name="cliente_id" value="'.$row[0]['cliente_id'].'" readonly></div>
 					<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" value="'.$row[0]['cliente_name'].'" required></div>
 					<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" value="'.$row[0]['cliente_image'].'" required></div>
-					<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description">'.$row[0]['cliente_description'].'</textarea></div>
+					<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description" maxlength="500">'.$row[0]['cliente_description'].'</textarea></div>
 					<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" value="'.$row[0]['cliente_url'].'"></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site. <span id="range_input_value">'.$row[0]['cliente_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" id="range_input"></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site.</label> <span class="range_input_value">'.$row[0]['cliente_active'].'</span>/1<input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" class="range_input"></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
@@ -197,9 +197,9 @@ $account->sessionLogin();
 				<h2 class="text-center">Novo parceiro</h2>
 				<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" required></div>
 				<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" required></div>
-				<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description"></textarea></div>
+				<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description" maxlength="500"></textarea></div>
 				<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url"></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="cliente_active" class="range_input"></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="cliente_active" class="range_input"></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_ADD"><span>Confirmar</span></button>

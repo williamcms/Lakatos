@@ -27,6 +27,11 @@ $(document).ready(function(){
 			$('body').addClass('darkmode');
 		}
 	})();
+	var collapse = (() =>{
+		if($('#collapse').is(':checked')){
+			$('body').addClass('collapsed-menu');
+		}
+	})();
 	var openMenu = $('.js--open-menu').on('click', function(){
 		$('header, header button.js--open-menu').toggleClass('change');
 		$('body').toggleClass('noscroll');

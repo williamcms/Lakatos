@@ -95,11 +95,12 @@ class _account {
 		$conn->link = $conn->connect();
 
 		if(session_status() == PHP_SESSION_ACTIVE){
-			if($stmt = $conn->link->prepare("REPLACE INTO users_sessions (session_id, user_id, login_time, user_agent, user_OS) VALUES (?, ?, NOW(), ?, ?)")){
-				$stmt->bind_param('siss', $session, $userid, $user_agent, $user_OS);
+			if($stmt = $conn->link->prepare("REPLACE INTO users_sessions (session_id, user_id, login_time, user_agent, user_browser, user_OS) VALUES (?, ?, NOW(), ?, ?, ?)")){
+				$stmt->bind_param('sisss', $session, $userid, $user_agent, $user_browser, $user_OS);
 				$session = session_id();
 				$userid = $this->id;
 				$user_agent = $_SERVER['HTTP_USER_AGENT'];
+				$user_browser = $browser->getName() .' '. $browser->getVersion();
 				$user_OS = $browser->getPlatform() .' '. $browser->getPlatformVersion(true);
 
 				/*
@@ -295,6 +296,34 @@ class _account {
 			echo '<script>window.location = "./cpanel?return='.($this->getFileName()).'";</script>';
 		}
 		echo '<script>window.location = "./cpanel?return='.($this->getFileName()).'";</script>';
+	}
+
+	public function closeThisSession($session_id){
+		global $conn;		
+		$conn->link = $conn->connect();
+
+		if(is_null($this->id)){
+			return;
+		}
+
+		if(session_status() == PHP_SESSION_ACTIVE){
+			if($stmt = $conn->link->prepare("DELETE FROM users_sessions WHERE session_id == ? AND user_id = ?")){
+				$stmt->bind_param('si', $session_id, $user_id);
+				$session_id = $session_id;
+				$user_id = $this->id;
+
+				try{
+					$stmt->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					die();
+				}
+				$stmt->close();
+				$conn->close($conn->link);
+			}
+		}
+		return TRUE;
 	}
 
 	public function closeOtherSessions(){

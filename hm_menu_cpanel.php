@@ -3,6 +3,16 @@
 	if(isset($_SESSION['extra-config_nightMode']) == true){
 		echo '<input name="darkmode" id="darkmode" type="checkbox" checked hidden>';
 	}
+	if(isset($_SESSION['extra-config_collapse']) || isset($_GET['collapse'])){
+		isset($_GET['collapse']) == false && isset($_SESSION['extra-config_collapse']) == false && $_GET['collapse'] = false;
+		isset($_GET['collapse']) == false && isset($_SESSION['extra-config_collapse']) == true && $_GET['collapse'] = true;
+		if($_GET['collapse'] == 'true'){
+			$_SESSION['extra-config_collapse'] = true;
+			echo '<input name="collapse" id="collapse" type="checkbox" checked hidden>';
+		}else{
+			unset($_SESSION['extra-config_collapse']);
+		}
+	}
 ?>
 <header>
 	<button class="js--open-menu" role="none" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false">
@@ -13,13 +23,14 @@
 	<nav class="menu" id="menubar">
 		<ul role="menu" tabindex="-1" class="navigation" id="navigation">
 			<li><img src="images/logo.png" class="menu-logo"></li>
+			<li><img src="favicon-32x32.png" class="menu-logo-collapsed"></li>
 			<li>
 				<ul class="personal-card">
 					<li>Olá, <span class="highlight"><?php echo $_SESSION['username']; ?></span></li>
 					<li>
 						<ul>
 							<li class="settings"><a href="./cp-extra"><i class="fa-solid fa-gear icon-only"><span>Preferências</span></i></a></li>
-							<li class="collapse-menu"><a href="?collapse"><i class="fa-solid fa-bars-staggered icon-only"><span>Diminuir Menu</span></i></a></li>
+							<li class="collapse-menu"><a href="?collapse=<?php echo (isset($_GET['collapse']) ? ($_GET['collapse'] == 'true' ? 'false' : 'true') : 'true'); ?>"><i class="fa-solid fa-bars-staggered icon-only"><span>Diminuir Menu</span></i></a></li>
 							<li class="signout"><a href="?sair"><i class="fa-solid fa-arrow-right-from-bracket icon-only"><span>Sair</span></i></a></li>
 						</ul>
 					</li>
@@ -42,7 +53,7 @@
 			</li>
 			<li <?php if($account->getFileName() == 'cp-partners.php') echo 'class="currentPage"'; ?>>
 				<a href="./cp-partners">
-					<i class="fa-solid fa-handshake"></i> <span>Parceiros</span>
+					<i class="fa-solid fa-handshake"></i> <span>Clientes</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-machines.php') echo 'class="currentPage"'; ?>>

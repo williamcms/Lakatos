@@ -80,7 +80,7 @@ $account->sessionLogin();
 		if($stmt = $conn->link->prepare("SELECT * FROM users ".$sqlOpt." ". $sqlOptOrder)){
 			try{
 				$stmt->execute();
-				$row = $account->get_result($stmt);
+				$row = get_result($stmt);
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
