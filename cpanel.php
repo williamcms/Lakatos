@@ -109,10 +109,7 @@ $account->sessionLogin();
 					$conn->link = $conn->connect();
 
 					$username = stripslashes($_POST['username']);
-					$username = mysqli_real_escape_string($conn->link, $username);
-
 					$password = stripslashes($_POST['password']);
-					$password = mysqli_real_escape_string($conn->link, $password);
 
 					try{
 						if($newLogin = $account->login($username, $password)){

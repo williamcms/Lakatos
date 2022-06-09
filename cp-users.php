@@ -119,7 +119,6 @@ $account->sessionLogin();
 		}
 
 		if(isset($_POST['EDIT_USER'])){
-			
 			$user_id = $_POST['EDIT_USER'];
 
 			if($stmt = $conn->link->prepare("SELECT * FROM users WHERE id = ?")){
@@ -156,21 +155,12 @@ $account->sessionLogin();
 
 				try{
 					$stmt->bind_param('sssii', $user_username, $user_name, $user_email, $user_active, $user_id);
-					$user_id = $_POST['user_id'];
-					$user_id = stripslashes($user_id);
-					$user_id = mysqli_escape_string($conn->link, $user_id);
 					$user_username = $_POST['user_username'];
-					$user_username = stripslashes($user_username);
-					$user_username = mysqli_escape_string($conn->link, $user_username);
 					$user_name = $_POST['user_name'];
-					$user_name = stripslashes($user_name);
-					$user_name = mysqli_escape_string($conn->link, $user_name);
 					$user_email = $_POST['user_email'];
-					$user_email = stripslashes($user_email);
-					$user_email = mysqli_escape_string($conn->link, $user_email);
 					$user_active = $_POST['user_active'];
-					$user_active = stripslashes($user_active);
-					$user_active = mysqli_escape_string($conn->link, $user_active);
+					$user_id = $_POST['user_id'];
+
 					$stmt->execute();
 				}
 				catch(Exception $e){
@@ -181,8 +171,6 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CHANGE_PASW_USER'])){
 			$user_id = $_POST['user_id'];
-			$user_id = stripslashes($user_id);
-			$user_id = mysqli_real_escape_string($conn->link, $user_id);
 
 			echo '<div class="overlayform" id="form2"><div class="modalform"><div class="modaldados">
 			<button class="closebtn" onclick="formOff(2);" aria-label="Fechar Janela">&times;</button>
@@ -209,20 +197,9 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_CHANGE_PASW_USER'])){
 			$user_id = $_POST['user_id'];
-			$user_id = stripslashes($user_id);
-			$user_id = mysqli_real_escape_string($conn->link, $user_id);
-
 			$new_psw = $_POST['user_password'];
-			$new_psw = stripslashes($new_psw);
-			$new_psw = mysqli_real_escape_string($conn->link, $new_psw);
-
 			$new_psw2 = $_POST['user_password2'];
-			$new_psw2 = stripslashes($new_psw2);
-			$new_psw2 = mysqli_real_escape_string($conn->link, $new_psw2);
-
 			$old_psw = $_POST['old_password'];
-			$old_psw = stripslashes($old_psw);
-			$old_psw = mysqli_real_escape_string($conn->link, $old_psw);
 
 
 			$conn->link = $conn->connect();
@@ -242,12 +219,7 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['REMOVE_USER'])){
 			$user_username = $_POST['user_username'];
-			$user_username = stripslashes($user_username);
-			$user_username = mysqli_real_escape_string($conn->link, $user_username);
-
 			$user_id = $_POST['REMOVE_USER'];
-			$user_id = stripslashes($user_id);
-			$user_id = mysqli_real_escape_string($conn->link, $user_id);
 
 			echo '<div class="overlayform" id="form3"><div class="modalform"><div class="modaldados text-center">
 			<button class="closebtn" onclick="formOff(3);" aria-label="Fechar Janela">&times;</button>
@@ -262,12 +234,8 @@ $account->sessionLogin();
 
 		if(isset($_POST['CONFIRM_USER_REM'])){
 			$user_username = $_POST['user_username'];
-			$user_username = stripslashes($user_username);
-			$user_username = mysqli_real_escape_string($conn->link, $user_username);
-
 			$user_id = $_POST['CONFIRM_USER_REM'];
-			$user_id = stripslashes($user_id);
-			$user_id = mysqli_real_escape_string($conn->link, $user_id);
+
 			$conn->link = $conn->connect();
 
 			try{
@@ -312,23 +280,11 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_USER_ADD'])){
 			$user_username = $_POST['user_username'];
-			$user_username = stripslashes($user_username);
-			$user_username = mysqli_escape_string($conn->link, $user_username);
 			$user_name = $_POST['user_name'];
-			$user_name = stripslashes($user_name);
-			$user_name = mysqli_escape_string($conn->link, $user_name);
 			$user_email = $_POST['user_email'];
-			$user_email = stripslashes($user_email);
-			$user_email = mysqli_escape_string($conn->link, $user_email);
 			$user_password = $_POST['user_password'];
-			$user_password = stripslashes($user_password);
-			$user_password = mysqli_escape_string($conn->link, $user_password);
 			$user_password2 = $_POST['user_password2'];
-			$user_password2 = stripslashes($user_password2);
-			$user_password2 = mysqli_escape_string($conn->link, $user_password2);
 			$user_active = $_POST['user_active'];
-			$user_active = stripslashes($user_active);
-			$user_active = mysqli_escape_string($conn->link, $user_active);
 
 			if($user_password == $user_password2){
 				try{

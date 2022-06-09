@@ -149,18 +149,16 @@ $account->sessionLogin();
 
 				try{
 					$stmt->bind_param('sii', $config_value, $config_active, $config_id);
+					
 					$config_value = $_POST['config_value'];
 					$config_value = str_replace("\r", "", $config_value);
 					$config_value = str_replace("\n", "", $config_value);
-					$config_value = stripslashes($config_value);
-					//$config_value = mysqli_escape_string($conn->link, $config_value);
+
 					$config_active = $_POST['config_active'];
-					$config_active = stripslashes($config_active);
-					$config_active = mysqli_escape_string($conn->link, $config_active);
 					$config_active = (empty($config_value) ? 0 : $config_active);
+
 					$config_id = $_POST['CONFIRM_CONFIG_EDIT'];
-					$config_id = stripslashes($config_id);
-					$config_id = mysqli_escape_string($conn->link, $config_id);
+
 					$stmt->execute();
 				}
 				catch(Exception $e){

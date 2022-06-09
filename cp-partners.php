@@ -136,28 +136,12 @@ $account->sessionLogin();
 				try{
 					$stmt->bind_param('ssssii', $cliente_name, $cliente_image, $cliente_url, $cliente_description, $cliente_active, $cliente_id);
 					$cliente_name = $_POST['cliente_name'];
-					$cliente_name = stripslashes($cliente_name);
-					$cliente_name = mysqli_escape_string($conn->link, $cliente_name);
-
 					$cliente_image = $_POST['cliente_image'];
-					$cliente_image = stripslashes($cliente_image);
-					$cliente_image = mysqli_escape_string($conn->link, $cliente_image);
-
-					$cliente_description = $_POST['cliente_description'];
-					$cliente_description = stripslashes($cliente_description);
-					$cliente_description = mysqli_escape_string($conn->link, $cliente_description);
-
 					$cliente_url = $_POST['cliente_url'];
-					$cliente_url = stripslashes($cliente_url);
-					$cliente_url = mysqli_escape_string($conn->link, $cliente_url);
-
-					$cliente_active = $_POST['cliente_active'];
-					$cliente_active = stripslashes($cliente_active);
-					$cliente_active = mysqli_escape_string($conn->link, $cliente_active);
-					
+					$cliente_description = $_POST['cliente_description'];
+					$cliente_active = $_POST['cliente_active'];					
 					$cliente_id = $_POST['cliente_id'];
-					$cliente_id = stripslashes($cliente_id);
-					$cliente_id = mysqli_escape_string($conn->link, $cliente_id);
+
 					$stmt->execute();
 				}
 				catch(Exception $e){
@@ -215,24 +199,10 @@ $account->sessionLogin();
 				try{
 					$stmt->bind_param('ssssi', $cliente_name, $cliente_image, $cliente_url, $cliente_description, $cliente_active);
 					$cliente_name = $_POST['cliente_name'];
-					$cliente_name = stripslashes($cliente_name);
-					$cliente_name = mysqli_escape_string($conn->link, $cliente_name);
-
 					$cliente_image = $_POST['cliente_image'];
-					$cliente_image = stripslashes($cliente_image);
-					$cliente_image = mysqli_escape_string($conn->link, $cliente_image);
-
-					$cliente_description = $_POST['cliente_description'];
-					$cliente_description = stripslashes($cliente_description);
-					$cliente_description = mysqli_escape_string($conn->link, $cliente_description);
-
 					$cliente_url = $_POST['cliente_url'];
-					$cliente_url = stripslashes($cliente_url);
-					$cliente_url = mysqli_escape_string($conn->link, $cliente_url);
-
+					$cliente_description = $_POST['cliente_description'];
 					$cliente_active = $_POST['cliente_active'];
-					$cliente_active = stripslashes($cliente_active);
-					$cliente_active = mysqli_escape_string($conn->link, $cliente_active);
 					
 					$stmt->execute();
 				}

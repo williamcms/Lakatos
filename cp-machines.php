@@ -121,7 +121,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" value="'.$row[0]['mac_name'].'" required></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required></div>
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
-					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
+					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
 					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_short_desc'].'</textarea></div>
 					<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications" value="'.$row[0]['mac_applications'].'"></div>
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
@@ -140,36 +140,14 @@ $account->sessionLogin();
 				try{
 					$stmt->bind_param('ssssssii', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_applications, $mac_active, $mac_id);
 					$mac_name = $_POST['mac_name'];
-					$mac_name = stripslashes($mac_name);
-					$mac_name = mysqli_escape_string($conn->link, $mac_name);
-
 					$mac_image = $_POST['mac_image'];
-					$mac_image = stripslashes($mac_image);
-					$mac_image = mysqli_escape_string($conn->link, $mac_image);
-
 					$mac_image_hover = $_POST['mac_image_hover'];
-					$mac_image_hover = stripslashes($mac_image_hover);
-					$mac_image_hover = mysqli_escape_string($conn->link, $mac_image_hover);
-
 					$mac_short_desc = $_POST['mac_short_desc'];
-					$mac_short_desc = stripslashes($mac_short_desc);
-					$mac_short_desc = mysqli_escape_string($conn->link, $mac_short_desc);
-
 					$mac_desc = $_POST['mac_desc'];
-					$mac_desc = stripslashes($mac_desc);
-					$mac_desc = mysqli_escape_string($conn->link, $mac_desc);
-
 					$mac_applications = $_POST['mac_applications'];
-					$mac_applications = stripslashes($mac_applications);
-					$mac_applications = mysqli_escape_string($conn->link, $mac_applications);
-
 					$mac_active = $_POST['mac_active'];
-					$mac_active = stripslashes($mac_active);
-					$mac_active = mysqli_escape_string($conn->link, $mac_active);
-					
 					$mac_id = $_POST['mac_id'];
-					$mac_id = stripslashes($mac_id);
-					$mac_id = mysqli_escape_string($conn->link, $mac_id);
+
 					$stmt->execute();
 				}
 				catch(Exception $e){
@@ -210,7 +188,7 @@ $account->sessionLogin();
 				<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" required></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" required></div>
 				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
-				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" maxlength="390"></textarea></div>
+				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea></div>
 				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990"></textarea></div>
 				<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications"></div>
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="mac_active" class="range_input"></div>
@@ -229,38 +207,19 @@ $account->sessionLogin();
 				try{
 					$stmt->bind_param('ssssssi', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_applications, $mac_active);
 					$mac_name = $_POST['mac_name'];
-					$mac_name = stripslashes($mac_name);
-					$mac_name = mysqli_escape_string($conn->link, $mac_name);
-
 					$mac_image = $_POST['mac_image'];
-					$mac_image = stripslashes($mac_image);
-					$mac_image = mysqli_escape_string($conn->link, $mac_image);
-
 					$mac_image_hover = $_POST['mac_image_hover'];
-					$mac_image_hover = stripslashes($mac_image_hover);
-					$mac_image_hover = mysqli_escape_string($conn->link, $mac_image_hover);
-
 					$mac_short_desc = $_POST['mac_short_desc'];
-					$mac_short_desc = stripslashes($mac_short_desc);
-					$mac_short_desc = mysqli_escape_string($conn->link, $mac_short_desc);
-
 					$mac_desc = $_POST['mac_desc'];
-					$mac_desc = stripslashes($mac_desc);
-					$mac_desc = mysqli_escape_string($conn->link, $mac_desc);
-
 					$mac_applications = $_POST['mac_applications'];
-					$mac_applications = stripslashes($mac_applications);
-					$mac_applications = mysqli_escape_string($conn->link, $mac_applications);
-
 					$mac_active = $_POST['mac_active'];
-					$mac_active = stripslashes($mac_active);
-					$mac_active = mysqli_escape_string($conn->link, $mac_active);
-					
+
 					$stmt->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
+				echo '<script>reload();</script>';
 			}
 		}
 

@@ -132,41 +132,19 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_APPLICATION_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE ap_included SET ap_name = ?, ap_image = ?, ap_image_hover = ?, ap_desc = ?, ap_desc = ?, ap_included = ?, ap_active = ? WHERE ap_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE mac_applications SET ap_name = ?, ap_icon = ?, ap_image = ?, ap_image_hover = ?, ap_desc = ?, ap_included = ?, ap_active = ? WHERE ap_id = ?")){
 
 				try{
-					$stmt->bind_param('ssssssii', $ap_name, $ap_image, $ap_image_hover, $ap_desc, $ap_desc, $ap_included, $ap_active, $ap_id);
+					$stmt->bind_param('ssssssii', $ap_name, $ap_icon, $ap_image, $ap_image_hover, $ap_desc, $ap_included, $ap_active, $ap_id);
 					$ap_name = $_POST['ap_name'];
-					$ap_name = stripslashes($ap_name);
-					$ap_name = mysqli_escape_string($conn->link, $ap_name);
-
+					$ap_icon = $_POST['ap_icon'];
 					$ap_image = $_POST['ap_image'];
-					$ap_image = stripslashes($ap_image);
-					$ap_image = mysqli_escape_string($conn->link, $ap_image);
-
 					$ap_image_hover = $_POST['ap_image_hover'];
-					$ap_image_hover = stripslashes($ap_image_hover);
-					$ap_image_hover = mysqli_escape_string($conn->link, $ap_image_hover);
-
 					$ap_desc = $_POST['ap_desc'];
-					$ap_desc = stripslashes($ap_desc);
-					$ap_desc = mysqli_escape_string($conn->link, $ap_desc);
-
-					$ap_desc = $_POST['ap_desc'];
-					$ap_desc = stripslashes($ap_desc);
-					$ap_desc = mysqli_escape_string($conn->link, $ap_desc);
-
 					$ap_included = $_POST['ap_included'];
-					$ap_included = stripslashes($ap_included);
-					$ap_included = mysqli_escape_string($conn->link, $ap_included);
-
 					$ap_active = $_POST['ap_active'];
-					$ap_active = stripslashes($ap_active);
-					$ap_active = mysqli_escape_string($conn->link, $ap_active);
-					
 					$ap_id = $_POST['ap_id'];
-					$ap_id = stripslashes($ap_id);
-					$ap_id = mysqli_escape_string($conn->link, $ap_id);
+
 					$stmt->execute();
 				}
 				catch(Exception $e){
@@ -187,7 +165,7 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_APPLICATION_REM'])){
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("DELETE FROM ap_included WHERE ap_id = ?")){
+			if($stmt = $conn->link->prepare("DELETE FROM mac_applications WHERE ap_id = ?")){
 				try{
 					$stmt->bind_param('i', stripslashes($_POST['CONFIRM_APPLICATION_REM']));
 					$stmt->execute();
@@ -220,39 +198,23 @@ $account->sessionLogin();
 
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("INSERT INTO ap_included (ap_name, ap_image, ap_desc, ap_desc, ap_included, ap_active) VALUES (?, ?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO ap_included (ap_name, ap_icon, ap_image, ap_desc, ap_included, ap_active) VALUES (?, ?, ?, ?, ?, ?)")){
 
 				try{
-					$stmt->bind_param('ssssssi', $ap_name, $ap_image, $ap_desc, $ap_desc, $ap_included, $ap_active);
+					$stmt->bind_param('ssssssi', $ap_name, $ap_icon, $ap_image, $ap_desc, $ap_included, $ap_active);
 					$ap_name = $_POST['ap_name'];
-					$ap_name = stripslashes($ap_name);
-					$ap_name = mysqli_escape_string($conn->link, $ap_name);
-
+					$ap_icon = $_POST['ap_icon'];
 					$ap_image = $_POST['ap_image'];
-					$ap_image = stripslashes($ap_image);
-					$ap_image = mysqli_escape_string($conn->link, $ap_image);
-
 					$ap_desc = $_POST['ap_desc'];
-					$ap_desc = stripslashes($ap_desc);
-					$ap_desc = mysqli_escape_string($conn->link, $ap_desc);
-
-					$ap_desc = $_POST['ap_desc'];
-					$ap_desc = stripslashes($ap_desc);
-					$ap_desc = mysqli_escape_string($conn->link, $ap_desc);
-
 					$ap_included = $_POST['ap_included'];
-					$ap_included = stripslashes($ap_included);
-					$ap_included = mysqli_escape_string($conn->link, $ap_included);
-
 					$ap_active = $_POST['ap_active'];
-					$ap_active = stripslashes($ap_active);
-					$ap_active = mysqli_escape_string($conn->link, $ap_active);
 					
 					$stmt->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
+				echo '<script>reload();</script>';
 			}
 		}
 
