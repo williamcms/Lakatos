@@ -61,7 +61,7 @@ a:hover{
 b,
 strong{
 	font-size: inherit;
-	font-weight: 600;
+	font-weight: 700;
 }
 i{
 	font-size: inherit;
@@ -479,6 +479,8 @@ header nav.menu ul li a{
 	opacity: 1;
 }
 .text-muted{
+	font-size: .9rem;
+	font-weight: 500;
 	color: var(--gray) !important;
 }
 .italic{
@@ -1203,8 +1205,8 @@ main div.home-top_video.paused .info button:hover::after{
 main div.home-top_video:not(.paused) .info button{
 	font-size: 2rem;
 	position: absolute;
+	top: 1rem;
 	right: 1rem;
-	bottom: 1rem;
 	padding: 0.3125rem;
 	border-radius: 2rem;
 }
@@ -1283,24 +1285,38 @@ main > div.section.home-mid-machines .slick-slide{
 main > div.section.home-mid-machines .slick-slide div.desc{
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 2rem;
 }
-/*Moldes*/
-main > div.home-mid-moldes{
+main > div.section.home-mid-machines .slick-slide div.desc *{
+	line-height: initial;
+}
+/*Sustentabilidade*/
+main > div.home-mid-chart{
 
 }
-main > div.home-mid-moldes div.row{
-	max-width: 75vw;
+main > div.home-mid-chart div.row{
+	grid-gap: 2rem;
+	gap: 2rem;
+	max-width: 80vw;
 	margin: 0 auto;
 	justify-content: center;
 	align-items: center;
 }
-main > div.home-mid-moldes div.row > div.col{
-	padding: 0 3rem;
-}
-main > div.home-mid-moldes div.row > div.col > p{
-	font-size: .9rem;
+main > div.home-mid-chart div.row > div.col > p{
+	font-size: 1.08rem;
 	margin-bottom: 1rem;
+}
+/*Blog*/
+main > div.home-mid-blog > .row{
+	padding: 0 4rem;
+	grid-gap: 1rem;
+	gap: 1rem;
+}
+main > div.home-mid-blog .row > .col:first-of-type{
+	flex-basis: 50%;
+}
+main > div.home-mid-blog .row > .col:last-of-type{
+	flex-basis: 30%;
 }
 /*Contact us*/
 main > div.contactus .contact-options > div > h3{
@@ -1509,11 +1525,11 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	main > div.section.home-mid-machines > .slick-slider div.name > a{
 		-webkit-line-clamp: 2;
 	}
-	/*Moldes*/
-	main > div.home-mid-moldes div.row{
+	/*Sustentabilidade*/
+	main > div.home-mid-chart div.row{
 		max-width: 100%;
 	}
-	main > div.home-mid-moldes div.row > div.col > p{
+	main > div.home-mid-chart div.row > div.col > p{
 		font-size: initial;
 	}
 	/*Contact us*/

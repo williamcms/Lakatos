@@ -3,10 +3,12 @@
 <html lang="pt-BR">
 <head>
 	<title><?php echo $website->title; ?></title>
+	<!-- Chart API -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" defer></script>
 	<?php require_once('header-front.php'); ?>
 </head>
 <body>
-	<?php require_once('menu_static.php'); ?>
+	<?php require_once('menu.php'); ?>
 
 	<main>
 		<div class="home-top_video paused" id="home">
@@ -78,12 +80,8 @@
 			</div>
 		</div>
 		<div class="section-separator"></div>
-		<div class="applications-detailed" id="Alimentício">
-			<!-- Contéudo -->
-		</div>
-		<div class="section-separator"></div>
 		<div class="section home-mid-machines" id="maquinas">
-			<div class="text-wrapper">
+			<div class="text-wrapper d-none">
 				<div class="text">
 					<h2>Últimas máquinas</h2>
 				</div>
@@ -115,26 +113,39 @@
 			</div>
 		</div>
 		<div class="section-separator"></div>
-		<div class="section home-mid-moldes" id="moldes">
+		<div class="section home-mid-chart" id="sustentabilidade">
 			<div class="text-wrapper">
 				<div class="text">
-					<h2>Moldes</h2>
-					<p>Além da produção das termoformadoras,</p>
-					<p>a Lakatos se dedica à fabricação dos moldes!</p>
+					<h2>Sustentabilidade</h2>
+					<p>Economia circular e onde a Lakatos se encontra no ciclo</p>
 				</div>
 			</div>
 			<div class="section-separator-1"></div>
 			<div class="row">
 				<div class="col">
-					<p>Para isso, possui estrutura completa, que compreende máquinas de usinagem CNC, bem como um departamento de metrologia, onde opera uma máquina tridimensional com precisão milesimal. Além disso, apresenta uma equipe de engenharia altamente capacitada a desenhar as mais complexas superfícies por meio do software CAD 3D.</p>
-					<p>Todo esse suporte permite que o trabalho seja executado perfeitamente e no material mais adequado. Podemos iniciar o processo com modelos em Epóxi para fundição, como maquinar laminados e fundidos até atingir a precisão em aço especial temperado com 60 HRC. A saber, os moldes produzidos pela Lakatos são variados, ou seja, para todas as suas linhas de máquinas termoformadoras, a exemplo de modelos para embalagens com multicavidades para alta produtividade, bem como em tamanhos maiores para autopeças ou a produção de peças de  refrigeradores.</p>
-					<p>Em nossas soluções incluímos canais de refrigeração, manifold, partes postiças com cilindros pneumáticos, travas especiais, extratores, câmara de vácuo, vedações, facas de corte, entre outras técnicas para alcançar a excelência em seu molde.</p>
-					<p>Em suma, a função da Lakatos é oferecer a solução completa, que inclui a máquina termoformadora juntamente com o molde, assumindo toda a responsabilidade da operação (turn key), com condições de uso imediato.</p>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
 				</div>
 				<div class="col">
-					<img class="img-responsive" src="https://www.lakatos.com/painel/dashboard/uploads/paginas/imagem_pagina___09-jpg___eletro_forming__1493231978__2604172017153938.jpg" title="Moldes Lakatos" />
+					<canvas id="chart"></canvas>
 				</div>
 					
+			</div>
+		</div>
+		<div class="section-separator"></div>
+		<div class="section home-mid-blog" id="blog">
+			<div class="text-wrapper">
+				<div class="text">
+					<h2>Últimas notícias</h2>
+				</div>
+				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais notícias" title="Ver mais notícias"><span>Ver mais</span></a></div>
+			</div>
+			<div class="section-separator-1"></div>
+			<div class="row">
+				<div class="col"><img src="./uploads/blog/blog-last.png" /></div>
+				<div class="col">
+					<div class="item"><img src="./uploads/blog/blog-1.png" /></div>
+					<div class="item"><img src="./uploads/blog/blog-2.png" /></div>
+				</div>
 			</div>
 		</div>
 		<div class="section-separator"></div>
@@ -236,6 +247,41 @@
 	</main>
 	<div class="section-separator"></div>
 
-<?php require_once('footer.php'); ?>
+	<script>
+		$(document).ready(function(){
+			let ctx = $('#chart');
+			var myPieChart = new Chart(ctx, {
+				// line, bar, radar, doughnut, pie, polarArea
+				type: 'doughnut',
+				data: {
+					labels: ['Vermelho', 'Azul', 'Amarelo', 'Verde', 'Roxo', 'Laranja'],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {}
+			});
+		})
+	</script>
+
+	<?php require_once('footer.php'); ?>
 </body>
 </html>

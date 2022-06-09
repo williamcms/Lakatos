@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <!-- Scripts -->    
 <script src="<?php echo url(); ?>/js/jquery-3.6.0.min.js"></script>
-<script src="<?php echo url(); ?>/js/common.js"></script>
-<script src="https://jrxeventos.com.br/js/autogrow.js"></script> <!-- Autogrows the textarea field in the whatsapp floating button -->
+<script src="<?php echo url(); ?>/js/common.js" defer></script>
+<script src="https://jrxeventos.com.br/js/autogrow.js" defer></script> <!-- Autogrows the textarea field in the whatsapp floating button -->
 <!-- Fontawesome -->
 <script src="https://kit.fontawesome.com/631d8d6355.js" crossorigin="anonymous"></script>
 <!-- Preload font -->
