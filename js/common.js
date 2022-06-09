@@ -92,10 +92,18 @@ $(document).ready(function(){
 
 		if(video.paused){
 			video.play();
-			$(this).text('Pausar vídeo');
+			$(this).attr('aria-label', 'Pausar vídeo');
+			$(this).attr('title', 'Pausar vídeo');
+			$(this).find('span').text('Pausar vídeo');
+			$(this).addClass('fas');
+			$(this).parents('#home').removeClass('paused');
 		}else{
 			video.pause();	
-			$(this).text('Reproduzir vídeo');
+			$(this).parents('#home').addClass('paused');
+			$(this).removeClass('fas');
+			$(this).attr('aria-label', 'Reproduzir vídeo');
+			$(this).attr('title', 'Reproduzir vídeo');
+			$(this).find('span').text('Reproduzir vídeo');
 		}
 	});
 	// MouseOver in images

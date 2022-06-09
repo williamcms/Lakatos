@@ -9,16 +9,15 @@
 	<?php require_once('menu_static.php'); ?>
 
 	<main>
-		<div class="home-top_video" id="home">
+		<div class="home-top_video paused" id="home">
 			<div class="video">
-				<video muted autoplay loop id="homeVideo">
+				<video muted loop id="homeVideo">
 					<source src="_prototype/video/video.mp4" type="video/mp4">
 				</video>                
 			</div>
 			<div class="info">
-				<h2>Inovando a sua Produtividade</h2>
-				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam</p>
-				<button id="playVideo">Pausar vídeo</button>
+				<h1 class="pb-2">Inovamos a sua <br/>Produtividade</h1>
+				<button id="playVideo" aria-label="Reproduzir vídeo" title="Reproduzir vídeo"><span>Reproduzir vídeo</span></button>
 			</div>
 		</div>
 		<div class="section-separator"></div>
@@ -46,7 +45,7 @@
 		<div class="section home-mid-categories" id="aplicacoes">
 			<div class="text-wrapper">
 				<div class="text">
-					<h2>Qual a sua necessidade?</h2>
+					<h2>Qual a sua <span class="highlight">necessidade</span>?</h2>
 					<p>A Lakatos Termoformadoras possui know-how para desenvolver</p>
 					<p>moldes e máquinas capazes de produzir aplicações para diversas áreas!</p>
 				</div>
@@ -105,7 +104,6 @@
 								foreach($result as $i => $v){
 									echo '<div data-apId="'. $v['mac_id'] .'" data-applications="'. $v['mac_applications'] .'">
 									<img src="'. $v['mac_image'] .'" mouseout="'. $v['mac_image'] .'" mousein="'. $v['mac_image_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" />
-									<div class="name w-75 center bold"><a href="#">'. $v['mac_name'] .'</a></div>
 									<div class="desc w-75">'. $v['mac_short_desc'] .'</div></div>';
 								}
 							}catch(Exception $e){
