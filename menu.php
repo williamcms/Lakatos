@@ -23,19 +23,19 @@
 		</div>
 		<nav class="menu" id="menubar">
 			<button class="js--open-menu" role="none" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
+	            <span></span>
+	            <span></span>
+	            <span></span>
+	        </button>
 			<ul role="menu" tabindex="-1" class="navigation" id="navigation">
-				<li role="none" class="menuitem"><a href="./home" role="menuitem">Home</a></li>
-				<li role="none" class="menuitem"><a href="./aboutus" role="menuitem">Sobre nós</a></li>
-				<li role="none" class="menuitem"><a href="./aplicacoes" role="menuitem">Aplicações</a></li>
-				<li role="none" class="menuitem"><a href="./maquinas" role="menuitem">Máquinas</a></li>
-				<li role="none" class="menuitem"><a href="./moldes" role="menuitem">Moldes</a></li>
-				<li role="none" class="menuitem"><a href="./contato" role="menuitem">Contato</a></li>
-				<li role="none" class="menuitem"><a href="./contato#redesContato" role="menuitem">Redes de contato</a></li>
-				<li role="none" class="menuitem"><a href="./blog" role="menuitem">Blog</a></li>
+				<li role="none" class="menuitem"><a href="./index#home" role="menuitem">Home</a></li>
+				<li role="none" class="menuitem"><a href="./index#aboutus" role="menuitem">Sobre nós</a></li>
+				<li role="none" class="menuitem"><a href="./index#aplicacoes" role="menuitem">Aplicações</a></li>
+				<li role="none" class="menuitem"><a href="./index#maquinas" role="menuitem">Máquinas</a></li>
+				<li role="none" class="menuitem"><a href="./index#moldes" role="menuitem">Moldes</a></li>
+				<li role="none" class="menuitem"><a href="./index#contato" role="menuitem">Contato</a></li>
+				<li role="none" class="menuitem"><a href="./index#redesContato" role="menuitem">Redes de contato</a></li>
+				<li role="none" class="menuitem"><a href="./index#blog" role="menuitem">Blog</a></li>
 			</ul>
 		</nav>
 	</div>
