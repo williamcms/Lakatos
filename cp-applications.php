@@ -117,6 +117,7 @@ $account->sessionLogin();
 					<h2 class="text-center">Editar aplicação</h2>
 					<div class="form-group"><label>Id da máquina <span class="text-muted">(não editável)</span></label> <input type="text" name="ap_id" value="'.$row[0]['ap_id'].'" readonly></div>
 					<div class="form-group"><label>Nome da máquina</label> <input type="text" name="ap_name" value="'.$row[0]['ap_name'].'" required></div>
+					<div class="form-group"><label>Ícone</label><input type="text" name="ap_icon" value="'.$row[0]['ap_icon'].'" required></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" value="'.$row[0]['ap_image'].'" required></div>
 					<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote">'.$row[0]['ap_desc'].'</textarea></div>
 					<div class="form-group"><label>Aplicações</label><input type="text" name="ap_included" value="'.$row[0]['ap_included'].'"></div>
@@ -204,10 +205,11 @@ $account->sessionLogin();
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova máquina</h2>
 				<div class="form-group"><label>Nome da máquina</label> <input type="text" name="ap_name" required></div>
+				<div class="form-group"><label>Ícone</label><input type="text" name="ap_icon" required></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required></div>
 				<div class="form-group"><label>Descrição</label><textarea name="ap_desc"></textarea></div>
 				<div class="form-group"><label>Aplicações</label><input type="text" name="ap_included"></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="ap_active" class="range_input"></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="ap_active" class="range_input"></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_APPLICATION_ADD"><span>Confirmar</span></button>
