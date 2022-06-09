@@ -2,6 +2,7 @@
 
 :root{
 	--brand:  #033B58;
+	--brand-light: #2187BD;
 	--menu-bg-color: var(--light);
 	--menu-text-color: #000000;
 	--body-txt-color: var(--light);
@@ -33,6 +34,13 @@
 
 	--menu-size: 13.625rem;
 	--menu-size-collapsed: 4rem;
+}
+*, 
+::after,
+::before{
+	font-size: inherit;
+	font-weight: inherit;
+	box-sizing: border-box;
 }
 *{
 	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
@@ -935,9 +943,9 @@ body.collapsed-menu header > nav#menubar > ul#navigation > li > a{
 .card-result-title{
 	font-weight: 900;
 	line-clamp: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 .card-result-content{
 	margin-top: 1.25rem;
@@ -1045,6 +1053,9 @@ input:checked+.slider{
 }
 .fa.info span p:not(:last-child){
 	padding-bottom: 0.625rem;
+}
+main.icons .card-result-content{
+	background-color: var(--brand-light);
 }
 footer{
 	margin: 3.75rem 0rem 0rem var(--menu-size);

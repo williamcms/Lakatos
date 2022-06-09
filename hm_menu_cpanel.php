@@ -66,6 +66,11 @@
 					<i class="fa-solid fa-circle-nodes"></i> <span>Aplicações</span>
 				</a>
 			</li>
+			<li <?php if($account->getFileName() == 'cp-icons.php') echo 'class="currentPage"'; ?>>
+				<a href="./cp-icons">
+					<i class="fa-solid fa-icons"></i> <span>Ícones</span>
+				</a>
+			</li>
 			<li <?php if($account->getFileName() == 'cp-cfg.php') echo 'class="currentPage"'; ?>>
 				<a href="./cp-cfg">
 					<i class="fa-solid fa-gears"></i> <span>Configurações</span>
