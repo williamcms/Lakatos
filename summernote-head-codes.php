@@ -4,4 +4,5 @@
 
 <link rel="stylesheet" href="css/bootstrap-edit-for-summernote.css" />
 
-<script src="summernote/lang/summernote-pt-BR.js"></script> <!-- Tradução -->
+<!-- Tradução -->
+<script src="summernote/lang/summernote-pt-BR.js"></script>

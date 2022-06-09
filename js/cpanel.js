@@ -77,6 +77,19 @@ $(document).ready(function(){
 	$('.summernote').summernote({
 		height: 450,
 		tabsize: 2,
-		lang: 'pt-BR'
+		lang: 'pt-BR',
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'italic', 'underline', 'strikethrough']],
+			['font', ['superscript', 'subscript']],
+			['font', ['clear']],
+			['font', ['fontname', 'fontsize']],
+			['font', ['color']],
+			['para', ['paragraph']],
+			['insert', ['table']],
+			['insert', ['link','picture', 'video']],
+			['misc', ['undo', 'redo']],
+			['misc', ['fullscreen', 'codeview', 'help']],
+		]
 	});
 });
