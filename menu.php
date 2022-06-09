@@ -40,22 +40,25 @@
 		</nav>
 	</div>
 </header>
-<div class="whatsappButton" title="Fale Conosco">
-	<i class="fab fa-whatsapp" id="whatsappButton"></i>
+<?php
+	if($widget->whatsapp == 1){
+		echo '<div class="whatsappButton" title="Fale Conosco">
+			<i class="fab fa-whatsapp" id="whatsappButton"></i>
 
-	<div class="whatsapp-outer-message" id="whatsapp-outer-message">
-		<p class="header">Lakatos</p>
-		<p>Fale Conosco pelo Whatsapp</p>
-	</div>
+			<div class="whatsapp-outer-message" id="whatsapp-outer-message">
+				<p class="header">Lakatos</p>
+				<p>Fale Conosco pelo Whatsapp</p>
+			</div>
 
-	<div class="whatsapp-conversation" id="whatsapp-conversation">
-		<div class="header"><div class="photo"></div><div class="name">Lakatos</div></div>
-		<div class="message-bubble"><textarea type="text" id="whatsapp-input-message" autofocus>Olá, Meu Nome é...</textarea></div>
+			<div class="whatsapp-conversation" id="whatsapp-conversation">
+				<div class="header"><div class="photo"></div><div class="name">Lakatos</div></div>
+				<div class="message-bubble"><textarea type="text" id="whatsapp-input-message" autofocus>Olá, Meu Nome é...</textarea></div>
 
-		
-		<a href="https://web.whatsapp.com/send?phone=<?php echo $location->cleanWhatsapp; ?>&text=Olá, Meu Nome é..." id="whatsapp-link" target="_blank" class="send-message">
-			<span>Enviar Mensagem</span>
-			<i class="fas fa-paper-plane"></i>
-		</a>
-	</div>
-</div>
+				
+				<a href="https://web.whatsapp.com/send?phone=<?php echo $location->cleanWhatsapp; ?>&text=Olá, Meu Nome é..." id="whatsapp-link" target="_blank" class="send-message">
+					<span>Enviar Mensagem</span>
+					<i class="fas fa-paper-plane"></i>
+				</a>
+			</div>
+		</div>';
+	}

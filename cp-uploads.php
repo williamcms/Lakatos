@@ -4,7 +4,7 @@ require_once('cfg/users_class.php');
 require_once('optimizer/vendor/autoload.php');
 
 //Optimizer API Key (tinify.com)
-\Tinify\setKey(API_TINIFY_ACCESS_TOKEN); 
+\Tinify\setKey($api->tinify); 
 
 $account->sessionLogin();
 ?>

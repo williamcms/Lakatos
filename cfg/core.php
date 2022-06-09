@@ -254,6 +254,12 @@ class _locationDetails{
 	public $whastapp = LOCATION_WHATSAPP;	//+1-650-123-4567
 	public $cleanWhatsapp = LOCATION_WHATSAPP;
 }
+class _widget{
+	public $whatsapp = WIDGET_WHATSAPP;
+}
+class _api{
+	public $tinify = API_TINIFY_ACCESS_TOKEN;
+}
 
 $website = new _website;
 $social = new _social;
@@ -261,6 +267,8 @@ $email = new _email;
 $mkt = new _mkt;
 $fb = new _fb;
 $location = new _locationDetails;
+$widget = new _widget;
+$api = new _api;
 
 //Removes special characters from phone number
 $location->cleanWhatsapp = str_replace(' ', '', $location->cleanWhatsapp);
