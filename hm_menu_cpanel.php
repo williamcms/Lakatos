@@ -24,7 +24,7 @@
 		<ul role="menu" tabindex="-1" class="navigation" id="navigation">
 			<li><img src="images/logo.png" class="menu-logo"></li>
 			<li><img src="favicon-32x32.png" class="menu-logo-collapsed"></li>
-			<li>
+			<li class="float">
 				<ul class="personal-card">
 					<li>Olá, <span class="highlight"><?php echo $_SESSION['username']; ?></span></li>
 					<li>
@@ -37,42 +37,47 @@
 				</ul>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-home.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-home">
+				<a href="./cp-home" title="Home">
 					<i class="fa-solid fa-house"></i> <span>Home</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-users.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-users">
+				<a href="./cp-users" title="Contas">
 					<i class="fa-solid fa-users"></i> <span>Contas</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-uploads.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-uploads">
+				<a href="./cp-uploads" title="Uploads">
 					<i class="fa-solid fa-file-arrow-up"></i> <span>Uploads</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-partners.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-partners">
+				<a href="./cp-partners" title="Clientes">
 					<i class="fa-solid fa-handshake"></i> <span>Clientes</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-machines.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-machines">
+				<a href="./cp-machines" title="Máquinas">
 					<i class="fa-solid fa-robot"></i> <span>Máquinas</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-applications.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-applications">
+				<a href="./cp-applications" title="Aplicações">
 					<i class="fa-solid fa-circle-nodes"></i> <span>Aplicações</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-icons.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-icons">
+				<a href="./cp-icons" title="Ícones">
 					<i class="fa-solid fa-icons"></i> <span>Ícones</span>
 				</a>
 			</li>
+			<li <?php if($account->getFileName() == 'cp-chart.php') echo 'class="currentPage"'; ?>>
+				<a href="./cp-chart" title="Sustentabilidade">
+					<i class="fa-solid fa-leaf"></i><!-- <i class="fa-solid fa-chart-pie"></i> --> <span>Sustentabilidade</span>
+				</a>
+			</li>
 			<li <?php if($account->getFileName() == 'cp-cfg.php') echo 'class="currentPage"'; ?>>
-				<a href="./cp-cfg">
+				<a href="./cp-cfg" title="Configurações">
 					<i class="fa-solid fa-gears"></i> <span>Configurações</span>
 				</a>
 			</li>
