@@ -32,10 +32,10 @@
 				<li role="none" class="menuitem"><a href="./index#aboutus" role="menuitem">Sobre nós</a></li>
 				<li role="none" class="menuitem"><a href="./index#aplicacoes" role="menuitem">Aplicações</a></li>
 				<li role="none" class="menuitem"><a href="./index#maquinas" role="menuitem">Máquinas</a></li>
-				<li role="none" class="menuitem"><a href="./index#moldes" role="menuitem">Moldes</a></li>
+				<li role="none" class="menuitem"><a href="./index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
+				<li role="none" class="menuitem"><a href="./index#blog" role="menuitem">Blog</a></li>
 				<li role="none" class="menuitem"><a href="./index#contato" role="menuitem">Contato</a></li>
 				<li role="none" class="menuitem"><a href="./index#redesContato" role="menuitem">Redes de contato</a></li>
-				<li role="none" class="menuitem"><a href="./index#blog" role="menuitem">Blog</a></li>
 			</ul>
 		</nav>
 	</div>

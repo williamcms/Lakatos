@@ -1107,7 +1107,7 @@ footer{
 		height: 10vh !important;
 	}
 	main{
-		margin: 0rem;
+		margin: 0rem !important;
 		padding: 1.875rem 0.813rem
 	}
 	/*Menu*/

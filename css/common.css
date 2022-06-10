@@ -46,6 +46,9 @@ img{
 	width: auto;
 	max-height: 100%;
 	max-width: 100%;
+	image-rendering: auto;
+	image-rendering: crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
 }
 a{
 	color: inherit;
@@ -1168,7 +1171,7 @@ main div.home-top_video .video video#homeVideo{
 	min-width: 100%;
 	min-height: 100%;
 }
-main div.home-top_video .info{
+main div.home-top_video.paused .info{
 	display: block;
 	width: auto;
 	z-index: 1;
@@ -1230,6 +1233,7 @@ main div.home-mid-aboutus .row .col:first-child .text p{
 main > div.section > .text-wrapper{
 	position: relative;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -1284,8 +1288,8 @@ main > div.section.home-mid-machines .slick-slide{
 }
 main > div.section.home-mid-machines .slick-slide div.desc{
 	position: absolute;
-	top: 0;
-	left: 2rem;
+	top: 2rem;
+	left: 3rem;
 }
 main > div.section.home-mid-machines .slick-slide div.desc *{
 	line-height: initial;
@@ -1493,14 +1497,11 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		min-height: auto;
 		max-width: 100%;
 	}
-	main div.home-top_video .info{
-		position: relative;
-		padding: 1rem;
-		background-color: #E6E6E6;
+	main div.home-top_video.paused .info{
+		padding: 2rem;
 	}
 	main div.home-top_video .info button{
-		margin-top: .5rem;
-		width: 100%;
+
 	}
 	/*Sections*/
 	main > div.section > .text-wrapper .text{
@@ -1518,12 +1519,11 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	}
 	/*Últimas Máquinas*/
 	main > div.section.home-mid-machines > .slick-slider img {
-		height: 16.438rem;
+		height: 100%;
 		width: auto;
 	}
-	main > div.section.home-mid-machines > .slick-slider div.name,
-	main > div.section.home-mid-machines > .slick-slider div.name > a{
-		-webkit-line-clamp: 2;
+	main > div.section.home-mid-machines .slick-slide div.desc{
+		display: none;
 	}
 	/*Sustentabilidade*/
 	main > div.home-mid-chart div.row{
@@ -1531,6 +1531,14 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	}
 	main > div.home-mid-chart div.row > div.col > p{
 		font-size: initial;
+		padding: 0 1rem;
+	}
+	/*Blog*/
+	main > div.home-mid-blog > .row{
+		padding: 0 .5rem;
+	}
+	main > div.home-mid-blog > .row > .col:first-of-type{
+		flex-basis: 100%;
 	}
 	/*Contact us*/
 	main > div.contactus > form{
