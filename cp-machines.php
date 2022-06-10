@@ -122,7 +122,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required></div>
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
 					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
-					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_short_desc'].'</textarea></div>
+					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea></div>
 					<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications" value="'.$row[0]['mac_applications'].'"></div>
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
 
@@ -143,7 +143,9 @@ $account->sessionLogin();
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
+					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
 					$mac_desc = $_POST['mac_desc'];
+					$mac_desc = str_replace("&quot;", "'", $mac_desc);
 					$mac_applications = $_POST['mac_applications'];
 					$mac_active = $_POST['mac_active'];
 					$mac_id = $_POST['mac_id'];
@@ -210,7 +212,9 @@ $account->sessionLogin();
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
+					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
 					$mac_desc = $_POST['mac_desc'];
+					$mac_desc = str_replace("&quot;", "'", $mac_desc);
 					$mac_applications = $_POST['mac_applications'];
 					$mac_active = $_POST['mac_active'];
 

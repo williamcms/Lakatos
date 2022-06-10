@@ -141,6 +141,7 @@ $account->sessionLogin();
 					$ap_image = $_POST['ap_image'];
 					$ap_image_hover = $_POST['ap_image_hover'];
 					$ap_desc = $_POST['ap_desc'];
+					$ap_desc = str_replace("&quot;", "'", $ap_desc);
 					$ap_included = $_POST['ap_included'];
 					$ap_active = $_POST['ap_active'];
 					$ap_id = $_POST['ap_id'];
@@ -185,7 +186,7 @@ $account->sessionLogin();
 				<div class="form-group"><label>Nome da máquina</label> <input type="text" name="ap_name" required></div>
 				<div class="form-group"><label>Ícone</label><input type="text" name="ap_icon" required></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required></div>
-				<div class="form-group"><label>Descrição</label><textarea name="ap_desc"></textarea></div>
+				<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote"></textarea></div>
 				<div class="form-group"><label>Aplicações</label><input type="text" name="ap_included"></div>
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="ap_active" class="range_input"></div>
 
@@ -206,6 +207,7 @@ $account->sessionLogin();
 					$ap_icon = $_POST['ap_icon'];
 					$ap_image = $_POST['ap_image'];
 					$ap_desc = $_POST['ap_desc'];
+					$ap_desc = str_replace("&quot;", "'", $ap_desc);
 					$ap_included = $_POST['ap_included'];
 					$ap_active = $_POST['ap_active'];
 					
