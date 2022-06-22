@@ -123,7 +123,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
 					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
 					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea></div>
-					<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications" value="'.$row[0]['mac_applications'].'"></div>
+					<div class="form-group"><label>Aplicações</label></div>
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
 
 					
@@ -135,10 +135,10 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_image = ?, mac_image_hover = ?, mac_desc = ?, mac_short_desc = ?, mac_applications = ?, mac_active = ? WHERE mac_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_image = ?, mac_image_hover = ?, mac_desc = ?, mac_short_desc = ?, mac_active = ? WHERE mac_id = ?")){
 
 				try{
-					$stmt->bind_param('ssssssii', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_applications, $mac_active, $mac_id);
+					$stmt->bind_param('sssssii', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active, $mac_id);
 					$mac_name = $_POST['mac_name'];
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
@@ -146,7 +146,6 @@ $account->sessionLogin();
 					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
 					$mac_desc = $_POST['mac_desc'];
 					$mac_desc = str_replace("&quot;", "'", $mac_desc);
-					$mac_applications = $_POST['mac_applications'];
 					$mac_active = $_POST['mac_active'];
 					$mac_id = $_POST['mac_id'];
 
@@ -192,7 +191,7 @@ $account->sessionLogin();
 				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
 				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea></div>
 				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990"></textarea></div>
-				<div class="form-group"><label>Aplicações</label><input type="text" name="mac_applications"></div>
+				<div class="form-group"><label>Aplicações</label></div>
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="mac_active" class="range_input"></div>
 
 				
@@ -204,10 +203,10 @@ $account->sessionLogin();
 
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_image, mac_image_hover, mac_desc, mac_short_desc, mac_applications, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_image, mac_image_hover, mac_desc, mac_short_desc, mac_active) VALUES (?, ?, ?, ?, ?, ?)")){
 
 				try{
-					$stmt->bind_param('ssssssi', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_applications, $mac_active);
+					$stmt->bind_param('sssssi', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active);
 					$mac_name = $_POST['mac_name'];
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
@@ -215,7 +214,6 @@ $account->sessionLogin();
 					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
 					$mac_desc = $_POST['mac_desc'];
 					$mac_desc = str_replace("&quot;", "'", $mac_desc);
-					$mac_applications = $_POST['mac_applications'];
 					$mac_active = $_POST['mac_active'];
 
 					$stmt->execute();

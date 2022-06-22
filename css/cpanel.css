@@ -336,7 +336,64 @@ fieldset{
 .bold{
 	font-weight: bold;
 }
-
+/* Fixação em input */
+.input-group{
+	position: relative;
+	display: flex !important;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	width: 100%;
+}
+.input-group > .input-group-prepend > .input-group-text,
+.input-group > .input-group-append:not(:last-child) > .input-group-text,
+.input-group > .input-group-append:last-child > .input-group-text:not(:last-child){
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.input-group > input:not(:last-child),
+.input-group > textarea:not(:last-child),
+.input-group > select:not(:last-child){
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child){
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.input-group > input:not(:first-child),
+.input-group > textarea:not(:first-child),
+.input-group > select:not(:first-child){
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.input-group-prepend,
+.input-group-append{
+	display: flex;
+}
+.input-group-append{
+	margin-left: -0.0625rem;
+}
+.input-group-text{
+	display: flex;
+	align-items: center;
+	padding: .375rem .75rem;
+	margin-bottom: 0;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--gray);
+	text-align: center;
+	white-space: nowrap;
+	background-color: #E9ECEF;
+	border: 0.0625rem solid var(--gray-lighter);
+	border-radius: .25rem;
+}
+.input-group-text input[type="radio"],
+.input-group-text input[type="checkbox"]{
+	margin-top: 0;
+}
 /* Classes para Overlays */
 .overlayform{
 	position: fixed;
@@ -1080,6 +1137,39 @@ input:checked+.slider{
 .fa.info span p:not(:last-child){
 	padding-bottom: 0.625rem;
 }
+.icon-selector-group .input-group-text{
+	background-color: var(--brand-light);
+}
+.icon-selector-group .input-group-text > img{
+	display: block;
+	margin: 0 auto;
+}
+.link-listage{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-row-gap: .5rem;
+	row-gap: .5rem;
+	height: 12rem;
+	overflow: auto;
+}
+.link-listage > .item{
+	flex: 1 1 100%;
+	width: 100%;
+	display: flex;
+}
+.link-listage > .item > input:checked + label{
+	background-color: var(--brand-light);
+}
+.link-listage > .item > label{
+	line-height: 6rem;
+	padding: 0 .5rem;
+	width: 100%;
+	margin: 0;
+}
+.link-listage > .item > img{
+	height: 6rem;
+}
 main.icons .card-result-content{
 	background-color: var(--brand-light);
 }
@@ -1201,6 +1291,23 @@ footer{
 	}
 	.extra .switch{
 		margin: 0.938rem 0;
+	}
+	.icon-selector-group{
+		flex-wrap: wrap !important;
+	}
+	.icon-selector-group .input-group-text{
+		width: 100%;
+		padding: 0;
+		border-radius: .6rem .6rem 0 0 !important;
+	}
+	.icon-selector-group .input-group-append{
+		border-radius: 0 0 .6rem .6rem !important;
+	}
+	.link-listage > .item > label{
+		line-height: 4rem;
+	}
+	.link-listage > .item > img{
+		height: 4rem;
 	}
 	footer{
 		margin: 3.75rem 0rem 0rem 0rem;
