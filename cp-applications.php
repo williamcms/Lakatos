@@ -193,16 +193,18 @@ $account->sessionLogin();
 					$stmt->execute();
 
 					$ap_id = $_POST['ap_id'];
-					$mac_ap_ids = $_POST['mac_ap_link'];
+					if(isset($_POST['mac_ap_link'])){
+						$mac_ap_ids = $_POST['mac_ap_link'];
 
-					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
-						$stmt2->bind_param('i', $ap_id);
-						$stmt2->execute();
-					}
-					foreach($mac_ap_ids as $key => $value){
-						if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
-							$stmt3->bind_param('ii', $value, $ap_id);
-							$stmt3->execute();
+						if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
+							$stmt2->bind_param('i', $ap_id);
+							$stmt2->execute();
+						}
+						foreach($mac_ap_ids as $key => $value){
+							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
+								$stmt3->bind_param('ii', $value, $ap_id);
+								$stmt3->execute();
+							}
 						}
 					}
 				}
