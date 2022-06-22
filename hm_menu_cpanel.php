@@ -76,6 +76,16 @@
 					<i class="fa-solid fa-leaf"></i><!-- <i class="fa-solid fa-chart-pie"></i> --> <span>Sustentabilidade</span>
 				</a>
 			</li>
+			<li <?php if($account->getFileName() == 'cp-blog.php') echo 'class="currentPage"'; ?>>
+				<a href="./cp-blog" title="Sustentabilidade">
+					<i class="fa-solid fa-newspaper"></i> <span>Blog</span>
+				</a>
+			</li>
+			<li <?php if($account->getFileName() == 'cp-texts.php') echo 'class="currentPage"'; ?>>
+				<a href="./cp-texts" title="Sustentabilidade">
+					<i class="fa-solid fa-language"></i> <span>Tradução</span>
+				</a>
+			</li>
 			<li <?php if($account->getFileName() == 'cp-cfg.php') echo 'class="currentPage"'; ?>>
 				<a href="./cp-cfg" title="Configurações">
 					<i class="fa-solid fa-gears"></i> <span>Configurações</span>
