@@ -23,7 +23,7 @@ define('ERROR_FILE_NOT_SENT_ERROR_KNOWN', 'Erro! Ocorreu um erro ao enviar seu a
 
 if(ini_set('session.name', 'SEUCOOKIE') === false || !session_name('SEUCOOKIE'))
 {
-    die('Unable to set sesssion scope');
+	die('Unable to set sesssion scope');
 }
 
 session_start();
@@ -54,9 +54,9 @@ function url(){
 		array_splice($arr,0,1);
 		array_splice($arr,count($arr)-1);
 
-	    $n = '/'.implode('/', $arr);
+		$n = '/'.implode('/', $arr);
 	}else{
-	    $n = '';
+		$n = '';
 	}
 
 	if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
@@ -111,18 +111,18 @@ $conn = new _conn;
 
 /* Custom get_result function when not is not possible to activate nd_mysqli*/
 function get_result($statement){
-    $RESULT = array();
-    $statement->store_result();
-    for ($i=0; $i<$statement->num_rows; $i++) {
-        $Metadata = $statement->result_metadata();
-        $PARAMS = array();
-        while ($field = $Metadata->fetch_field()){
-            $PARAMS[] = &$RESULT[$i][$field->name];
-        }
-        call_user_func_array( array( $statement, 'bind_result' ), $PARAMS );
-        $statement->fetch();
-    }
-    return $RESULT;
+	$RESULT = array();
+	$statement->store_result();
+	for ($i=0; $i<$statement->num_rows; $i++) {
+		$Metadata = $statement->result_metadata();
+		$PARAMS = array();
+		while ($field = $Metadata->fetch_field()){
+			$PARAMS[] = &$RESULT[$i][$field->name];
+		}
+		call_user_func_array( array( $statement, 'bind_result' ), $PARAMS );
+		$statement->fetch();
+	}
+	return $RESULT;
 }
 /* Get Website Configs in Database */
 (function() {
@@ -134,13 +134,13 @@ function get_result($statement){
 			$stmt->execute();
 			$result = get_result($stmt);
 
-		    foreach($result as $i => $v){
-		    	if(!isNotEmptyNull($v['config_value']) OR $v['config_active'] == 0){
-	            	define(strtoupper($v['config_name']), '');
-		    	} else{
-	            	define(strtoupper($v['config_name']), $v['config_value']);
-		    	}
-		    }
+			foreach($result as $i => $v){
+				if(!isNotEmptyNull($v['config_value']) OR $v['config_active'] == 0){
+					define(strtoupper($v['config_name']), '');
+				} else{
+					define(strtoupper($v['config_name']), $v['config_value']);
+				}
+			}
 		}
 		catch(Exception $e){
 			throw new Exception('Erro ao conectar com a base de dados: '. $e);
