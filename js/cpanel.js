@@ -157,4 +157,10 @@ $(document).ready(function(){
 		let x = $(this).next().attr('size');
 		$(this).next().attr('size', (x == 8 ? 0 : 8));
 	})
+	$('main.chart #addmore').on('click', function(){
+		let dataField = $('.dataField').eq(0),
+			dataFields = $(this).parent().find('.dataFields');
+
+		dataFields.append($(dataField).clone());
+	});
 });

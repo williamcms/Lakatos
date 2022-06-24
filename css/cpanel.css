@@ -112,9 +112,11 @@ input[type=date],
 input[type=datetime-local],
 input[type=month],
 input[type=time],
+input[type=color],
 input[type=url]{
 	border-radius: 0.313rem;
 	width: 100%;
+	height: 100%;
 	padding: .225rem 0rem;
 	color: var(--black) !important;
 	border: 1px solid #BDC5CC;
@@ -349,6 +351,11 @@ fieldset{
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child){
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
+}
+.input-group > .input-group-prepend > *,
+.input-group > .input-group-append > *{
+	font-weight: 500;
+	margin: 0;
 }
 .input-group > input:not(:last-child),
 .input-group > textarea:not(:last-child),
@@ -1170,6 +1177,15 @@ input:checked+.slider{
 }
 .link-listage > .item > img{
 	height: 6rem;
+}
+main.chart fieldset{
+	border: 0.0625rem solid var(--gray);
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+}
+main.chart .range_input{
+	margin-top: .6rem;
 }
 main.icons .card-result-content{
 	background-color: var(--brand-light);

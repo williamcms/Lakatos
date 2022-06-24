@@ -274,10 +274,30 @@
 							'rgba(153, 102, 255, 1)',
 							'rgba(255, 159, 64, 1)'
 						],
-						borderWidth: 1
+						borderWidth: 1,
+						borderRadius: 30
 					}]
 				},
-				options: {}
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Custom Chart Title',
+							padding: {
+								top: 10,
+								bottom: 30
+							}
+						},
+						subtitle: {
+			                display: true,
+			                text: 'Custom Chart Subtitle',
+			                padding: {
+								top: 10,
+								bottom: 30
+							}
+			            }
+					}
+				}
 			});
 		})
 	</script>
