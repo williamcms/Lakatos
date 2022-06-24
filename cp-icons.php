@@ -151,7 +151,9 @@ $account->sessionLogin();
 			<button aria-hidden="true" class="closebtn" onclick="formOff(3);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST">
 				<h2>Tem certeza que quer remover o ícone abaixo?</h2>
-				<h3 class="destaque">'.$_POST['icon_name'].' (id: '.$_POST['REMOVE_ICON'].')</h3><br>
+				<h3 class="destaque">'.$_POST['icon_name'].' (id: '.$_POST['REMOVE_ICON'].')</h3>
+				<p class="text-muted">Isso forá com que itens que utilizem esse ícone possam se comportar de maneira imprevisível.</p>
+				<p class="text-muted">Apague conexões/troque existentes, caso ainda não tenha feito!</p><br>
 				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_ICON_REM" value="'.stripslashes($_POST['REMOVE_ICON']).'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
