@@ -10,9 +10,12 @@
 				</div>
 				<div class="col">
 					<div class="language text-right">
-						<a href="#"><img src="http://www.lakatos.com/images/flags/br.png" alt="Português" title="Português" width="16" height="11"></a>
-						<a href="#"><img src="http://www.lakatos.com/images/flags/eua.png" alt="English" title="English" width="16" height="11"></a>
-						<a href="#"><img src="http://www.lakatos.com/images/flags/esp.png" alt="Español" title="Español" width="16" height="11"></a>
+						<a aria-label="Alterar idioma para Português (Brasil)" href="<?php echo url() . '/pt/' . getFileName(1); ?>">
+							<img src="http://www.lakatos.com/images/flags/br.png" alt="Português" title="Português" width="16" height="11"></a>
+						<a aria-label="Change language to English" href="<?php echo url() . '/en/' . getFileName(1); ?>">
+							<img src="http://www.lakatos.com/images/flags/eua.png" alt="English" title="English" width="16" height="11"></a>
+						<a aria-label="Alterar idioma para español" href="<?php echo url() . '/es/' . getFileName(1); ?>">
+							<img src="http://www.lakatos.com/images/flags/esp.png" alt="Español" title="Español" width="16" height="11"></a>
 					</div>
 				</div>
 			</div>
@@ -28,7 +31,7 @@
 	            <span></span>
 	        </button>
 			<ul role="menu" tabindex="-1" class="navigation" id="navigation">
-				<li role="none" class="menuitem"><a href="./index#home" role="menuitem">Home</a></li>
+				<li role="none" class="menuitem"><a href="./index#home" role="menuitem"><?php echo LANG_HOME_MENU_LINK1 ?></a></li>
 				<li role="none" class="menuitem"><a href="./index#aboutus" role="menuitem">Sobre nós</a></li>
 				<li role="none" class="menuitem"><a href="./index#aplicacoes" role="menuitem">Aplicações</a></li>
 				<li role="none" class="menuitem"><a href="./index#maquinas" role="menuitem">Máquinas</a></li>

@@ -14,3 +14,13 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 #Substituições comuns
 RewriteRule ^home index.php [NC,L]
 RewriteRule ^inicio index.php [NC,L]
+
+#Redireciona para a linguagem desejada
+RewriteRule ^pt/(.+)$ ./$1?lang=pt_BR [NE,QSA,L]
+RewriteRule ^pt ./index?lang=pt_BR [NE,QSA,L]
+
+RewriteRule ^en/(.+)$ ./$1?lang=en_US [NE,QSA,L]
+RewriteRule ^en ./index?lang=en_US [NE,QSA,L]
+
+RewriteRule ^es/(.+)$ ./$1?lang=es_ES [NE,QSA,L]
+RewriteRule ^es ./index?lang=es_ES [NE,QSA,L]

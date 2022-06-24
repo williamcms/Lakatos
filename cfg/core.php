@@ -171,34 +171,31 @@ function get_result($statement){
 			case 'en_US':
 				$_SESSION['lang'] = 'en_US';
 				break;
+			case 'es_ES':
+				$_SESSION['lang'] = 'es_ES';
+				break;
 			default:
 				$_SESSION['lang'] = $default_lang;
 				break;
 		}
 	}
 
-	if($stmt = $conn->link->prepare("SELECT lang_name, lang_value, lang_translation FROM website_lang")){
+	if($stmt = $conn->link->prepare("SELECT * FROM website_lang WHERE lang_locale = ?")){
 		try{
+			$stmt->bind_param('s', $lang);
 			$stmt->execute();
 			$result = get_result($stmt);
 
-		    foreach($result as $i => $v){
-		    	if($_SESSION['lang'] == 'pt_BR'){
-		    		//Formating bold text
-		    		$v['lang_value'] = preg_replace("/\*(.*?)\*/", '<strong>$1</strong>', $v['lang_value']);
-		    		//Formating italic text
-		    		$v['lang_value'] = preg_replace("/\_(.*?)\_/", '<i>$1</i>', $v['lang_value']);
+			foreach($result as $i => $v){
+				
+				//Formating bold text ex: *PALAVRA*
+				$v['lang_value'] = preg_replace("/\*(.*?)\*/", '<strong>$1</strong>', $v['lang_value']);
+				//Formating italic text ex: _PALAVRA_
+				$v['lang_value'] = preg_replace("/\_(.*?)\_/", '<i>$1</i>', $v['lang_value']);
 
-					define(strtoupper($v['lang_name']), $v['lang_value']);
-				}else{
-					//Formating bold text
-		    		$v['lang_translation'] = preg_replace("/\*(.*?)\*/", '<strong>$1</strong>', $v['lang_translation']);
-		    		//Formating italic text
-		    		$v['lang_translation'] = preg_replace("/\_(.*?)\_/", '<i>$1</i>', $v['lang_translation']);
-
-					define(strtoupper($v['lang_name']), $v['lang_translation']);
-				}
-		    }
+				define(strtoupper($v['lang_name']), $v['lang_value']);
+				
+			}
 		}
 		catch(Exception $e){
 			throw new Exception('Erro ao conectar com a base de dados: '. $e);
