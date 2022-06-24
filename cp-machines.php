@@ -111,6 +111,26 @@ $account->sessionLogin();
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
+				if($stmt2 = $conn->link->prepare("SELECT * FROM applications")){
+					try{
+						$stmt2->execute();
+						$applications = get_result($stmt2);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+				if($stmt3 = $conn->link->prepare("SELECT * FROM machine_applications WHERE mac_id = ?")){
+					try{
+						$stmt3->bind_param('i', $mac_id);
+						$stmt3->execute();
+						$mac_ap = get_result($stmt3);
+						$ap_ids = array_map(function($value){return $value['ap_id'];}, $mac_ap);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
 
 				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
@@ -123,7 +143,16 @@ $account->sessionLogin();
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
 					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
 					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea></div>
-					<div class="form-group"><label>Aplicações</label></div>
+					<div class="form-group"><label>Aplicações</label><div class="link-listage">';
+
+					for($j = 0; $j < $stmt2->num_rows; $j++){
+						echo '<div class="item">
+								<img src="'.$applications[$j]['ap_image'].'" />
+								<input type="checkbox" name="mac_ap_link[]" id="ap'.$applications[$j]['ap_id'].'" class="d-none" value="'.$applications[$j]['ap_id'].'" '.(in_array($applications[$j]['ap_id'], $ap_ids) ? 'checked=""' : '').'"/>
+								<label for="ap'.$applications[$j]['ap_id'].'">'.$applications[$j]['ap_name'].'</label></div>';
+					}
+					
+					echo '</div></div>
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
 
 					
@@ -150,6 +179,21 @@ $account->sessionLogin();
 					$mac_id = $_POST['mac_id'];
 
 					$stmt->execute();
+
+					if(isset($_POST['mac_ap_link'])){
+						$mac_ap_ids = $_POST['mac_ap_link'];
+
+						if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
+							$stmt2->bind_param('i', $mac_id);
+							$stmt2->execute();
+						}
+						foreach($mac_ap_ids as $key => $value){
+							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
+								$stmt3->bind_param('ii', $mac_id, $value);
+								$stmt3->execute();
+							}
+						}
+					}
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
@@ -182,6 +226,16 @@ $account->sessionLogin();
 		}
 
 		if(isset($_POST['ADD_MACHINE'])){
+			if($stmt = $conn->link->prepare("SELECT * FROM applications")){
+				try{
+					$stmt->execute();
+					$applications = get_result($stmt);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
+
 			echo '<div class="overlayform" id="form5"><div class="modalform"><div class="modaldados">
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
@@ -191,8 +245,26 @@ $account->sessionLogin();
 				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
 				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea></div>
 				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990"></textarea></div>
-				<div class="form-group"><label>Aplicações</label></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="mac_active" class="range_input"></div>
+
+				<div class="form-group"><label>Feature 1</label><input type="text" name="mac_feature1"></div>
+				<div class="form-group"><label>Feature 2</label><input type="text" name="mac_feature2"></div>
+				<div class="form-group"><label>Feature 3</label><input type="text" name="mac_feature3"></div>
+				<div class="form-group"><label>Feature Extendida 1</label><input type="text" name="mac_feature_extended1"></div>
+				<div class="form-group"><label>Feature Extendida 2</label><input type="text" name="mac_feature_extended2"></div>
+				<div class="form-group"><label>Feature Extendida 3</label><input type="text" name="mac_feature_extended3"></div>
+				<div class="form-group"><label>Linha de máquinas</label><input type="text" name="mac_series"></div>
+
+				<div class="form-group"><label>Aplicações</label><div class="link-listage">';
+
+					for($j = 0; $j < $stmt->num_rows; $j++){
+						echo '<div class="item">
+								<img src="'.$applications[$j]['ap_image'].'" />
+								<input type="checkbox" name="mac_ap_link[]" id="ap'.$applications[$j]['ap_id'].'" class="d-none" value="'.$applications[$j]['ap_id'].'" />
+								<label for="ap'.$applications[$j]['ap_id'].'">'.$applications[$j]['ap_name'].'</label></div>';
+					}
+					
+					echo '</div></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="mac_active" class="range_input"></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_ADD"><span>Confirmar</span></button>
@@ -217,6 +289,15 @@ $account->sessionLogin();
 					$mac_active = $_POST['mac_active'];
 
 					$stmt->execute();
+
+					$mac_ap_ids = $_POST['mac_ap_link'];
+					$mac_id = $stmt->insert_id;
+					foreach($mac_ap_ids as $key => $value){
+						if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
+							$stmt3->bind_param('ii', $mac_id, $value);
+							$stmt3->execute();
+						}
+					}
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
