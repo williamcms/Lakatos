@@ -160,9 +160,10 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_ICON_REM'])){
 			$conn->link = $conn->connect();
+			$icon_id = stripslashes($_POST['CONFIRM_ICON_REM']);
 			if($stmt = $conn->link->prepare("DELETE FROM ap_included WHERE icon_id = ?")){
 				try{
-					$stmt->bind_param('i', stripslashes($_POST['CONFIRM_ICON_REM']));
+					$stmt->bind_param('i', $icon_id);
 					$stmt->execute();
 				}
 				catch(Exception $e){

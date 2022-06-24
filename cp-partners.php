@@ -162,9 +162,10 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_CLIENTE_REM'])){
 			$conn->link = $conn->connect();
+			$cliente_id = stripslashes($_POST['CONFIRM_CLIENTE_REM']);
 			if($stmt = $conn->link->prepare("DELETE FROM clientes WHERE cliente_id = ?")){
 				try{
-					$stmt->bind_param('i', stripslashes($_POST['CONFIRM_CLIENTE_REM']));
+					$stmt->bind_param('i', $cliente_id);
 					$stmt->execute();
 				}
 				catch(Exception $e){
