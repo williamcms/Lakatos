@@ -1151,6 +1151,7 @@ input:checked+.slider{
 	grid-row-gap: .5rem;
 	row-gap: .5rem;
 	height: 12rem;
+	border: 0.0625rem solid var(--gray);
 	overflow: auto;
 }
 .link-listage > .item{

@@ -128,7 +128,7 @@ $account->sessionLogin();
 						throw new Exception('Erro ao conectar com a base de dados: '. $e);
 					}
 				}
-				if($stmt4 = $conn->link->prepare("SELECT A.* FROM machines A INNER JOIN machine_applications B ON A.mac_id = B.mac_id where B.ap_id = ?")){
+				if($stmt4 = $conn->link->prepare("SELECT * FROM machine_applications WHERE ap_id = ?")){
 					try{
 						$stmt4->bind_param('i', $ap_id);
 						$stmt4->execute();
@@ -157,7 +157,7 @@ $account->sessionLogin();
 					echo '</select></div></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" value="'.$row[0]['ap_image'].'" required></div>
 					<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote">'.$row[0]['ap_desc'].'</textarea></div>
-					<div class="form-group"><label>Máquinas em que está</label><div class="link-listage d-flex">';
+					<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
 					for($j = 0; $j < $stmt3->num_rows; $j++){
 						echo '<div class="item">
@@ -192,7 +192,6 @@ $account->sessionLogin();
 
 					$stmt->execute();
 
-					$ap_id = $_POST['ap_id'];
 					if(isset($_POST['mac_ap_link'])){
 						$mac_ap_ids = $_POST['mac_ap_link'];
 
@@ -267,7 +266,7 @@ $account->sessionLogin();
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
 							<select name="ap_icon" class="input-group-append icon-selector">
-								<option data-image="./uploads/icons/applications_icon_0.png">Nenhum selecionado</option>';
+								<option value="0" data-image="./uploads/icons/applications_icon_0.png">Nenhum selecionado</option>';
 					
 					for($i = 0; $i < $stmt2->num_rows; $i++){
 						echo '<option value="'.$icons[$i]['icon_id'].'" data-image="'.$icons[$i]['icon_image'].'">'.$icons[$i]['icon_name'].'</option>';
@@ -275,7 +274,7 @@ $account->sessionLogin();
 					echo '</select></div></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required></div>
 				<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote"></textarea></div>
-				<div class="form-group"><label>Máquinas em que está</label><div class="link-listage d-flex">';
+				<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
 					for($j = 0; $j < $stmt2->num_rows; $j++){
 						echo '<div class="item">
@@ -309,6 +308,7 @@ $account->sessionLogin();
 					$stmt->execute();
 
 					$mac_ap_ids = $_POST['mac_ap_link'];
+					$ap_id = $stmt->insert_id;
 					foreach($mac_ap_ids as $key => $value){
 						if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
 							$stmt3->bind_param('ii', $value, $ap_id);
