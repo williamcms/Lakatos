@@ -60,13 +60,13 @@
 						global $conn;
 						$conn->link = $conn->connect();
 
-						if($stmt = $conn->link->prepare("SELECT ap_id, ap_icon, ap_name, ap_included FROM mac_applications WHERE ap_active = 1")){
+						if($stmt = $conn->link->prepare("SELECT * FROM applications WHERE ap_active = 1 AND ap_icon > 0")){
 							try{
 								$stmt->execute();
 								$result = get_result($stmt);
 
 								foreach($result as $i => $v){
-									echo '<div data-apId="'. $v['ap_id'] .'" data-machines="'. $v['ap_included'] .'">
+									echo '<div data-apId="'. $v['ap_id'] .'">
 									<a href="#'. $v['ap_name'] .'">'. $v['ap_icon'] .'
 									<p>'. $v['ap_name'] .'</p>
 									</a></div>';
@@ -81,7 +81,7 @@
 		</div>
 		<div class="section-separator"></div>
 		<div class="section home-mid-machines" id="maquinas">
-			<div class="text-wrapper d-none">
+			<div class="text-wrapper">
 				<div class="text">
 					<h2>Últimas máquinas</h2>
 				</div>
@@ -100,7 +100,7 @@
 								$result = get_result($stmt);
 
 								foreach($result as $i => $v){
-									echo '<div data-apId="'. $v['mac_id'] .'" data-applications="'. $v['mac_applications'] .'">
+									echo '<div data-apId="'. $v['mac_id'] .'">
 									<img src="'. $v['mac_image'] .'" mouseout="'. $v['mac_image'] .'" mousein="'. $v['mac_image_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" />
 									<div class="desc w-75">'. $v['mac_short_desc'] .'</div></div>';
 								}
