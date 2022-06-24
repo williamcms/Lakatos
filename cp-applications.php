@@ -230,6 +230,11 @@ $account->sessionLogin();
 				try{
 					$stmt->bind_param('i', $ap_id);
 					$stmt->execute();
+
+					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
+						$stmt2->bind_param('i', $ap_id);
+						$stmt2->execute();
+					}
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);

@@ -213,10 +213,16 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['CONFIRM_MACHINE_REM'])){
 			$conn->link = $conn->connect();
+			$mac_id = stripslashes($_POST['CONFIRM_MACHINE_REM']);
 			if($stmt = $conn->link->prepare("DELETE FROM machines WHERE mac_id = ?")){
 				try{
-					$stmt->bind_param('i', stripslashes($_POST['CONFIRM_MACHINE_REM']));
+					$stmt->bind_param('i', $mac_id);
 					$stmt->execute();
+
+					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
+						$stmt2->bind_param('i', $mac_id);
+						$stmt2->execute();
+					}
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
