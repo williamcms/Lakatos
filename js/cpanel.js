@@ -159,8 +159,18 @@ $(document).ready(function(){
 	})
 	$('main.chart #addmore').on('click', function(){
 		let dataField = $('.dataField').eq(0),
-			dataFields = $(this).parent().find('.dataFields');
+			dataFields = $(this).parents('fieldset').find('.dataFields');
 
 		dataFields.append($(dataField).clone());
+
+		dataFields.find('.dataField:last-of-type').find('input:nth-child(1), input:nth-child(2)').val('')
+		dataFields.find('.dataField:last-of-type').find('input:nth-child(4)').val(20)
+		dataFields.find('.dataField:last-of-type').find('input:nth-child(5)').val(100)
+	});
+	$('main.chart #removelast').on('click', function(){
+		let dataField = $('.dataField'),
+			dataFields = $(this).parents('fieldset').find('.dataFields');
+
+		dataField.length > 1 && dataFields.find('.dataField:last-of-type').remove();
 	});
 });
