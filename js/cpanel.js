@@ -187,4 +187,13 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$('input.nosymbolinput').on('change keyup', function(){
+		if(!!$(this).data('copy')){
+			let copy = `input[name="${$(this).data('copy')}"]`;
+
+			$(copy).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-'))
+		}else{
+			$(this).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-'))
+		}
+	})
 });

@@ -24,3 +24,9 @@ RewriteRule ^en ./index?lang=en_US [NE,QSA,L]
 
 RewriteRule ^es/(.+)$ ./$1?lang=es_ES [NE,QSA,L]
 RewriteRule ^es ./index?lang=es_ES [NE,QSA,L]
+
+#Redireciona para a máquina
+RewriteRule ^m/(.+)$ ./machines.php?pagename=$1 [NE,QSA,L]
+RewriteRule ^pt/m/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
+RewriteRule ^en/m/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
+RewriteRule ^es/m/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]

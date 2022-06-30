@@ -138,7 +138,8 @@ $account->sessionLogin();
 					<h2 class="text-center">Editar Máquina</h2>
 					<div class="form-group"><label>Id da máquina <span class="text-muted">(não editável)</span></label>
 						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly></div>
-					<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" value="'.$row[0]['mac_name'].'" required></div>
+					<div class="form-group"><label>Nome da máquina</label> <input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required></div>
+					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span> <input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required></div>
 					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
 					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
@@ -164,11 +165,12 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_image = ?, mac_image_hover = ?, mac_desc = ?, mac_short_desc = ?, mac_active = ? WHERE mac_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_pagename = ?, mac_image = ?, mac_image_hover = ?, mac_desc = ?, mac_short_desc = ?, mac_active = ? WHERE mac_id = ?")){
 
 				try{
-					$stmt->bind_param('sssssii', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active, $mac_id);
+					$stmt->bind_param('ssssssii', $mac_name, $mac_pagename, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active, $mac_id);
 					$mac_name = $_POST['mac_name'];
+					$mac_pagename = $_POST['mac_pagename'];
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
@@ -246,7 +248,8 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova máquina</h2>
-				<div class="form-group"><label>Nome da máquina</label> <input type="text" name="mac_name" required></div>
+				<div class="form-group"><label>Nome da máquina</label> <input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required></div>
+				<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span> <input type="text" name="mac_pagename" readonly></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" required></div>
 				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
 				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea></div>
@@ -281,11 +284,12 @@ $account->sessionLogin();
 
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_image, mac_image_hover, mac_desc, mac_short_desc, mac_active) VALUES (?, ?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_pagename, mac_image, mac_image_hover, mac_desc, mac_short_desc, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?)")){
 
 				try{
-					$stmt->bind_param('sssssi', $mac_name, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active);
+					$stmt->bind_param('ssssssi', $mac_name, $mac_pagename, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active);
 					$mac_name = $_POST['mac_name'];
+					$mac_pagename = $_POST['mac_pagename'];
 					$mac_image = $_POST['mac_image'];
 					$mac_image_hover = $_POST['mac_image_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
