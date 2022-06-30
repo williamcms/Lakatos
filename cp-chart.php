@@ -7,7 +7,7 @@ $account->sessionLogin();
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title><?php echo $website->title; ?>: Home</title>
+	<title><?php echo $website->title; ?>: Sustentabilidade</title>
 	<?php require_once('header-cpainel.php'); ?>
 </head>
 <body>
@@ -17,10 +17,10 @@ $account->sessionLogin();
 	<div class="card-box">
 		<div class="row">
 			<div class="col"><h4>Sustentabilidade</h4></div>
-			<div class="col">
-				<a href="#" class="button2 card_button-add" onclick="$('#SAVECHANGES').submit();">
-				<span>Salvar</span></a>
-			</div>
+				<!-- <div class="col">
+					<a href="#" class="button2 card_button-add" onclick="$('#SAVECHANGES').submit();">
+					<span>Salvar</span></a>
+				</div> -->
 		</div>
 		<p class="text-muted center">Não utilize vírgulas nos campos abaixo, isso causara erros no processamento dos dados!</p>
 	</div>
@@ -94,28 +94,28 @@ $account->sessionLogin();
 							</fieldset>
 
 							<!-- Chart -->
-							<div data-type="0">
+							<section data-type="0" class="pb-3 '.($row[0]['selected'] == 0 ? '' : 'd-none').'">
 								<fieldset>
 									<legend>Títulos</legend>
 
 									<div class="row">
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Título</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Título</label>
 											</div>
 											<input type="text" name="options_title_text" value="'. $row[0]['options_title_text'] .'" />
 										</div>
 
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Topo</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Topo</label>
 											</div>
 											<input type="number" min="1" step="1" name="options_title_padding_top" value="'. $row[0]['options_title_padding_top'] .'" />
 										</div>
 
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Baixo</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Baixo</label>
 											</div>
 											<input type="number" min="1" step="1" name="options_title_padding_bottom" value="'. $row[0]['options_title_padding_bottom'] .'" />
 										</div>
@@ -130,22 +130,22 @@ $account->sessionLogin();
 
 									<div class="row">
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Subtítulo</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Subtítulo</label>
 											</div>
 											<input type="text" name="options_subtitle_text" value="'. $row[0]['options_subtitle_text'] .'" />
 										</div>
 
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Topo</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Topo</label>
 											</div>
 											<input type="number" min="1" step="1" name="options_subtitle_padding_top" value="'. $row[0]['options_subtitle_padding_top'] .'" />
 										</div>
 
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Baixo</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Baixo</label>
 											</div>
 											<input type="number" min="1" step="1" name="options_subtitle_padding_bottom" value="'. $row[0]['options_subtitle_padding_bottom'] .'" />
 										</div>
@@ -165,8 +165,8 @@ $account->sessionLogin();
 
 									<div class="row">
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Tipo de gráfico</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Tipo de gráfico</label>
 											</div>
 											<select name="type">
 												<option value="line" '. ($row[0]['type'] == 'line' ? 'selected' : '') .'>Linhas</option>
@@ -181,8 +181,8 @@ $account->sessionLogin();
 
 									<div class="row">
 										<div class="form-group input-group col">
-											<div class="input-group-append input-group-text">
-												<label>Título</label>
+											<div class="input-group-append">
+												<label class="input-group-text">Título</label>
 											</div>
 											<input type="text" name="dataset_label" value="'. $row[0]['dataset_label'] .'" />
 										</div>
@@ -191,33 +191,31 @@ $account->sessionLogin();
 									for($i = 0; $i < count($gData); $i++){
 										echo '<div class="row dataField">
 												<div class="form-group input-group col">
-													<div class="input-group-append input-group-text">
-														<label>Nome</label>
+													<div class="input-group-append">
+														<label class="input-group-text">Nome</label>
 													</div>
 													<input type="text" name="labels[]" value="'. $gData[$i]['label'] .'" required/>
 												</div>
 
 												<div class="form-group input-group col">
-													<div class="input-group-append input-group-text">
-														<label>Valor</label>
+													<div class="input-group-append">
+														<label class="input-group-text">Valor</label>
 													</div>
 													<input type="number" name="dataset_data[]" value="'. $gData[$i]['data'] .'" required/>
 												</div>
 
 												<div class="form-group input-group col">
-													<div class="input-group-append input-group-text">
-														<label>Preenchimento</label>
+													<div class="input-group-append">
+														<label class="input-group-text">Preenchimento</label>
 													</div>
-													<input type="color" name="dataset_colors[]" />
-													<input type="number" min="0" step="10" max="100" value="20" title="Opacidade" name="dataset_colors_opacity[]" value="'. $gData[$i]['fColor'] .'" />
+													<input type="color" name="dataset_colors[]" value="'. $gData[$i]['fColor'] .'" />
 												</div>
 
 												<div class="form-group input-group col">
-													<div class="input-group-append input-group-text">
-														<label>Cor da Borda</label>
+													<div class="input-group-append">
+														<label class="input-group-text">Cor da Borda</label>
 													</div>
-													<input type="color" name="dataset_borders_color[]" />
-													<input type="number" min="0" step="10" max="100" value="100" title="Opacidade" name="dataset_borders_color_opacity[]" value="'. $gData[$i]['bColor'] .'" />
+													<input type="color" name="dataset_borders_color[]" value="'. $gData[$i]['bColor'] .'" />
 												</div>
 											</div>';
 									}
@@ -229,29 +227,80 @@ $account->sessionLogin();
 								</fieldset>
 
 								<div class="row">
-										<div class="form-group col">
-											Largura da Borda <span class="range_input_value">1</span>/10
-											<input type="range" min="0" max="10" value="1" name="dataset_borders_width" class="range_input">
-										</div>
-										<div class="form-group col">
-											Arredondamento da Borda <span class="range_input_value">0</span>/10
-											<input type="range" min="0" max="10" value="0" name="data_dataset_borders_radius" class="range_input">
-										</div>
+									<div class="form-group col">
+										Largura da Borda <span class="range_input_value">'. $row[0]['dataset_borders_width'] .'</span>/10
+										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_width'] .'" name="dataset_borders_width" class="range_input">
+									</div>
+									<div class="form-group col">
+										Arredondamento da Borda <span class="range_input_value">'. $row[0]['dataset_borders_radius'] .'</span>/10
+										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_radius'] .'" name="dataset_borders_radius" class="range_input">
+									</div>
 								</div>
-
-								<button name="SAVECHANGES" class="button2 btn-success"><span>Salvar</span></button>
-							</div>
+							</section>
 
 							<!-- Image -->
-							<div data-type="1">
+							<section data-type="1" class="pb-3 '.($row[0]['selected'] == 1 ? '' : 'd-none').'">
+								<fieldset>
+									<legend>Imagem</legend>
+									<div class="form-group input-group">
+										<div class="input-group-append">
+											<label class="input-group-text">Link da Imagem</label>
+										</div>
+										<input type="url" value="'. $row[0]['alt'] .'" name="alt" />
+									</div>
+								</fieldset>
+							</section>
 
-							</div>
+							<button name="SAVECHANGES" class="button2 btn-success"><span>Salvar</span></button>
 						</form>
 					</div>
 				</div>';
 
 			} else{
 					echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
+			}
+		}
+
+		if(isset($_POST['SAVECHANGES'])){
+			$selected = $_POST['chart_type']; //string
+			$options_title_text = $_POST['options_title_text']; // //string
+			$options_title_padding_top = $_POST['options_title_padding_top']; //string
+			$options_title_padding_bottom = $_POST['options_title_padding_bottom']; //string
+			$options_title_display = isset($_POST['options_title_display']); //checkbox
+			$options_subtitle_text = $_POST['options_subtitle_text']; //string
+			$options_subtitle_padding_top = $_POST['options_subtitle_padding_top']; //string
+			$options_subtitle_padding_bottom = $_POST['options_subtitle_padding_bottom']; //string
+			$options_subtitle_display = isset($_POST['options_subtitle_display']); //checkbox
+			$type = $_POST['type']; //string
+			$dataset_label = $_POST['dataset_label']; //string
+			$dataset_borders_width = $_POST['dataset_borders_width'];
+			$dataset_borders_radius = $_POST['dataset_borders_radius'];
+			$alt = $_POST['alt'];
+
+			$labels_array = $_POST['labels']; //array
+			$dataset_data_array = $_POST['dataset_data']; //array
+			$dataset_colors_array = $_POST['dataset_colors']; //array
+			$dataset_borders_color_array = $_POST['dataset_borders_color']; //array
+
+			$labels = implode(',', $labels_array); //array
+			$dataset_data = implode(',', $dataset_data_array); //array
+			$dataset_colors = implode(',', $dataset_colors_array); //array
+			$dataset_borders_color = implode(',', $dataset_borders_color_array); //array
+
+			$conn->link = $conn->connect();
+			if($stmt = $conn->link->prepare("UPDATE chart SET type = ?, labels = ?, dataset_label = ?, dataset_data = ?, dataset_colors = ?, dataset_borders_color = ?, dataset_borders_width = ?, dataset_borders_radius = ?, options_title_display = ?, options_title_text = ?, options_title_padding_top = ?, options_title_padding_bottom = ?, options_subtitle_display = ?, options_subtitle_text = ?, options_subtitle_padding_top = ?, options_subtitle_padding_bottom = ?, selected = ?, alt = ? WHERE id = ?")){
+
+				// It always updates the same row
+				$id = 0;
+
+				try{
+					$stmt->bind_param('sssssssissiissiiisi', $type, $labels, $dataset_label, $dataset_data, $dataset_colors, $dataset_borders_color, $dataset_borders_width, $dataset_borders_radius, $options_title_display, $options_title_text, $options_title_padding_top, $options_title_padding_bottom, $options_subtitle_display, $options_subtitle_text, $options_subtitle_padding_top, $options_subtitle_padding_bottom, $selected, $alt, $id);
+					$stmt->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+				echo '<script>reload();</script>';
 			}
 		}
 

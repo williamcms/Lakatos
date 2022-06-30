@@ -126,7 +126,122 @@
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
 				</div>
 				<div class="col">
-					<canvas id="chart"></canvas>
+					<?php
+
+						if($stmt = $conn->link->prepare("SELECT * FROM chart LIMIT 1")){
+							try{
+								$stmt->execute();
+								$row = get_result($stmt);
+							}
+							catch(Exception $e){
+								throw new Exception('Erro ao conectar com a base de dados: '. $e);
+							}
+
+							class _data{
+								public $_arr = array();
+
+								public function get(){
+									return $this->_arr;
+								}
+
+								public function __construct(){
+									$data = func_get_args();
+
+									foreach($data as $key => $value){
+										$data[$key] = explode(',', $value);
+									}
+
+									foreach($data as $key => $value){
+										foreach($value as $key1 => $value1){
+											if($key == 0){
+												$this->_arr['label'][$key1] = trim($value1);
+											}
+											if($key == 1){
+												$this->_arr['data'][$key1] = trim($value1);
+											}
+											if($key == 2){
+												$this->_arr['fColor'][$key1] = trim($value1);
+											}
+											if($key == 3){
+												$this->_arr['bColor'][$key1] = trim($value1);
+											}
+										}
+									}
+								}
+							}
+
+							$data = new _data($row[0]['labels'], $row[0]['dataset_data'], $row[0]['dataset_colors'], $row[0]['dataset_borders_color'] );
+							$gData = $data->get();
+
+							if($stmt->num_rows > 0){
+								if($row[0]['selected'] == 0){
+									echo "<canvas id='chart'></canvas><script>
+										$(document).ready(function(){
+											let ctx = $('#chart');
+											var myPieChart = new Chart(ctx, {
+												// line, bar, radar, doughnut, pie, polarArea
+												type: '". $row[0]["type"] ."',
+												data: {
+													labels: [";
+													foreach($gData['label'] as $key => $value){
+														echo "'". $value ."',";
+														
+													}
+													echo "],
+													datasets: [{
+														label: '# of Votes',
+														data: [";
+														foreach($gData['data'] as $key => $value){
+															echo $value .",";
+															
+														}
+														echo "],
+														backgroundColor: [";
+														foreach($gData['fColor'] as $key => $value){
+															echo "'". $value ."20',";
+															
+														}
+														echo "],
+														borderColor: [";
+														foreach($gData['bColor'] as $key => $value){
+															echo "'". $value ."',";
+															
+														}
+														echo "],
+														borderWidth: ". $row[0]['dataset_borders_width'] .",
+														borderRadius: ". $row[0]['dataset_borders_radius'] ."
+													}]
+												},
+												options: {
+													plugins: {
+														title: {
+															display: '". $row[0]['options_title_display'] ."',
+															text: '". $row[0]['options_title_text'] ."',
+															padding: {
+																top: ". $row[0]['options_title_padding_top'] .",
+																bottom: ". $row[0]['options_title_padding_bottom'] ."
+															}
+														},
+														subtitle: {
+															display: '". $row[0]['options_subtitle_display'] ."',
+															text: '". $row[0]['options_subtitle_text'] ."',
+															padding: {
+																top: ". $row[0]['options_subtitle_padding_top'] .",
+																bottom: ". $row[0]['options_subtitle_padding_bottom'] ."
+															}
+														}
+													}
+												}
+											});
+										});
+									</script>";
+								}else{
+									echo '<img src="'. $row[0]['alt'] .'" alt="" />';
+								}
+							}
+						}
+
+					?>
 				</div>
 					
 			</div>
@@ -239,68 +354,12 @@
 						<h3>Contatos para Peru</h3>
 						<p><strong>Nome</strong>: Giorgio Hungut</p>
 						<p><span><strong>Email</strong>: <a href="mailto:giorgio@ghtrading.com.pe">giorgio@ghtrading.com.pe</a></span> 
-							<span><strong>Telefone</strong>: 51 967 783 	781</span></p>
+							<span><strong>Telefone</strong>: 51 967 783     781</span></p>
 					</div>
 				</div>
 			</form>
 		</div>
 	</main>
-	<div class="section-separator"></div>
-
-	<script>
-		$(document).ready(function(){
-			let ctx = $('#chart');
-			var myPieChart = new Chart(ctx, {
-				// line, bar, radar, doughnut, pie, polarArea
-				type: 'doughnut',
-				data: {
-					labels: ['Vermelho', 'Azul', 'Amarelo', 'Verde', 'Roxo', 'Laranja'],
-					datasets: [{
-						label: '# of Votes',
-						data: [12, 19, 3, 5, 2, 3],
-						backgroundColor: [
-							'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)',
-							'rgba(75, 192, 192, 0.2)',
-							'rgba(153, 102, 255, 0.2)',
-							'rgba(255, 159, 64, 0.2)'
-						],
-						borderColor: [
-							'rgba(255, 99, 132, 1)',
-							'rgba(54, 162, 235, 1)',
-							'rgba(255, 206, 86, 1)',
-							'rgba(75, 192, 192, 1)',
-							'rgba(153, 102, 255, 1)',
-							'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1,
-						borderRadius: 30
-					}]
-				},
-				options: {
-					plugins: {
-						title: {
-							display: true,
-							text: 'Custom Chart Title',
-							padding: {
-								top: 10,
-								bottom: 30
-							}
-						},
-						subtitle: {
-			                display: true,
-			                text: 'Custom Chart Subtitle',
-			                padding: {
-								top: 10,
-								bottom: 30
-							}
-			            }
-					}
-				}
-			});
-		})
-	</script>
 
 	<?php require_once('footer.php'); ?>
 </body>

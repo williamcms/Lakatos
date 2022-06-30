@@ -173,4 +173,18 @@ $(document).ready(function(){
 
 		dataField.length > 1 && dataFields.find('.dataField:last-of-type').remove();
 	});
+	$('.dataFields > .dataField input').on('change keyup', function(){
+		$(this).val($(this).val().replace(/,/g, "."));
+	})
+	$('#SAVECHANGES select[name="chart_type"]').on('change', function(){
+		let type = $(this).find(':selected').val();
+
+		$.each($('section[data-type]'), function(){
+			if($(this).attr('data-type') == type){
+				$(this).removeClass('d-none');
+			}else{
+				$(this).addClass('d-none');
+			}
+		});
+	});
 });

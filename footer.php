@@ -1,3 +1,5 @@
+<div class="section-separator"></div>
+
 <footer>
 	<div class="footer-wrapper">
 		<div class="desc">
