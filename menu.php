@@ -22,7 +22,7 @@
 			
 		</div>
 		<div class="logo-wrapper">
-			<img src="_prototype/images/logo.png" alt="logo" title="Lakatos | Termoformadoras" />
+			<img src="<?php echo url(); ?>/images/logo.png" alt="logo" title="Lakatos | Termoformadoras" />
 		</div>
 		<nav class="menu" id="menubar">
 			<button class="js--open-menu" role="none" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false">
@@ -31,14 +31,14 @@
 	            <span></span>
 	        </button>
 			<ul role="menu" tabindex="-1" class="navigation" id="navigation">
-				<li role="none" class="menuitem"><a href="./index#home" role="menuitem"><?php echo LANG_HOME_MENU_LINK1 ?></a></li>
-				<li role="none" class="menuitem"><a href="./index#aboutus" role="menuitem">Sobre nós</a></li>
-				<li role="none" class="menuitem"><a href="./index#aplicacoes" role="menuitem">Aplicações</a></li>
-				<li role="none" class="menuitem"><a href="./index#maquinas" role="menuitem">Máquinas</a></li>
-				<li role="none" class="menuitem"><a href="./index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
-				<li role="none" class="menuitem"><a href="./index#blog" role="menuitem">Blog</a></li>
-				<li role="none" class="menuitem"><a href="./index#contato" role="menuitem">Contato</a></li>
-				<li role="none" class="menuitem"><a href="./index#redesContato" role="menuitem">Redes de contato</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#home" role="menuitem"><?php echo LANG_HOME_MENU_LINK1 ?></a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aboutus" role="menuitem">Sobre nós</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aplicacoes" role="menuitem">Aplicações</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#maquinas" role="menuitem">Máquinas</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#blog" role="menuitem">Blog</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#contato" role="menuitem">Contato</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#redesContato" role="menuitem">Redes de contato</a></li>
 			</ul>
 		</nav>
 	</div>
