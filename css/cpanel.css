@@ -3,6 +3,7 @@
 :root{
 	--brand:  #033B58;
 	--brand-light: #2187BD;
+	--brand-2nd: #D22C33;
 	--menu-bg-color: var(--light);
 	--menu-text-color: #000000;
 	--body-txt-color: var(--light);
@@ -570,17 +571,93 @@ blockquote:before{
 	opacity: 0.8;
 	right: 0;
 }
-.btn-danger{
-	background-color: var(--danger);
-	color: var(--light);
+.btn-brand{
+	color: var(--white);
+	background-color: var(--brand);
+}
+.btn-brand-light{
+	color: var(--white);
+	background-color: var(--brand-light);
+}
+.btn-blue{
+	color: var(--white);
+	background-color: var(--blue);
+}
+.btn-indigo{
+	color: var(--white);
+	background-color: var(--indigo);
+}
+.btn-purple{
+	color: var(--white);
+	background-color: var(--purple);
+}
+.btn-pink{
+	color: var(--white);
+	background-color: var(--pink);
+}
+.btn-red{
+	color: var(--white);
+	background-color: var(--red);
+}
+.btn-orange{
+	color: var(--white);
+	background-color: var(--orange);
+}
+.btn-yellow{
+	color: var(--white);
+	background-color: var(--yellow);
+}
+.btn-green{
+	color: var(--white);
+	background-color: var(--green);
+}
+.btn-teal{
+	color: var(--white);
+	background-color: var(--teal);
+}
+.btn-cyan{
+	color: var(--white);
+	background-color: var(--cyan);
+}
+.btn-white{
+	color: var(---black);
+	background-color: var(--white);
+}
+.btn-black{
+	color: var(--white);
+	background-color: var(--black);
+}
+.btn-gray{
+	color: var(--white);
+	background-color: var(--gray);
+}
+.btn-gray-lighter{
+	color: var(--gray);
+	background-color: var(--gray-lighter);
 }
 .btn-success{
-	background-color: var(--green);
-	color: var(--light);
+	color: var(--white);
+	background-color: var(--success);
+}
+.btn-info{
+	color: var(--white);
+	background-color: var(--info);
 }
 .btn-warning{
+	color: var(--white);
 	background-color: var(--warning);
-	color: var(--light);
+}
+.btn-danger{
+	color: var(--white);
+	background-color: var(--danger);
+}
+.btn-light{
+	color: var(--gray);
+	background-color: var(--light);
+}
+.btn-dark{
+	color: var(--white);
+	background-color: var(--dark);
 }
 /* Auxiliares de centralização */
 .text-center{
@@ -882,15 +959,15 @@ header > nav#menubar > ul#navigation > li > a{
 	align-items: center;
 	grid-column-gap: .5rem;
 }
-header > nav#menubar > ul#navigation > li > a:hover{
-	color: var(--brand);
+body:not(.collapsed-menu) header > nav#menubar > ul#navigation > li > a:hover{
+	color: var(--brand-2nd);
 	text-decoration: none;
 }
 header > nav#menubar > ul#navigation > li > a > :nth-child(1){
 	min-width: 1.5rem;
 }
 header > nav#menubar > ul#navigation li.currentPage{
-	color: var(--brand);
+	color: var(--brand-2nd);
 }
 /* Collapsed Menu */
 body.collapsed-menu header > nav#menubar{
