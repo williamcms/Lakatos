@@ -446,7 +446,7 @@ fieldset{
 	font-size: 1.225rem;
 	color: var(--danger);
 }
-.modaldados .closebtn{
+.modaldados > .closebtn{
 	font-size: 2.625rem;
 	font-weight: bold;
 	line-height: 1.7rem;
@@ -457,6 +457,9 @@ fieldset{
 	right: 0;
 	top: 0;
 	cursor: pointer;
+}
+.modaldados .card-result-body{
+	background-color: var(--gray);
 }
 .editbtn i{
 	font-size: 1.425rem;
@@ -1264,6 +1267,27 @@ main.chart .range_input{
 }
 main.icons .card-result-content{
 	background-color: var(--brand-light);
+}
+.table-list{
+	color: var(--white);
+	background-color: var(--dark);
+	padding: .5rem 0;
+}
+.table-list > *{
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+.table-list > *:first-child{
+	padding: .2rem 0 .7rem 0;
+	border-bottom: 0.0625rem solid var(--white);
+}
+.table-list > *:not(:first-child):not(:last-child){
+	margin-bottom: .5rem;
+}
+.table-list .buttonsContainer{
+	grid-column-gap: 2rem;
+	column-gap: 2rem;
 }
 footer{
 	margin: 3.75rem 0rem 0rem var(--menu-size);

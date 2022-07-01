@@ -18,10 +18,21 @@ $account->sessionLogin();
 		<div class="row">
 			<div class="col"><h4>Máquinas</h4></div>
 			<div class="col">
+				<form method="POST" id="MANAGE_FEATURES">
+					<input type="text" name="OPEN_FEATURES_DIALOG" hidden>
+					<a href="#" class="button2 card_button-add" onclick="$('#MANAGE_FEATURES').submit();" />
+						<span>Gerênciar Features</span>
+					</a>
+				</form>
+			</div>
+			<div class="col-auto">
 				<form method="POST" id="NEW_MACHINE">
-					<input type="text" name="ADD_MACHINE" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_MACHINE').submit();">
-					<span>Nova Máquina</span></a>
-				</form></div>
+					<input type="text" name="ADD_MACHINE" hidden>
+					<a href="#" class="button2 card_button-add" onclick="$('#NEW_MACHINE').submit();" />
+						<span>Nova Máquina</span>
+					</a>
+				</form>
+			</div>
 		</div>
 		<div class="row">
 			<?php 
@@ -82,9 +93,8 @@ $account->sessionLogin();
 					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['mac_name'].'</div>
 					<form method="POST">
-					<input name="mac_name" type="text" value="'.$row[$i]['mac_name'].'" hidden>
 					<div class="buttonsContainer">
-						<button class="closebtn smallbtn" name="REMOVE_MACHINE" value="'.$row[$i]['mac_id'].'" style="right: 35px;">
+						<button class="closebtn smallbtn" name="REMOVE_MACHINE" value="'.$row[$i]['mac_id'].'">
 							<i class="far fa-trash-alt"></i></button>
 						<button class="editbtn smallbtn" name="EDIT_MACHINE" value="'.$row[$i]['mac_id'].'" title="Editar">
 							<i class="far fa-edit"></i></button>
@@ -94,7 +104,7 @@ $account->sessionLogin();
 				}
 
 			} else{
-					echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
+				echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
 			}
 		}
 
@@ -137,24 +147,60 @@ $account->sessionLogin();
 				<form method="POST" id="form">
 					<h2 class="text-center">Editar Máquina</h2>
 					<div class="form-group"><label>Id da máquina <span class="text-muted">(não editável)</span></label>
-						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly></div>
-					<div class="form-group"><label>Nome da máquina</label> <input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required></div>
-					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span> <input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly></div>
-					<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required></div>
-					<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'"></div>
-					<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea></div>
-					<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea></div>
+						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly />
+					</div>
+					<div class="form-group"><label>Nome da máquina</label>
+						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required />
+					</div>
+					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
+						<input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly />
+					</div>
+					<div class="form-group"><label>Imagem</label>
+						<input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required />
+					</div>
+					<div class="form-group"><label>Imagem de Sobreposição</label>
+						<input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'" />
+					</div>
+
+					<div class="form-group"><label>Descrição Curta</label>
+						<textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea>
+					</div>
+					<div class="form-group"><label>Descrição Completa</label>
+						<textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea>
+					</div>
+
+					<div class="form-group"><label>Feature 1</label>
+						<input type="text" name="mac_feature1" value="'.$row[0]['mac_feature1'].'" />
+					</div>
+					<div class="form-group"><label>Feature 2</label>
+						<input type="text" name="mac_feature2" value="'.$row[0]['mac_feature2'].'" />
+					</div>
+					<div class="form-group"><label>Feature 3</label>
+						<input type="text" name="mac_feature3" value="'.$row[0]['mac_feature3'].'" />
+					</div>
+					<div class="form-group"><label>Feature Extendida 1</label>
+						<input type="text" name="mac_feature_extended1" value="'.$row[0]['mac_feature_extended1'].'" />
+					</div>
+					<div class="form-group"><label>Feature Extendida 2</label>
+						<input type="text" name="mac_feature_extended2" value="'.$row[0]['mac_feature_extended2'].'" />
+					</div>
+					<div class="form-group"><label>Feature Extendida 3</label>
+						<input type="text" name="mac_feature_extended3" value="'.$row[0]['mac_feature_extended3'].'" />
+					</div>
+					<div class="form-group"><label>Linha de máquinas</label>
+						<input type="text" name="mac_series" value="'.$row[0]['mac_series'].'" />
+					</div>
 					<div class="form-group"><label>Aplicações</label><div class="link-listage">';
 
 					for($j = 0; $j < $stmt2->num_rows; $j++){
 						echo '<div class="item">
 								<img src="'.$applications[$j]['ap_image'].'" />
-								<input type="checkbox" name="mac_ap_link[]" id="ap'.$applications[$j]['ap_id'].'" class="d-none" value="'.$applications[$j]['ap_id'].'" '.(in_array($applications[$j]['ap_id'], $ap_ids) ? 'checked=""' : '').'"/>
+								<input type="checkbox" name="mac_ap_link[]" id="ap'.$applications[$j]['ap_id'].'" class="d-none" value="'.$applications[$j]['ap_id'].'" '.(in_array($applications[$j]['ap_id'], $ap_ids) ? 'checked=""' : '').'" />
 								<label for="ap'.$applications[$j]['ap_id'].'">'.$applications[$j]['ap_name'].'</label></div>';
 					}
 					
 					echo '</div></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input"></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input" /></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_EDIT"><span>Confirmar</span></button>
@@ -232,7 +278,7 @@ $account->sessionLogin();
 				echo '<script>reload();</script>';
 			}
 		}
-
+		
 		if(isset($_POST['ADD_MACHINE'])){
 			if($stmt = $conn->link->prepare("SELECT * FROM applications")){
 				try{
@@ -248,20 +294,47 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova máquina</h2>
-				<div class="form-group"><label>Nome da máquina</label> <input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required></div>
-				<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span> <input type="text" name="mac_pagename" readonly></div>
-				<div class="form-group"><label>Imagem</label><input type="text" name="mac_image" required></div>
-				<div class="form-group"><label>Imagem de Sobreposição</label><input type="text" name="mac_image_hover"></div>
-				<div class="form-group"><label>Descrição Curta</label><textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea></div>
-				<div class="form-group"><label>Descrição Completa</label><textarea name="mac_desc" class="summernote" maxlength="9990"></textarea></div>
+				<div class="form-group"><label>Nome da máquina</label>
+					<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required>
+				</div>
+				<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
+					<input type="text" name="mac_pagename" readonly>
+				</div>
+				<div class="form-group"><label>Imagem</label>
+					<input type="text" name="mac_image" required>
+				</div>
+				<div class="form-group"><label>Imagem de Sobreposição</label>
+					<input type="text" name="mac_image_hover">
+				</div>
 
-				<div class="form-group"><label>Feature 1</label><input type="text" name="mac_feature1"></div>
-				<div class="form-group"><label>Feature 2</label><input type="text" name="mac_feature2"></div>
-				<div class="form-group"><label>Feature 3</label><input type="text" name="mac_feature3"></div>
-				<div class="form-group"><label>Feature Extendida 1</label><input type="text" name="mac_feature_extended1"></div>
-				<div class="form-group"><label>Feature Extendida 2</label><input type="text" name="mac_feature_extended2"></div>
-				<div class="form-group"><label>Feature Extendida 3</label><input type="text" name="mac_feature_extended3"></div>
-				<div class="form-group"><label>Linha de máquinas</label><input type="text" name="mac_series"></div>
+				<div class="form-group"><label>Descrição Curta</label>
+					<textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea>
+				</div>
+				<div class="form-group"><label>Descrição Completa</label>
+					<textarea name="mac_desc" class="summernote" maxlength="9990"></textarea>
+				</div>
+
+				<div class="form-group"><label>Feature 1</label>
+					<input type="text" name="mac_feature1">
+				</div>
+				<div class="form-group"><label>Feature 2</label>
+					<input type="text" name="mac_feature2">
+				</div>
+				<div class="form-group"><label>Feature 3</label>
+					<input type="text" name="mac_feature3">
+				</div>
+				<div class="form-group"><label>Feature Extendida 1</label>
+					<input type="text" name="mac_feature_extended1">
+				</div>
+				<div class="form-group"><label>Feature Extendida 2</label>
+					<input type="text" name="mac_feature_extended2">
+				</div>
+				<div class="form-group"><label>Feature Extendida 3</label>
+					<input type="text" name="mac_feature_extended3">
+				</div>
+				<div class="form-group"><label>Linha de máquinas</label>
+					<input type="text" name="mac_series">
+				</div>
 
 				<div class="form-group"><label>Aplicações</label><div class="link-listage">';
 
@@ -273,7 +346,9 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="mac_active" class="range_input"></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1
+					<input type="range" min="0" max="1" value="1" name="mac_active" class="range_input" />
+				</div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_ADD"><span>Confirmar</span></button>
@@ -314,6 +389,53 @@ $account->sessionLogin();
 				}
 				echo '<script>reload();</script>';
 			}
+		}
+
+		if(isset($_POST['OPEN_FEATURES_DIALOG'])){
+			if($stmt = $conn->link->prepare("SELECT * FROM mac_features")){
+				try{
+					$stmt->execute();
+					$row = get_result($stmt);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
+
+			echo '<div class="overlayform" id="form6"><div class="modalform"><div class="modaldados">
+					<button class="closebtn" onclick="formOff(6);" aria-label="Fechar Janela">&times;</button>
+					<form method="POST" id="form">
+						<button href="#" class="button2 btn-primary center" name="NEW_FEATURE" />
+							<span>Nova Feature</span>
+						</button>
+						<div class="table-list text-center">
+							<div class="col row w-100">
+								<div class="col bold">Imagem</div>
+								<div class="col bold">Título</div>
+								<div class="col bold buttonsContainer">Ações</div>
+							</div>';
+			if($stmt->num_rows > 0){
+				for($i = 0; $i < $stmt->num_rows; $i++){
+					echo '<div class="col row w-100">
+							<div class="col">
+								<img src="'. constant('WEBSITE_ICON_NUMBER_'.$row[$i]['feat_image']) .'" />
+							</div>
+							<div class="col">
+								'.$row[$i]['feat_name'].'
+							</div>
+							<div class="col buttonsContainer">
+								<button class="editbtn smallbtn" name="EDIT_FEATURE" value="'.$row[$i]['feat_id'].'" title="Editar">
+									<i class="far fa-edit"></i></button>
+								<button class="closebtn smallbtn" name="REMOVE_FEATURE" value="'.$row[$i]['feat_id'].'">
+									<i class="far fa-trash-alt"></i></button>
+							</div>
+						</div>';
+				}
+			}else{
+				echo '<div class="box-msg error center pt-5">'.ERROR_QUERY_NORESULT.'</div>';
+			}
+
+			echo '</div></form></div></div></div> <script>formOn(6);</script>';
 		}
 
 

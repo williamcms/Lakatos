@@ -12,19 +12,59 @@
 
 	<main>
 		<?php
-			$pagename = explode('.', $_GET['pagename'])[0];
+			if(isset($_GET['pagename'])){
+				$pagename = explode('.', $_GET['pagename'])[0];
 
-			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("SELECT * FROM machines WHERE mac_pagename = ? LIMIT 1")){
-				try{
-					$stmt->bind_param('s', $pagename);
-					$stmt->execute();
-					$row = get_result($stmt);
+				$conn->link = $conn->connect();
+				if($stmt = $conn->link->prepare("SELECT * FROM machines WHERE mac_pagename = ? LIMIT 1")){
+					try{
+						$stmt->bind_param('s', $pagename);
+						$stmt->execute();
+						$row = get_result($stmt);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+					if($stmt->num_rows >= 1){
+						echo '<article class="product">
+								<section class="image">
+									<picture>
+										<img src="'. url() . $row[0]['mac_image'] .'" alt="" width="" height="" />
+										<figcaption>
+											<div class="catalog">Acesse o catálogo digital</div>
+											<div class="video">Reproduzir vídeo</div>
+										</figcaption>
+									</picture>
+								</section>
+
+								<section class="info">
+									<div class="title">
+										'. $row[0]['mac_name'] .'
+									</div>
+
+									<div class="row">
+										<div class="col">
+											'. $row[0]['mac_desc'] .'
+										</div>
+
+										<div class="col">
+										</div>
+									</div>
+
+								</section>
+
+								<section class="related">
+								</section>
+
+								<section class="extra">
+								</section>
+							</article>';
+					}else{
+						echo 'Busca não retornou resultados';
+					}
 				}
-				catch(Exception $e){
-					throw new Exception('Erro ao conectar com a base de dados: '. $e);
-				}
-				var_dump($row);
+			}else{
+				echo 'Máquina não pesquisada';
 			}
 		?>
 	</main>
