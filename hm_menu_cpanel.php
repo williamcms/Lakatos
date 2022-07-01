@@ -66,6 +66,11 @@
 					<i class="fa-solid fa-circle-nodes"></i> <span>Aplicações</span>
 				</a>
 			</li>
+			<li <?php if($account->getFileName() == 'cp-molds.php') echo 'class="currentPage"'; ?>>
+				<a href="./cp-molds" title="Aplicações">
+					<i class="fa-solid fa-jar-wheat"></i> <span>Moldes/Embalagens</span>
+				</a>
+			</li>
 			<li <?php if($account->getFileName() == 'cp-icons.php') echo 'class="currentPage"'; ?>>
 				<a href="./cp-icons" title="Ícones">
 					<i class="fa-solid fa-icons"></i> <span>Ícones</span>
@@ -73,7 +78,7 @@
 			</li>
 			<li <?php if($account->getFileName() == 'cp-chart.php') echo 'class="currentPage"'; ?>>
 				<a href="./cp-chart" title="Sustentabilidade">
-					<i class="fa-solid fa-leaf"></i><!-- <i class="fa-solid fa-chart-pie"></i> --> <span>Sustentabilidade</span>
+					<i class="fa-solid fa-leaf"></i> <span>Sustentabilidade</span>
 				</a>
 			</li>
 			<li <?php if($account->getFileName() == 'cp-blog.php') echo 'class="currentPage"'; ?>>
