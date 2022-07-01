@@ -44,17 +44,15 @@
 			</div>
 		</div>
 		<div class="section-separator"></div>
-		<div class="section home-mid-categories" id="aplicacoes">
-			<div class="text-wrapper">
+		<div class="section home-mid-categories row" id="aplicacoes">
+			<div class="text-wrapper col">
 				<div class="text">
-					<h2>Qual a sua <span class="highlight">necessidade</span>?</h2>
-					<p>A Lakatos Termoformadoras possui know-how para desenvolver</p>
-					<p>moldes e máquinas capazes de produzir aplicações para diversas áreas!</p>
+					<h2>Qual a sua <br/><span style="background-color: var(--brand-2nd);padding: 0 .5rem; line-height: 3rem;">necessidade?</span></h2>
+					<p>A Lakatos Termoformadoras possui <br/>know-how para desenvolver moldes <br/>
+					e máquinas capazes de produzir <br/>aplicações para diversas áreas!</p>
 				</div>
-				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais máquinas" title="Ver mais máquinas"><span>Ver mais</span></a></div>
 			</div>
-			<div class="section-separator"></div>
-			<div class="selection">
+			<div class="selection col">
 				<?php
 					(function(){
 						global $conn;
@@ -84,7 +82,7 @@
 		<div class="section home-mid-machines" id="maquinas">
 			<div class="text-wrapper">
 				<div class="text">
-					<h2>Últimas máquinas</h2>
+					<h2>Últimas novidades</h2>
 				</div>
 				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais máquinas" title="Ver mais máquinas"><span>Ver mais</span></a></div>
 			</div>
@@ -102,7 +100,7 @@
 
 								foreach($result as $i => $v){
 									echo '<div data-apId="'. $v['mac_id'] .'">
-									<img src="'. $v['mac_image'] .'" mouseout="'. $v['mac_image'] .'" mousein="'. $v['mac_image_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" />
+									<a href="'. url() .'/m/'. $v['mac_pagename'] .'" target="_self" title="Máquina '. $v['mac_name'] .'"><img src="'. $v['mac_image'] .'" mouseout="'. $v['mac_image'] .'" mousein="'. $v['mac_image_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" /></a>
 									<div class="desc w-75">'. $v['mac_short_desc'] .'</div></div>';
 								}
 							}catch(Exception $e){
@@ -266,47 +264,38 @@
 		</div>
 		<div class="section-separator"></div>
 		<div class="section contactus" id="contato">
-			<div class="text-wrapper">
-				<div class="text">
-					<h2>Contato</h2>
-					<p>Está precisando de ajuda?</p>
-					<p>Preencha o formulário abaixo 
-						<?php  if($location->phoneNumber){
-							echo 'ou entre em contato por whatsapp <a href="https://wa.me/'. $location->cleanWhatsapp .'" target="_blank">'. $location->whastapp .'</a>.';
-						} ?>
-					</p>
-				</div>
-			</div>
-			<div class="section-separator-2"></div>
+			<h2 class="center">Formulário de contato</h2>
+			<div class="section-separator-1"></div>
 			<form method="POST">
 				<div class="form-group row">
 					<div class="input-group col">
-						<div class="input-group-prepend"><span class="input-group-text">Nome</span></div>
-						<input type="text" name="nome">
+						<div class="input-group-prepend"><label class="input-group-text" for="contatonome">Nome:</label></div>
+						<input type="text" name="nome" id="contatonome" />
 					</div>
 					<div class="input-group col">
-						<div class="input-group-prepend"><span class="input-group-text">Telefone</span></div>
-						<input type="tel" name="telefone">
+						<div class="input-group-prepend"><label class="input-group-text" for="contatotelefone">Telefone:</label></div>
+						<input type="tel" name="telefone" id="contatotelefone" />
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="input-group col">
-						<div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-						<input type="email" name="email">
+						<div class="input-group-prepend"><label class="input-group-text" for="contatoemail">Email:</label></div>
+						<input type="email" name="email" id="contatoemail" />
 					</div>
 					<div class="input-group col">
-						<div class="input-group-prepend"><span class="input-group-text">Assunto</span></div>
-						<input type="text" name="assunto">
+						<div class="input-group-prepend"><label class="input-group-text" for="contatoassunto">Assunto:</label></div>
+						<input type="text" name="assunto" id="contatoassunto" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
-						<div class="input-group-prepend"><span class="input-group-text">Mensagem</span></div>
-						<textarea name="mensagem"></textarea>
+						<textarea name="mensagem" id="contatomensagem" placeholder="Mensagem"></textarea>
 					</div>
 				</div>
-				<button class="button2 btn-green"><span>Enviar</span></button>
+				<button class="button2 btn-brand"><span>Enviar</span></button>
 			</form>
+		</div>
+		<div class="section contactnetwork" id="redecontato">
 			<div class="section-separator"></div>
 			<div class="text-wrapper" id="redesContato">
 				<div class="text">

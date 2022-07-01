@@ -2,6 +2,7 @@
 :root{
 	--brand:  #033B58;
 	--brand-light: #2187BD;
+	--brand-2nd: #D22C33;
 	--body-bg-color:  #FFFFFF;
 	--body-txt-color: #000000;
 	--blue: #4680FF;
@@ -613,6 +614,14 @@ header nav.menu ul li a{
 	opacity: .8;
 	right: 0;
 }
+.btn-brand{
+	color: var(--white);
+	background-color: var(--brand);
+}
+.btn-brand-light{
+	color: var(--white);
+	background-color: var(--brand-light);
+}
 .btn-blue{
 	color: var(--white);
 	background-color: var(--blue);
@@ -1219,16 +1228,6 @@ main div.home-top_video:not(.paused) .info button > span{
 main div.home-top_video:not(.paused) .info button::after{
 	content: '\f28b';
 }
-/*About us*/
-main div.home-mid-aboutus{
-	padding: 2rem 0;
-}
-main div.home-mid-aboutus .row .col:first-child .text{
-	padding: 0rem 3rem;
-}
-main div.home-mid-aboutus .row .col:first-child .text p{
-	font-size: 0.92rem;
-}
 /*Sections*/
 main > div.section > .text-wrapper{
 	position: relative;
@@ -1258,7 +1257,37 @@ main > div.section > .text-wrapper .text p a:hover{
 	color: var(--brand);
 	font-weight: 500;
 }
-main > div.section > .selection{
+/*Aboutus*/
+main div.home-mid-aboutus{
+	padding: 2rem 0;
+}
+main div.home-mid-aboutus .row .col:first-child .text{
+	padding: 0rem 3rem;
+}
+main div.home-mid-aboutus .row .col:first-child .text p{
+	font-size: 0.92rem;
+}
+/*Aplicações*/
+main div.home-mid-categories{
+	justify-content: center;
+	background-color: var(--brand);
+	padding: 5rem 0;
+}
+main div.home-mid-categories *{
+	color: var(--white) !important;
+}
+main div.home-mid-categories > *{
+	max-width: 40vw;
+}
+main div.home-mid-categories div[data-apid] a{
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+}
+main div.home-mid-categories div[data-apid] a:hover{
+	color: var(--brand-2nd) !important;
+}
+main > div.home-mid-categories > .selection{
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -1267,17 +1296,17 @@ main > div.section > .selection{
 	grid-row-gap: 4rem;
 	row-gap: 4rem;
 }
-main > div.section > .selection > div{
+main > div.home-mid-categories > .selection > div{
 	flex: 1 1 25%;
 }
-main > div.section > .selection > div i.fas{
+main > div.home-mid-categories > .selection > div i.fas{
 	font-size: 3.5rem;
 	padding: 2rem 3.5rem;
 	color: #FFF;
 	background-color: var(--brand);
 	border-radius: 0.75rem;
 }
-main > div.section > .selection > div p{
+main > div.home-mid-categories > .selection > div p{
 	font-weight: 600;
 	color: var(--brand);
 	padding-top: .85rem;
@@ -1323,15 +1352,69 @@ main > div.home-mid-blog .row > .col:last-of-type{
 	flex-basis: 30%;
 }
 /*Contact us*/
-main > div.contactus .contact-options > div > h3{
+main > div.contactus{
+	background-color: var(--brand-light);
+	padding: 3rem 0;
+}
+main > div.contactus *{
+	color: var(--white) !important;
+}
+main > div.contactus textarea::placeholder{
+	color: var(--white);
+	padding-left: .75rem;
+	opacity: 1;
+}
+main > div.contactus > .text-wrapper .text{
+	border-bottom-color: var(--white);
+}
+main > div.contactus > form{
+	max-width: 70vw;
+	margin: 0 auto;
+}
+main > div.contactus > form > div.form-group.row{
+	grid-column-gap: 1rem;
+	column-gap: 1rem;
+}
+main > div.contactus > form .input-group-text{
+	border-radius: .1rem;
+	border-right: none;
+}
+main > div.contactus > form input{
+	border-left: none;
+}
+main > div.contactus > form input,
+main > div.contactus > form textarea{
+	border-radius: .1rem;
+}
+main > div.contactus > form textarea{
+	min-height: 13vh;
+}
+main > div.contactus > form input:focus,
+main > div.contactus > form textarea:focus{
+	border-top: 1px solid var(--white);
+	border-right: 1px solid var(--white);
+	border-bottom: 1px solid var(--brand-2nd);
+	border-left: 1px solid var(--white);
+	box-shadow: none;
+}
+main > div.contactus > form .input-group-text,
+main > div.contactus > form input,
+main > div.contactus > form textarea{
+	background-color: transparent;
+}
+main > div.contactus > form > button{
+	border-radius: .13rem;
+}
+/*Contact Network*/
+main > div.contactnetwork .contact-options > div > h3{
 	color: inherit;
 	border-bottom: 0.175rem solid var(--red);
 	margin-bottom: 1.5rem;
 }
-main > div.contactus > form{
+main > div.contactnetwork > form{
 	padding: 0rem 6rem;
 }
-main > div.contactus > form > div.form-group.row{
+main > div.contactnetwork > form > div.form-group.row{
 	grid-column-gap: 1rem;
 	column-gap: 1rem;
 }
@@ -1517,6 +1600,37 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	main > div.section > .text-wrapper .text p{
 		font-size: 1.2rem;
 	}
+	/*Aplicações*/
+	main div.home-mid-categories{
+		padding: 3rem 0;
+		grid-row-gap: 2rem;
+		row-gap: 2rem;
+	}
+	main div.home-mid-categories > *{
+		max-width: 100vw;
+	}
+	main > div.home-mid-categories > .text-wrapper .text{
+		margin: 0 auto;
+	}
+	main > div.home-mid-categories > .selection{
+		grid-row-gap: 3rem;
+		row-gap: 3rem;
+	}
+	main > div.home-mid-categories > .selection > div{
+		flex: 1 1 50%;
+	}
+	main > div.home-mid-categories > .selection > div i.fas{
+		font-size: 3.5rem;
+		padding: 2rem 3.5rem;
+		color: #FFF;
+		background-color: var(--brand);
+		border-radius: 0.75rem;
+	}
+	main > div.home-mid-categories > .selection > div p{
+		font-weight: 600;
+		color: var(--brand);
+		padding-top: .85rem;
+	}
 	/*Últimas Máquinas*/
 	main > div.section.home-mid-machines > .slick-slider img {
 		height: 100%;
@@ -1541,10 +1655,10 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		flex-basis: 100%;
 	}
 	/*Contact us*/
-	main > div.contactus > form{
+	main > div.contactnetwork > form{
 		padding: 0 2rem;
 	}
-	main > div.contactus > form > div.form-group.row > .col:not(:last-child){
+	main > div.contactnetwork > form > div.form-group.row > .col:not(:last-child){
 		margin-bottom: 1rem;
 	}
 	main > div.section > form > div.fornecedores{
