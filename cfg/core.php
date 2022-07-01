@@ -150,6 +150,32 @@ function get_result($statement){
 	$conn->close($conn->link);
 })();
 
+/* Get Website Icons in Database */
+(function() {
+	global $conn;
+	$conn->link = $conn->connect();
+
+	if($stmt = $conn->link->prepare("SELECT * FROM icons")){
+		try{
+			$stmt->execute();
+			$result = get_result($stmt);
+
+			foreach($result as $i => $v){
+				if(!isNotEmptyNull($v['icon_image']) OR $v['icon_active'] == 0){
+					define(strtoupper('WEBSITE_ICON_NUMBER_' . $v['icon_id']), '');
+				} else{
+					define(strtoupper('WEBSITE_ICON_NUMBER_' . $v['icon_id']), $v['icon_image']);
+				}
+			}
+		}
+		catch(Exception $e){
+			throw new Exception('Erro ao conectar com a base de dados: '. $e);
+		}
+	}
+	$stmt->close();
+	$conn->close($conn->link);
+})();
+
 /* Get Language */
 (function(){
 	global $conn;

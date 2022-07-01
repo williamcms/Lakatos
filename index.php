@@ -67,8 +67,9 @@
 
 								foreach($result as $i => $v){
 									echo '<div data-apId="'. $v['ap_id'] .'">
-									<a href="#'. $v['ap_name'] .'">'. $v['ap_icon'] .'
-									<p>'. $v['ap_name'] .'</p>
+									<a href="#'. $v['ap_name'] .'">
+										<img src="'. constant('WEBSITE_ICON_NUMBER_' . $v['ap_icon']) .'" alt="'. $v['ap_name'] .'" width="" height=" />"
+									<span>'. $v['ap_name'] .'</span>
 									</a></div>';
 								}
 							}catch(Exception $e){
