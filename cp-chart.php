@@ -98,6 +98,16 @@ $account->sessionLogin();
 								<fieldset>
 									<legend>Títulos</legend>
 
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-append">
+												<label class="input-group-text">Tipo de dado apresentado</label>
+											</div>
+											<input type="text" name="label" value="'. $row[0]['label'] .'" placeholder="# votos, # projetos" />
+										</div>
+										<span class="text-muted">Esse tipo de informação é exibido em alguns tipos de gráficos</span>
+									</div>
+
 									<div class="row">
 										<div class="form-group input-group col">
 											<div class="input-group-append">
@@ -263,6 +273,7 @@ $account->sessionLogin();
 
 		if(isset($_POST['SAVECHANGES'])){
 			$selected = $_POST['chart_type']; //string
+			$label = $_POST['label']; // //string
 			$options_title_text = $_POST['options_title_text']; // //string
 			$options_title_padding_top = $_POST['options_title_padding_top']; //string
 			$options_title_padding_bottom = $_POST['options_title_padding_bottom']; //string
@@ -288,13 +299,13 @@ $account->sessionLogin();
 			$dataset_borders_color = implode(',', $dataset_borders_color_array); //array
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE chart SET type = ?, labels = ?, dataset_label = ?, dataset_data = ?, dataset_colors = ?, dataset_borders_color = ?, dataset_borders_width = ?, dataset_borders_radius = ?, options_title_display = ?, options_title_text = ?, options_title_padding_top = ?, options_title_padding_bottom = ?, options_subtitle_display = ?, options_subtitle_text = ?, options_subtitle_padding_top = ?, options_subtitle_padding_bottom = ?, selected = ?, alt = ? WHERE id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE chart SET type = ?, label = ?, labels = ?, dataset_label = ?, dataset_data = ?, dataset_colors = ?, dataset_borders_color = ?, dataset_borders_width = ?, dataset_borders_radius = ?, options_title_display = ?, options_title_text = ?, options_title_padding_top = ?, options_title_padding_bottom = ?, options_subtitle_display = ?, options_subtitle_text = ?, options_subtitle_padding_top = ?, options_subtitle_padding_bottom = ?, selected = ?, alt = ? WHERE id = ?")){
 
 				// It always updates the same row
 				$id = 0;
 
 				try{
-					$stmt->bind_param('sssssssissiissiiisi', $type, $labels, $dataset_label, $dataset_data, $dataset_colors, $dataset_borders_color, $dataset_borders_width, $dataset_borders_radius, $options_title_display, $options_title_text, $options_title_padding_top, $options_title_padding_bottom, $options_subtitle_display, $options_subtitle_text, $options_subtitle_padding_top, $options_subtitle_padding_bottom, $selected, $alt, $id);
+					$stmt->bind_param('ssssssssissiissiiisi', $type, $label, $labels, $dataset_label, $dataset_data, $dataset_colors, $dataset_borders_color, $dataset_borders_width, $dataset_borders_radius, $options_title_display, $options_title_text, $options_title_padding_top, $options_title_padding_bottom, $options_subtitle_display, $options_subtitle_text, $options_subtitle_padding_top, $options_subtitle_padding_bottom, $selected, $alt, $id);
 					$stmt->execute();
 				}
 				catch(Exception $e){

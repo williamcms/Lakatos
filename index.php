@@ -188,7 +188,7 @@
 													}
 													echo "],
 													datasets: [{
-														label: '# of Votes',
+														label: '". $row[0]['label'] ."',
 														data: [";
 														foreach($gData['data'] as $key => $value){
 															echo $value .",";
