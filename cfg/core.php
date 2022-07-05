@@ -160,10 +160,13 @@ function get_result($statement){
 			$stmt->execute();
 			$result = get_result($stmt);
 
+			// Definição quando nenhum ícone é selecionado
+			define(strtoupper('WEBSITE_ICON_NUMBER_0'), '');
+
 			foreach($result as $i => $v){
 				if(!isNotEmptyNull($v['icon_image']) OR $v['icon_active'] == 0){
 					define(strtoupper('WEBSITE_ICON_NUMBER_' . $v['icon_id']), '');
-				} else{
+				}else{
 					define(strtoupper('WEBSITE_ICON_NUMBER_' . $v['icon_id']), $v['icon_image']);
 				}
 			}

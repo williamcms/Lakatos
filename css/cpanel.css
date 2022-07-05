@@ -1278,17 +1278,31 @@ main.icons .card-result-content{
 	background-color: var(--dark);
 	padding: .5rem 0;
 }
-.table-list > *{
+.table-list > *,
+.table-list > form > *{
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 }
-.table-list > *:first-child{
+.table-list > *:not(:last-child),
+.table-list > form > *:not(:last-child){
 	padding: .2rem 0 .7rem 0;
 	border-bottom: 0.0625rem solid var(--white);
 }
-.table-list > *:not(:first-child):not(:last-child){
+.table-list > *:not(:first-child):not(:last-child),
+.table-list > form > *:not(:first-child):not(:last-child){
 	margin-bottom: .5rem;
+}
+.table-list > form > .col.row > .col:nth-child(2){
+	max-width: 24.625rem;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+}
+.table-list > form > .col.row > .col img{
+	max-width: 8rem;
 }
 .table-list .buttonsContainer{
 	grid-column-gap: 2rem;
