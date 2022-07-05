@@ -132,7 +132,7 @@ $account->sessionLogin();
 
 										<div class="form-group col-auto">
 											<label class="switch">
-												<input type="checkbox" name="options_title_display" '.($row[0]['options_title_display'] == true ? 'checked' : '').'>
+												<input type="checkbox" name="options_title_display" '.($row[0]['options_title_display'] == true ? 'checked' : '').'/>
 												<span class="slider"></span>
 											</label>
 										</div>
@@ -162,7 +162,7 @@ $account->sessionLogin();
 
 										<div class="form-group col-auto">
 											<label class="switch">
-												<input type="checkbox" name="options_subtitle_display" '.($row[0]['options_subtitle_display'] == true ? 'checked' : '').'>
+												<input type="checkbox" name="options_subtitle_display" '.($row[0]['options_subtitle_display'] == true ? 'checked' : '').'/>
 												<span class="slider"></span>
 											</label>
 										</div>
@@ -239,11 +239,11 @@ $account->sessionLogin();
 								<div class="row">
 									<div class="form-group col">
 										Largura da Borda <span class="range_input_value">'. $row[0]['dataset_borders_width'] .'</span>/10
-										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_width'] .'" name="dataset_borders_width" class="range_input">
+										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_width'] .'" name="dataset_borders_width" class="range_input" />
 									</div>
 									<div class="form-group col">
 										Arredondamento da Borda <span class="range_input_value">'. $row[0]['dataset_borders_radius'] .'</span>/10
-										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_radius'] .'" name="dataset_borders_radius" class="range_input">
+										<input type="range" min="0" max="10" value="'. $row[0]['dataset_borders_radius'] .'" name="dataset_borders_radius" class="range_input" />
 									</div>
 								</div>
 							</section>

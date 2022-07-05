@@ -19,7 +19,7 @@ $account->sessionLogin();
 			<div class="col"><h4>Clientes</h4></div>
 			<div class="col">
 				<form method="POST" id="NEW_PARTNER">
-					<input type="text" name="ADD_PARTNER" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_PARTNER').submit();">
+					<input type="text" name="ADD_PARTNER" hidden/><a href="#" class="button2 card_button-add" onclick="$('#NEW_PARTNER').submit();">
 					<span>Novo Cliente</span></a>
 				</form></div>
 		</div>
@@ -82,7 +82,7 @@ $account->sessionLogin();
 					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['cliente_name'].'</div>
 					<form method="POST">
-					<input name="cliente_name" type="text" value="'.$row[$i]['cliente_name'].'" hidden>
+					<input name="cliente_name" type="text" value="'.$row[$i]['cliente_name'].'" hidden/>
 					<div class="buttonsContainer">
 						<button class="closebtn smallbtn" name="REMOVE_PARTNER" value="'.$row[$i]['cliente_id'].'" style="right: 35px;">
 							<i class="far fa-trash-alt"></i></button>
@@ -115,12 +115,12 @@ $account->sessionLogin();
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST" id="form">
 					<h2 class="text-center">Editar parceiro</h2>
-					<div class="form-group"><label>Id do parceiro <span class="text-muted">(não editável)</span></label> <input type="text" name="cliente_id" value="'.$row[0]['cliente_id'].'" readonly></div>
+					<div class="form-group"><label>Id do parceiro <span class="text-muted">(não editável)</span></label> <input type="text" name="cliente_id" value="'.$row[0]['cliente_id'].'" readonly/></div>
 					<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" value="'.$row[0]['cliente_name'].'" required></div>
-					<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" value="'.$row[0]['cliente_image'].'" required></div>
+					<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" value="'.$row[0]['cliente_image'].'" required/></div>
 					<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description" maxlength="500">'.$row[0]['cliente_description'].'</textarea></div>
-					<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" value="'.$row[0]['cliente_url'].'"></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site.</label> <span class="range_input_value">'.$row[0]['cliente_active'].'</span>/1<input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" class="range_input"></div>
+					<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" value="'.$row[0]['cliente_url'].'"/></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site.</label> <span class="range_input_value">'.$row[0]['cliente_active'].'</span>/1<input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" class="range_input"/></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
@@ -180,11 +180,11 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Novo parceiro</h2>
-				<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" required></div>
-				<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" required></div>
+				<div class="form-group"><label>Nome do Parceiro</label> <input type="text" name="cliente_name" required/></div>
+				<div class="form-group"><label>Imagem</label> (ex: imagem_do_parceiro.png)<input type="text" name="cliente_image" required/></div>
 				<div class="form-group"><label>Descrição Curta</label><textarea name="cliente_description" maxlength="500"></textarea></div>
-				<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url"></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="cliente_active" class="range_input"></div>
+				<div class="form-group"><label>Site do Parceiro</label> (ex: http://example.com.br)<input type="text" placeholder="http://" name="cliente_url" /></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="cliente_active" class="range_input" /></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_ADD"><span>Confirmar</span></button>

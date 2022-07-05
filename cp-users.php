@@ -17,7 +17,7 @@ $account->sessionLogin();
 	<div class="card-box">
 		<div class="row">
 			<div class="col"><h4>Usuários</h4></div>
-			<div class="col"><form method="POST" id="NEW_USER"><input type="text" name="ADD_USER" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_USER').submit();"><span>Novo Usuário</span></a></form></div>
+			<div class="col"><form method="POST" id="NEW_USER"><input type="text" name="ADD_USER" hidden/><a href="#" class="button2 card_button-add" onclick="$('#NEW_USER').submit();"><span>Novo Usuário</span></a></form></div>
 		</div>
 		<div class="row">
 			<?php 
@@ -96,7 +96,7 @@ $account->sessionLogin();
 					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['username'].'</div>
 					<form method="POST">
-					<input name="user_username" type="text" value="'.$row[$i]['username'].'" hidden>
+					<input name="user_username" type="text" value="'.$row[$i]['username'].'" hidden/>
 					<div class="buttonsContainer">';
 					if(!($row[$i]['id'] == 1) && !($row[$i]['id'] == 2)){
 						echo '<button class="closebtn smallbtn" name="REMOVE_USER" value="'.$row[$i]['id'].'">
@@ -134,13 +134,13 @@ $account->sessionLogin();
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST" id="form">
 					<h2 class="text-center">Alterar usuário</h2>
-					<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$row[0]['id'].'" readonly></div>
-					<div class="form-group"><label>Usuário</label> <input type="text" name="user_username" value="'.$row[0]['username'].'"></div>
-					<div class="form-group"><label>Nome</label> <input type="text" name="user_name" value="'.$row[0]['name'].'"></div>
-					<div class="form-group"><label>Email</label> <input type="text" name="user_email" value="'.$row[0]['email'].'"></div>
+					<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$row[0]['id'].'" readonly/></div>
+					<div class="form-group"><label>Usuário</label> <input type="text" name="user_username" value="'.$row[0]['username'].'" /></div>
+					<div class="form-group"><label>Nome</label> <input type="text" name="user_name" value="'.$row[0]['name'].'" /></div>
+					<div class="form-group"><label>Email</label> <input type="text" name="user_email" value="'.$row[0]['email'].'" /></div>
 					<div class="form-group"><label>Ativo? Isto afetara se o usuário pode entrar no painel de controle.</label>
 					<span class="range_input_value">'.$row[0]['active'].'</span>/1
-					<input type="range" min="0" max="1" value="'.$row[0]['active'].'" name="user_active" class="range_input"></div>
+					<input type="range" min="0" max="1" value="'.$row[0]['active'].'" name="user_active" class="range_input" /></div>
 					
 					<button class="button btn-success" name="CONFIRM_USER_EDIT"><span>Confirmar</span></button>
 					<button class="button2 btn-warning" name="CHANGE_PASW_USER"><span>Alterar Senha</span></button>
@@ -176,8 +176,8 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(2);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Alterar senha</h2>
-				<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$user_id.'" readonly></div>
-				<div class="form-group"><label>Senha atual</label> <input type="password" name="old_password" required></div>
+				<div class="form-group"><label>Id do usuário <span class="text-muted">(não editável)</span></label> <input type="text" name="user_id" value="'.$user_id.'" readonly/></div>
+				<div class="form-group"><label>Senha atual</label> <input type="password" name="old_password" required/></div>
 				<div class="form-group">
 					<div class="row">
 						<div class="col"><label>Nova Senha</label></div>
@@ -185,9 +185,9 @@ $account->sessionLogin();
 
 					</div>
 					<div class="row">
-						<div class="col"><input type="password" name="user_password" id="password" placeholder="A senha deve ter pelo menos 6 digitos" required></div>
+						<div class="col"><input type="password" name="user_password" id="password" placeholder="A senha deve ter pelo menos 6 digitos" required/></div>
 						<div class="col confirmPassword2"><label>Confirme a Senha</label> <span id="confirmPassword" style="color: var(--danger);"></span></div>
-						<div class="col"><input type="password" name="user_password2" id="password2" placeholder="A senha deve ter pelo menos 6 digitos" required></div>
+						<div class="col"><input type="password" name="user_password2" id="password2" placeholder="A senha deve ter pelo menos 6 digitos" required/></div>
 					</div>
 				</div>
 				
@@ -226,7 +226,7 @@ $account->sessionLogin();
 			<form method="POST">
 				<h2>Tem certeza que quer apagar este usuário?</h2>
 				<h3 class="destaque">'.$user_username.' (id: '.$user_id.')</h3><br>
-				<input name="user_username" type="text" value="'.$user_username.'" hidden>
+				<input name="user_username" type="text" value="'.$user_username.'" hidden/>
 				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_USER_REM" value="'.$user_id.'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
@@ -255,9 +255,9 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Criar nova conta de usuário</h2>
-				<div class="form-group"><label>Username</label> <input type="text" name="user_username" required></div>
-				<div class="form-group"><label>Nome Completo</label> <input type="text" name="user_name" required></div>
-				<div class="form-group"><label>Email</label> <input type="text" name="user_email" required></div>
+				<div class="form-group"><label>Username</label> <input type="text" name="user_username" required/></div>
+				<div class="form-group"><label>Nome Completo</label> <input type="text" name="user_name" required/></div>
+				<div class="form-group"><label>Email</label> <input type="text" name="user_email" required/></div>
 				<div class="form-group">
 					<div class="row">
 						<div class="col"><label>Senha</label></div>
@@ -265,13 +265,13 @@ $account->sessionLogin();
 
 					</div>
 					<div class="row">
-						<div class="col"><input type="password" name="user_password" id="password" placeholder="A senha deve ter pelo menos 6 digitos" required></div>
+						<div class="col"><input type="password" name="user_password" id="password" placeholder="A senha deve ter pelo menos 6 digitos" required/></div>
 						<div class="col confirmPassword2"><label>Confirme a Senha</label> <span id="confirmPassword" style="color: var(--danger);"></span></div>
-						<div class="col"><input type="password" name="user_password2" id="password2" placeholder="A senha deve ter pelo menos 6 digitos" required></div>
+						<div class="col"><input type="password" name="user_password2" id="password2" placeholder="A senha deve ter pelo menos 6 digitos" required/></div>
 					</div>
 				</div>
 				<div class="form-group"><label>Usuário ativo? <span class="text-muted">(Isso determina a permissão para fazer login no painel)</span></label>
-				<span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="user_active" class="range_input"></div>
+				<span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="user_active" class="range_input" /></div>
 
 				
 				<button class="button btn-success" name="CONFIRM_USER_ADD"><span>Confirmar</span></button>

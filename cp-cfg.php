@@ -130,12 +130,12 @@ $account->sessionLogin();
 				}
 
 				echo '<div class="form-group"><label>Descrição <span class="text-muted">(não editável)</span></label>
-						<input type="text" name="config_description" value="'.$row[0]['config_description'].'" readonly></div>
+						<input type="text" name="config_description" value="'.$row[0]['config_description'].'" readonly/></div>
 						<div class="form-group"><label>Valor</label>
 						<textarea type="text" name="config_value" id="config_value" placeholder="'.$row[0]['config_customplaceholder'].'">'.$row[0]['config_value'].'</textarea></div>
 						<div class="form-group"><label>Ativo? Isto podera afetar a estabilidade do website</label>
 						<span id="range_input_value">'.$row[0]['config_active'].'</span>/1
-						<input type="range" min="0" max="1" value="'.$row[0]['config_active'].'" name="config_active" class="range_input"></div>
+						<input type="range" min="0" max="1" value="'.$row[0]['config_active'].'" name="config_active" class="range_input"/></div>
 					
 						<button class="button btn-success" value="'.$row[0]['config_id'].'" name="CONFIRM_CONFIG_EDIT"><span>Confirmar</span></button>
 				</form></div><p class="text-muted text-center">Caso o valor deste formulário esteja em branco, essa configuração será desativada automáticamente!</p></div></div>';

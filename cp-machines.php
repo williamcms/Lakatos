@@ -19,7 +19,7 @@ $account->sessionLogin();
 			<div class="col"><h4>Máquinas</h4></div>
 			<div class="col">
 				<form method="POST" id="MANAGE_FEATURES">
-					<input type="text" name="OPEN_FEATURES_DIALOG" hidden>
+					<input type="text" name="OPEN_FEATURES_DIALOG" hidden />
 					<a href="#" class="button2 card_button-add" onclick="$('#MANAGE_FEATURES').submit();" />
 						<span>Gerênciar Features</span>
 					</a>
@@ -27,7 +27,7 @@ $account->sessionLogin();
 			</div>
 			<div class="col-auto">
 				<form method="POST" id="NEW_MACHINE">
-					<input type="text" name="ADD_MACHINE" hidden>
+					<input type="text" name="ADD_MACHINE" hidden />
 					<a href="#" class="button2 card_button-add" onclick="$('#NEW_MACHINE').submit();" />
 						<span>Nova Máquina</span>
 					</a>
@@ -150,13 +150,13 @@ $account->sessionLogin();
 						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly />
 					</div>
 					<div class="form-group"><label>Nome da máquina</label>
-						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required />
+						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required/>
 					</div>
 					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
 						<input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly />
 					</div>
 					<div class="form-group"><label>Imagem</label>
-						<input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required />
+						<input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required/>
 					</div>
 					<div class="form-group"><label>Imagem de Sobreposição</label>
 						<input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'" />
@@ -200,7 +200,7 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade desta máquina no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input" /></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input" /></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_EDIT"><span>Confirmar</span></button>
@@ -295,16 +295,16 @@ $account->sessionLogin();
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova máquina</h2>
 				<div class="form-group"><label>Nome da máquina</label>
-					<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required>
+					<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required/>
 				</div>
 				<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
-					<input type="text" name="mac_pagename" readonly>
+					<input type="text" name="mac_pagename" readonly />
 				</div>
 				<div class="form-group"><label>Imagem</label>
-					<input type="text" name="mac_image" required>
+					<input type="text" name="mac_image" required/>
 				</div>
 				<div class="form-group"><label>Imagem de Sobreposição</label>
-					<input type="text" name="mac_image_hover">
+					<input type="text" name="mac_image_hover" />
 				</div>
 
 				<div class="form-group"><label>Descrição Curta</label>
@@ -315,25 +315,25 @@ $account->sessionLogin();
 				</div>
 
 				<div class="form-group"><label>Feature 1</label>
-					<input type="text" name="mac_feature1">
+					<input type="text" name="mac_feature1" />
 				</div>
 				<div class="form-group"><label>Feature 2</label>
-					<input type="text" name="mac_feature2">
+					<input type="text" name="mac_feature2" />
 				</div>
 				<div class="form-group"><label>Feature 3</label>
-					<input type="text" name="mac_feature3">
+					<input type="text" name="mac_feature3" />
 				</div>
 				<div class="form-group"><label>Feature Extendida 1</label>
-					<input type="text" name="mac_feature_extended1">
+					<input type="text" name="mac_feature_extended1" />
 				</div>
 				<div class="form-group"><label>Feature Extendida 2</label>
-					<input type="text" name="mac_feature_extended2">
+					<input type="text" name="mac_feature_extended2" />
 				</div>
 				<div class="form-group"><label>Feature Extendida 3</label>
-					<input type="text" name="mac_feature_extended3">
+					<input type="text" name="mac_feature_extended3" />
 				</div>
 				<div class="form-group"><label>Linha de máquinas</label>
-					<input type="text" name="mac_series">
+					<input type="text" name="mac_series" />
 				</div>
 
 				<div class="form-group"><label>Aplicações</label><div class="link-listage">';
@@ -346,7 +346,7 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste parceiro no site</label> <span class="range_input_value">1</span>/1
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1
 					<input type="range" min="0" max="1" value="1" name="mac_active" class="range_input" />
 				</div>
 

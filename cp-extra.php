@@ -21,20 +21,20 @@ $account->sessionLogin();
 		echo '<div class="row">
 			<div class="col"><h4>Modo Noturno</h4></div>
 			<div class="col"><form method="POST">
-				<input type="text" name="EXTRA_CHANGE" hidden>
-				<input type="text" name="extra-name" value="extra-config_nightMode" hidden>
+				<input type="text" name="EXTRA_CHANGE" hidden/>
+				<input type="text" name="extra-name" value="extra-config_nightMode" hidden/>
 				<label class="switch"><input type="checkbox" name="extra-value" onchange="submit();" 
-					'.(isset($_SESSION['extra-config_nightMode']) ? 'checked' : '').'>
+					'.(isset($_SESSION['extra-config_nightMode']) ? 'checked' : '').'/>
 				<span class="slider"></span></label>
 			</form></div></div>';
 
 		echo '<div class="row">
 			<div class="col"><h4>Retrair Menu</h4></div>
 			<div class="col"><form method="POST">
-				<input type="text" name="EXTRA_CHANGE" hidden>
-				<input type="text" name="extra-name" value="extra-config_collapse" hidden>
+				<input type="text" name="EXTRA_CHANGE" hidden/>
+				<input type="text" name="extra-name" value="extra-config_collapse" hidden/>
 				<label class="switch"><input type="checkbox" name="extra-value" onchange="submit();" 
-					'.(isset($_SESSION['extra-config_collapse']) ? 'checked' : '').'>
+					'.(isset($_SESSION['extra-config_collapse']) ? 'checked' : '').'/>
 				<span class="slider"></span></label>
 			</form></div></div>';
 

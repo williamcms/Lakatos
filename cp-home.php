@@ -19,7 +19,7 @@ $account->sessionLogin();
 			<div class="col"><h4>Quadro de Avisos</h4></div>
 			<div class="col">
 				<form method="POST" id="NEW_NOTE">
-					<input type="text" name="ADD_NOTE" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_NOTE').submit();">
+					<input type="text" name="ADD_NOTE" hidden/><a href="#" class="button2 card_button-add" onclick="$('#NEW_NOTE').submit();">
 					<span>Novo Aviso</span></a>
 				</form></div>
 		</div>
@@ -89,7 +89,7 @@ $account->sessionLogin();
 					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['note_title'].'</div>
 						<form method="POST">
-							<input name="note_name" type="text" value="'.$row[$i]['note_title'].'" hidden>
+							<input name="note_name" type="text" value="'.$row[$i]['note_title'].'" hidden/>
 							<div class="buttonsContainer">
 								<button class="closebtn smallbtn" name="REMOVE_NOTE" value="'.$row[$i]['note_id'].'">
 								<i class="far fa-trash-alt"></i></button>
@@ -133,10 +133,10 @@ $account->sessionLogin();
 					<button class="closebtn" onclick="formOff(2);" aria-label="Fechar Janela">&times;</button>
 					<form method="POST" id="form">
 						<h2 class="text-center">Preencha as informações abaixo para inserir uma nova nota</h2>
-						<div class="form-group"><label>Título</label> <input type="text" name="note_title"></div>
+						<div class="form-group"><label>Título</label> <input type="text" name="note_title" /></div>
 						<div class="form-group"><label>Descrição</label> <textarea name="note_content" maxlength="520"></textarea></div>
 						<div class="form-group"><label>Prioridade</label> <span class="range_input_value">0</span>/9
-							<input type="range" min="0" max="9" value="0" name="note_priority" class="range_input"></div>
+							<input type="range" min="0" max="9" value="0" name="note_priority" class="range_input" /></div>
 
 						
 						<button class="button btn-success" name="CONFIRM_NOTE_ADD"><span>Confirmar</span></button>

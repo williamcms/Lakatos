@@ -22,13 +22,13 @@ $account->sessionLogin();
 		<form action="#" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col">
-					<input type="file" name="FileToUpload" id="FileToUpload">
+					<input type="file" name="FileToUpload" id="FileToUpload" />
 				</div>
 				<div class="col-auto center_m">
 					<button type="submit" class="button2" name="submit"><span>Enviar Arquivo</span></button>
 				</div>
 			</div>
-			<div class="opt_optimize"><input type="checkbox" name="opt_optimize" value="1" id="opt_optimize">&nbsp;<label for="opt_optimize">Otimizar imagem</label>
+			<div class="opt_optimize"><input type="checkbox" name="opt_optimize" value="1" id="opt_optimize" />&nbsp;<label for="opt_optimize">Otimizar imagem</label>
 				<i class="fa info">
 					<span><p>Habilitar esta função pode aumentar alguns segundos o tempo que demora para enviar a imagem!</p>
 					<p class="text-muted">Obs.: Esta função é limitada ao envio de 500 imagens por mês de forma gratuita e funciona apenas com imagens nos formatos gif, jpg, jpeg, png e webp.</p></span>
@@ -195,7 +195,7 @@ $account->sessionLogin();
 				echo '<div class="col-100"><strong>Enviado por:</strong> '.$file_sentby.'</div>';
 				echo '<div class="col-100"><strong>Data em:</strong> '.date('d/m/Y H:i:s', strtotime($file_sentwhen)).'</div>';
 				echo '<div class="col-100"><button name="SubmitRemover" value="'.$file_id.'" class="button2 confirmRMV w-100" title="Remover">Remover</button>
-				<input type="text" name="arquivo" value="'.$file_name.'" readonly hidden></div>';
+				<input type="text" name="arquivo" value="'.$file_name.'" readonly hidden/></div>';
 				echo '</div></form>';
 			}
 		}else{
@@ -208,7 +208,7 @@ $account->sessionLogin();
 				echo '<div class="col-auto">'.$file_sentby.'</div>';
 				echo '<div class="col text-center">'.date('d/m/Y H:i:s', strtotime($file_sentwhen)).'</div>';
 				echo '<div class="col-auto"><div class="buttonsContainer"><button name="SubmitRemover" value="'.$file_id.'" class="closebtn pr-3" title="Remover"><i class="fa-solid fa-xmark"></i></button></div>
-				<input type="text" name="arquivo" value="'.$file_name.'" readonly hidden></div></div></form>';
+				<input type="text" name="arquivo" value="'.$file_name.'" readonly hidden/></div></div></form>';
 			}
 		}
 		$stmt->close();

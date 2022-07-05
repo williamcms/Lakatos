@@ -19,7 +19,7 @@ $account->sessionLogin();
 			<div class="col"><h4>Aplicações</h4></div>
 			<div class="col">
 				<form method="POST" id="NEW_APPLICATION">
-					<input type="text" name="ADD_APPLICATION" hidden><a href="#" class="button2 card_button-add" onclick="$('#NEW_APPLICATION').submit();">
+					<input type="text" name="ADD_APPLICATION" hidden/><a href="#" class="button2 card_button-add" onclick="$('#NEW_APPLICATION').submit();">
 					<span>Nova Aplicação</span></a>
 				</form></div>
 		</div>
@@ -82,7 +82,7 @@ $account->sessionLogin();
 					<div class="card-result-top">
 					<div class="card-result-title">'.$row[$i]['ap_name'].'</div>
 					<form method="POST">
-					<input name="ap_name" type="text" value="'.$row[$i]['ap_name'].'" hidden>
+					<input name="ap_name" type="text" value="'.$row[$i]['ap_name'].'" hidden/>
 					<div class="buttonsContainer">
 						<button class="closebtn smallbtn" name="REMOVE_APPLICATION" value="'.$row[$i]['ap_id'].'" style="right: 35px;">
 							<i class="far fa-trash-alt"></i></button>
@@ -143,8 +143,8 @@ $account->sessionLogin();
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST" id="form">
 					<h2 class="text-center">Editar aplicação</h2>
-					<div class="form-group"><label>Id da Aplicação <span class="text-muted">(não editável)</span></label> <input type="text" name="ap_id" value="'.$row[0]['ap_id'].'" readonly></div>
-					<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" value="'.$row[0]['ap_name'].'" required></div>
+					<div class="form-group"><label>Id da Aplicação <span class="text-muted">(não editável)</span></label> <input type="text" name="ap_id" value="'.$row[0]['ap_id'].'" readonly/></div>
+					<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" value="'.$row[0]['ap_name'].'" required/></div>
 					<div class="form-group"><label>Ícone</label>
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -155,7 +155,7 @@ $account->sessionLogin();
 						echo '<option value="'.$icons[$i]['icon_id'].'" data-image="'.$icons[$i]['icon_image'].'" '.($row[0]['ap_icon'] == $icons[$i]['icon_id'] ? 'selected': '').'>'.$icons[$i]['icon_name'].'</option>';
 					}
 					echo '</select></div></div>
-					<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" value="'.$row[0]['ap_image'].'" required></div>
+					<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" value="'.$row[0]['ap_image'].'" required/></div>
 					<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote">'.$row[0]['ap_desc'].'</textarea></div>
 					<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
@@ -167,7 +167,7 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site. <span id="range_input_value">'.$row[0]['ap_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['ap_active'].'" name="ap_active" id="range_input"></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site. <span id="range_input_value">'.$row[0]['ap_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['ap_active'].'" name="ap_active" id="range_input"/></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_APPLICATION_EDIT"><span>Confirmar</span></button>
@@ -266,7 +266,7 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova Aplicação</h2>
-				<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" required></div>
+				<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" required/></div>
 				<div class="form-group"><label>Ícone</label>
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -277,7 +277,7 @@ $account->sessionLogin();
 						echo '<option value="'.$icons[$i]['icon_id'].'" data-image="'.$icons[$i]['icon_image'].'">'.$icons[$i]['icon_name'].'</option>';
 					}
 					echo '</select></div></div>
-				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required></div>
+				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required/></div>
 				<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote"></textarea></div>
 				<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
@@ -289,7 +289,7 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="ap_active" class="range_input"></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="ap_active" class="range_input" /></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_APPLICATION_ADD"><span>Confirmar</span></button>

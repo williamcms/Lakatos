@@ -118,7 +118,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Id do ícone <span class="text-muted">(não editável)</span></label> <input type="text" name="icon_id" value="'.$row[0]['icon_id'].'" readonly></div>
 					<div class="form-group"><label>Nome do ícone</label> <input type="text" name="icon_name" value="'.$row[0]['icon_name'].'" required></div>
 					<div class="form-group"><label>Ícone</label><input type="text" name="icon_image" value="'.$row[0]['icon_image'].'" required></div>
-					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site. <span id="range_input_value">'.$row[0]['icon_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['icon_active'].'" name="icon_active" id="range_input"></div>
+					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site. <span id="range_input_value">'.$row[0]['icon_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['icon_active'].'" name="icon_active" id="range_input"></div>
 
 					
 					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_ICON_EDIT"><span>Confirmar</span></button>
@@ -180,7 +180,7 @@ $account->sessionLogin();
 				<h2 class="text-center">Novo ícone</h2>
 				<div class="form-group"><label>Nome do ícone</label> <input type="text" name="icon_name" required></div>
 				<div class="form-group"><label>Ícone</label><input type="text" name="icon_image" required></div>
-				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste aplicação no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="icon_active" class="range_input"></div>
+				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="icon_active" class="range_input"></div>
 
 				
 				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_ICON_ADD"><span>Confirmar</span></button>
