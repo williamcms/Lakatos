@@ -226,15 +226,20 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_APPLICATION_REM'])){
 			$conn->link = $conn->connect();
 			$ap_id = stripslashes($_POST['CONFIRM_APPLICATION_REM']);
+
+			if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
+				try{
+					$stmt2->bind_param('i', $ap_id);
+					$stmt2->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
 			if($stmt = $conn->link->prepare("DELETE FROM applications WHERE ap_id = ?")){
 				try{
 					$stmt->bind_param('i', $ap_id);
 					$stmt->execute();
-
-					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
-						$stmt2->bind_param('i', $ap_id);
-						$stmt2->execute();
-					}
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);

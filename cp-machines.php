@@ -311,27 +311,31 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_REM'])){
 			$conn->link = $conn->connect();
 			$mac_id = stripslashes($_POST['CONFIRM_MACHINE_REM']);
-			if($stmt = $conn->link->prepare("DELETE FROM machines WHERE mac_id = ?")){
+			if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
 				try{
-					$stmt->bind_param('i', $mac_id);
-					$stmt->execute();
-
-					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
-						$stmt2->bind_param('i', $mac_id);
-						$stmt2->execute();
-					}
+					$stmt2->bind_param('i', $mac_id);
+					$stmt2->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
-				if($stmt2 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
-					try{
-						$stmt2->bind_param('i', $mac_id);
-						$stmt2->execute();
-					}
-					catch(Exception $e){
-						throw new Exception('Erro ao conectar com a base de dados: '. $e);
-					}
+			}
+			if($stmt3 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
+				try{
+					$stmt3->bind_param('i', $mac_id);
+					$stmt3->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
+			if($stmt = $conn->link->prepare("DELETE FROM machines WHERE mac_id = ?")){
+				try{
+					$stmt->bind_param('i', $mac_id);
+					$stmt->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
 				echo '<script>reload();</script>';
 			}
@@ -653,6 +657,15 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_REMOVE_FEATURE'])){
 			$feat_id = $_POST['CONFIRM_REMOVE_FEATURE'];
 
+			if($stmt2 = $conn->link->prepare("DELETE FROM machine_features WHERE feat_id = ?")){
+				try{
+					$stmt2->bind_param('i', $feat_id);
+					$stmt2->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
 			if($stmt = $conn->link->prepare("DELETE FROM features WHERE feat_id = ?")){
 				try{
 					$stmt->bind_param('i', $feat_id);
@@ -660,15 +673,6 @@ $account->sessionLogin();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
-				}
-				if($stmt2 = $conn->link->prepare("DELETE FROM machine_features WHERE feat_id = ?")){
-					try{
-						$stmt2->bind_param('i', $feat_id);
-						$stmt2->execute();
-					}
-					catch(Exception $e){
-						throw new Exception('Erro ao conectar com a base de dados: '. $e);
-					}
 				}
 				echo '<script>reload();</script>';
 			}
