@@ -203,7 +203,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input" /></div>
 
 					
-					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_EDIT"><span>Confirmar</span></button>
+					<button class="button btn-green" name="CONFIRM_MACHINE_EDIT"><span>Confirmar</span></button>
 				</form></div></div></div>';
 				echo '<script>formOn(1);</script>';
 			}
@@ -251,11 +251,11 @@ $account->sessionLogin();
 		}
 		if(isset($_POST['REMOVE_MACHINE'])){
 			echo '<div class="overlayform" id="form3"><div class="modalform"><div class="modaldados text-center">
-			<button aria-hidden="true" class="closebtn" onclick="formOff(3);" aria-label="Fechar Janela">&times;</button>
+			<button class="closebtn" onclick="formOff(3);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST">
 				<h2>Tem certeza que quer remover a máquina abaixo?</h2>
 				<h3 class="destaque">'.$_POST['mac_name'].' (id: '.$_POST['REMOVE_MACHINE'].')</h3><br>
-				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_MACHINE_REM" value="'.stripslashes($_POST['REMOVE_MACHINE']).'"><span>Confirmar</span></button>
+				<button class="button btn-red" name="CONFIRM_MACHINE_REM" value="'.stripslashes($_POST['REMOVE_MACHINE']).'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
 		}
@@ -351,7 +351,7 @@ $account->sessionLogin();
 				</div>
 
 				
-				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_MACHINE_ADD"><span>Confirmar</span></button>
+				<button class="button btn-green" name="CONFIRM_MACHINE_ADD"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(5);</script>';
 		}

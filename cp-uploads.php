@@ -25,7 +25,7 @@ $account->sessionLogin();
 					<input type="file" name="FileToUpload" id="FileToUpload" />
 				</div>
 				<div class="col-auto center_m">
-					<button type="submit" class="button2" name="submit"><span>Enviar Arquivo</span></button>
+					<button type="submit" class="button2 btn-green" name="submit"><span>Enviar Arquivo</span></button>
 				</div>
 			</div>
 			<div class="opt_optimize"><input type="checkbox" name="opt_optimize" value="1" id="opt_optimize" />&nbsp;<label for="opt_optimize">Otimizar imagem</label>

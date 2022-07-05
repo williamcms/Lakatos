@@ -139,7 +139,7 @@ $account->sessionLogin();
 							<input type="range" min="0" max="9" value="0" name="note_priority" class="range_input" /></div>
 
 						
-						<button class="button btn-success" name="CONFIRM_NOTE_ADD"><span>Confirmar</span></button>
+						<button class="button btn-green" name="CONFIRM_NOTE_ADD"><span>Confirmar</span></button>
 					</form></div></div></div>';
 			echo '<script>formOn(2);</script>';
 		}

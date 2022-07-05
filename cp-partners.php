@@ -123,7 +123,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site.</label> <span class="range_input_value">'.$row[0]['cliente_active'].'</span>/1<input type="range" min="0" max="1" value="'.$row[0]['cliente_active'].'" name="cliente_active" class="range_input"/></div>
 
 					
-					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
+					<button class="button btn-green" name="CONFIRM_PARTNER_EDIT"><span>Confirmar</span></button>
 				</form></div></div></div>';
 				echo '<script>formOn(1);</script>';
 			}
@@ -156,7 +156,7 @@ $account->sessionLogin();
 			<form method="POST">
 				<h2>Tem certeza que quer remover o parceiro abaixo?</h2>
 				<h3 class="destaque">'.$_POST['cliente_name'].' (id: '.$_POST['REMOVE_PARTNER'].')</h3><br>
-				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_CLIENTE_REM" value="'.stripslashes($_POST['REMOVE_PARTNER']).'"><span>Confirmar</span></button>
+				<button class="button btn-red" name="CONFIRM_CLIENTE_REM" value="'.stripslashes($_POST['REMOVE_PARTNER']).'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
 		}
@@ -187,7 +187,7 @@ $account->sessionLogin();
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="cliente_active" class="range_input" /></div>
 
 				
-				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_PARTNER_ADD"><span>Confirmar</span></button>
+				<button class="button btn-green" name="CONFIRM_PARTNER_ADD"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(5);</script>';
 		}

@@ -142,7 +142,7 @@ $account->sessionLogin();
 					<span class="range_input_value">'.$row[0]['active'].'</span>/1
 					<input type="range" min="0" max="1" value="'.$row[0]['active'].'" name="user_active" class="range_input" /></div>
 					
-					<button class="button btn-success" name="CONFIRM_USER_EDIT"><span>Confirmar</span></button>
+					<button class="button btn-green" name="CONFIRM_USER_EDIT"><span>Confirmar</span></button>
 					<button class="button2 btn-warning" name="CHANGE_PASW_USER"><span>Alterar Senha</span></button>
 				</form></div></div></div>';
 				echo '<script>formOn(1);</script>';
@@ -191,7 +191,7 @@ $account->sessionLogin();
 					</div>
 				</div>
 				
-				<button class="button btn-success" name="CONFIRM_CHANGE_PASW_USER"><span>Confirmar</span></button>
+				<button class="button btn-green" name="CONFIRM_CHANGE_PASW_USER"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(2);</script>';
 		}
@@ -227,7 +227,7 @@ $account->sessionLogin();
 				<h2>Tem certeza que quer apagar este usuário?</h2>
 				<h3 class="destaque">'.$user_username.' (id: '.$user_id.')</h3><br>
 				<input name="user_username" type="text" value="'.$user_username.'" hidden/>
-				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_USER_REM" value="'.$user_id.'"><span>Confirmar</span></button>
+				<button class="button btn-red" name="CONFIRM_USER_REM" value="'.$user_id.'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
 		}
@@ -274,7 +274,7 @@ $account->sessionLogin();
 				<span class="range_input_value">0</span>/1<input type="range" min="0" max="1" value="0" name="user_active" class="range_input" /></div>
 
 				
-				<button class="button btn-success" name="CONFIRM_USER_ADD"><span>Confirmar</span></button>
+				<button class="button btn-green" name="CONFIRM_USER_ADD"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(5);</script>';
 		}

@@ -261,7 +261,7 @@ $account->sessionLogin();
 								</fieldset>
 							</section>
 
-							<button name="SAVECHANGES" class="button2 btn-success"><span>Salvar</span></button>
+							<button name="SAVECHANGES" class="button2 btn-green"><span>Salvar</span></button>
 						</form>
 					</div>
 				</div>';

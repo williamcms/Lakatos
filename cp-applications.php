@@ -219,7 +219,7 @@ $account->sessionLogin();
 			<form method="POST">
 				<h2>Tem certeza que quer remover a Aplicação abaixo?</h2>
 				<h3 class="destaque">'.$_POST['ap_name'].' (id: '.$_POST['REMOVE_APPLICATION'].')</h3><br>
-				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_APPLICATION_REM" value="'.stripslashes($_POST['REMOVE_APPLICATION']).'"><span>Confirmar</span></button>
+				<button class="button btn-red" name="CONFIRM_APPLICATION_REM" value="'.stripslashes($_POST['REMOVE_APPLICATION']).'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
 		}

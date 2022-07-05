@@ -137,7 +137,7 @@ $account->sessionLogin();
 						<span id="range_input_value">'.$row[0]['config_active'].'</span>/1
 						<input type="range" min="0" max="1" value="'.$row[0]['config_active'].'" name="config_active" class="range_input"/></div>
 					
-						<button class="button btn-success" value="'.$row[0]['config_id'].'" name="CONFIRM_CONFIG_EDIT"><span>Confirmar</span></button>
+						<button class="button btn-green" value="'.$row[0]['config_id'].'" name="CONFIRM_CONFIG_EDIT"><span>Confirmar</span></button>
 				</form></div><p class="text-muted text-center">Caso o valor deste formulário esteja em branco, essa configuração será desativada automáticamente!</p></div></div>';
 				echo '<script>formOn(1);</script>';
 			}

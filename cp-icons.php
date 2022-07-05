@@ -121,7 +121,7 @@ $account->sessionLogin();
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site. <span id="range_input_value">'.$row[0]['icon_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['icon_active'].'" name="icon_active" id="range_input"></div>
 
 					
-					<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_ICON_EDIT"><span>Confirmar</span></button>
+					<button class="button btn-green" name="CONFIRM_ICON_EDIT"><span>Confirmar</span></button>
 				</form></div></div></div>';
 				echo '<script>formOn(1);</script>';
 			}
@@ -154,7 +154,7 @@ $account->sessionLogin();
 				<h3 class="destaque">'.$_POST['icon_name'].' (id: '.$_POST['REMOVE_ICON'].')</h3>
 				<p class="text-muted">Isso forá com que itens que utilizem esse ícone possam se comportar de maneira imprevisível.</p>
 				<p class="text-muted">Apague conexões/troque existentes, caso ainda não tenha feito!</p><br>
-				<button class="button" style="background-color: var(--danger); color: var(--white);" name="CONFIRM_ICON_REM" value="'.stripslashes($_POST['REMOVE_ICON']).'"><span>Confirmar</span></button>
+				<button class="button btn-red" name="CONFIRM_ICON_REM" value="'.stripslashes($_POST['REMOVE_ICON']).'"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(3);</script>';
 		}
@@ -183,7 +183,7 @@ $account->sessionLogin();
 				<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1<input type="range" min="0" max="1" value="1" name="icon_active" class="range_input"></div>
 
 				
-				<button class="button" style="background-color: var(--green); color: var(--white);" name="CONFIRM_ICON_ADD"><span>Confirmar</span></button>
+				<button class="button btn-green" name="CONFIRM_ICON_ADD"><span>Confirmar</span></button>
 			</form></div></div></div>';
 			echo '<script>formOn(5);</script>';
 		}
