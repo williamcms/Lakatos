@@ -42,15 +42,27 @@ $account->sessionLogin();
 				$ASC = '<i class="fas fa-sort-up"></i>';
 				$DESC = '<i class="fas fa-sort-down"></i>';
 
-				$opt0 = '&opt=0';
+				$opt0 = $opt1 = $opt2 = '&opt=0';
 				$opt = stripslashes(isset($_GET['opt']) ? $_GET['opt'] : null);
-				$optArrow1 = $optArrow0 = '';
+				$optArrow2 = $optArrow1 = $optArrow0 = '';
 
 				switch($option){
 					case 0:
 						$sqlOpt = 'mac_active';
 						$opt0 = '&opt='. (!$opt ? 1 : 0);
 						$optArrow0 = (!$opt ? $ASC : $DESC);
+						$sqlOptOrder = (!$opt ? 'ASC' : 'DESC');
+						break;
+					case 1:
+						$sqlOpt = 'mac_name';
+						$opt1 = '&opt='. (!$opt ? 1 : 0);
+						$optArrow1 = (!$opt ? $ASC : $DESC);
+						$sqlOptOrder = (!$opt ? 'ASC' : 'DESC');
+						break;
+					case 2:
+						$sqlOpt = 'mac_series';
+						$opt2 = '&opt='. (!$opt ? 1 : 0);
+						$optArrow2 = (!$opt ? $ASC : $DESC);
 						$sqlOptOrder = (!$opt ? 'ASC' : 'DESC');
 						break;
 					default:
@@ -62,10 +74,14 @@ $account->sessionLogin();
 				if(isset($_GET['order'])){
 					echo '<div class="col text-center"><div id="sortingOptions">Ordenar por | 
 					<span class="option"><a href="?order=0'.$opt0.'">Ativo '.$optArrow0.'</a></span> | 
+					<span class="option"><a href="?order=1'.$opt1.'">Nome '.$optArrow1.'</a></span> | 
+					<span class="option"><a href="?order=2'.$opt2.'">Série '.$optArrow2.'</a></span> | 
 					<span class="option"><a href="cp-machines">Reset</a></span></div></div>';
 				} else{
 					echo '<div class="col text-center"><div id="sortingOptions">Ordenar por | 
 					<span class="option"><a href="?order=0&opt=0">Ativo</a></span> | 
+					<span class="option"><a href="?order=1&opt=1">Nome</a></span> | 
+					<span class="option"><a href="?order=2&opt=2">Série</a></span> | 
 					<span class="option"><a href="cp-machines">Reset</a></span></div></div>';
 				}
 			?>
