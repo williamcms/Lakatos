@@ -1267,8 +1267,19 @@ main.chart fieldset{
 main.chart .range_input{
 	margin-top: .6rem;
 }
+main.icons .card-box-results > .card-result-body{
+	min-height: 15.625rem;
+	max-height: 15.625rem;
+}
 main.icons .card-result-content{
+	display: flex;
 	background-color: var(--brand-light);
+	height: 10.8125rem;
+	padding: .5rem 0;
+}
+main.icons .card-result-content img{
+	display: block;
+	margin: auto;
 }
 * + .table-list{
 	margin-top: 1.5rem;
