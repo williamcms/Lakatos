@@ -350,6 +350,7 @@
 			</form>
 		</div>
 	</main>
+	<div class="section-separator"></div>
 
 	<?php require_once('footer.php'); ?>
 </body>

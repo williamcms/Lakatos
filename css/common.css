@@ -1372,8 +1372,8 @@ main > div.contactus > form{
 	margin: 0 auto;
 }
 main > div.contactus > form > div.form-group.row{
-	grid-column-gap: 1rem;
-	column-gap: 1rem;
+	grid-gap: 1rem;
+	gap: 1rem;
 }
 main > div.contactus > form .input-group-text{
 	border-radius: .1rem;

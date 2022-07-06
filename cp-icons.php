@@ -90,7 +90,7 @@ $account->sessionLogin();
 							<i class="far fa-edit"></i></button>
 					</div>
 					</form></div>
-					<hr><div class="card-result-content"><img src="'.$row[$i]['icon_image'].'" class="w-100" /></div></div>';
+					<hr><div class="card-result-content"><img src="'.$row[$i]['icon_image'].'" class="image" /></div></div>';
 				}
 			}else{
 				echo '<div class="box-msg error">'.ERROR_QUERY_NORESULT.'</div>';
