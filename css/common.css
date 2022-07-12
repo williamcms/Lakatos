@@ -1253,17 +1253,20 @@ main div.home-top_video:not(.paused) .info button::after{
 	content: '\f28b';
 }
 /*Sections*/
+main > div.section .seemore{
+	padding-right: 1rem;
+	color: var(--brand-2nd);
+	text-transform: uppercase;
+}
+main > div.section .seemore a span::after{
+	content: '\27A4' !important;
+}
 main > div.section > .text-wrapper{
 	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-}
-main > div.section > .text-wrapper > .seemore{
-	padding-right: 1rem;
-	color: var(--brand);
-	text-transform: uppercase;
 }
 main > div.section > .text-wrapper .text{
 	padding: 0 .5rem 1rem 0;
@@ -1285,6 +1288,7 @@ main > div.section > .text-wrapper .text p a:hover{
 main div.home-mid-aboutus{
 	padding: 2rem 0;
 }
+main div.home-mid-aboutus h2,
 main div.home-mid-aboutus .row .col:first-child .text{
 	padding: 0rem 3rem;
 }
@@ -1378,7 +1382,7 @@ main > div.home-mid-blog .row > .col:last-of-type{
 /*Contact us*/
 main > div.contactus{
 	background-color: var(--brand-light);
-	padding: 3rem 0;
+	padding: 3rem 1rem;
 }
 main > div.contactus *{
 	color: var(--white) !important;
@@ -1725,6 +1729,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	main div.home-mid-aboutus .row .col{
 		flex-basis: auto;
 	}
+	main div.home-mid-aboutus h2,
 	main div.home-mid-aboutus .row .col:first-child .text{
 		padding: 0 1rem;
 	}

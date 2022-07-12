@@ -24,10 +24,10 @@
 		</div>
 		<div class="section-separator"></div>
 		<div class="home-mid-aboutus" id="aboutus" name="aboutus">
+			<h2>Sobre nós</h2>
 			<div class="row">
 				<div class="col">
 					<div class="text">
-						<h2>Sobre nós</h2>
 						<div class="text-separator"></div><div class="text-separator"></div>
 						<p>Referência no mercado de manufatura de máquinas termoformadoras há mais de 45 anos, a Eletro-Forming passou a se chamar Lakatos. A mudança, ocorrida no início de 2019, aconteceu como parte de uma estratégia de reposicionamento da marca no mercado. O antigo nome deu lugar ao sobrenome Lakatos. </p>
 						<div class="text-separator"></div>
@@ -80,13 +80,6 @@
 		</div>
 		<div class="section-separator"></div>
 		<div class="section home-mid-machines" id="maquinas">
-			<div class="text-wrapper">
-				<div class="text">
-					<h2>Últimas novidades</h2>
-				</div>
-				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais máquinas" title="Ver mais máquinas"><span>Ver mais</span></a></div>
-			</div>
-			<div class="section-separator-1"></div>
 			<div class="slick-carousel-arrows">
 				<?php
 					(function(){
