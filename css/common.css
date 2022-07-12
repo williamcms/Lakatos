@@ -1449,7 +1449,7 @@ main > div.contactnetwork > form > div.form-group.row{
 main > div.section > form > div.fornecedores{
 	max-width: 50%;
 }
-/*Machines page*/
+/*Machines page - Machine*/
 article.product > section.image > picture{
 	position: relative;
 }
@@ -1493,7 +1493,7 @@ article.product > section.image > picture > figcaption > .video > a:hover::after
 	margin-left: .8rem;
 	margin-right: .2rem;
 }
-article.product > section.info > .title{
+article.product > section > .title{
 	display: inline-block;
 	border-bottom: 0.0625rem solid var(--brand);
 	margin-right: 3rem;
@@ -1523,14 +1523,148 @@ article.product > section.info > .description > .col:nth-child(2) > div{
 article.product > section.info > .description > .col:nth-child(2) > div:not(:last-child){
 	margin-bottom: .5rem;
 }
+article.product > section.info > .description > .col:nth-child(2) > div > .image{
+	min-width: 5.125rem;
+}
 article.product > section.extra{
 	grid-gap: 1rem;
 	gap: 1rem;
 	background-color: #E7E9E7;
 }
+article.product > section.related > .slick-slider{
+	max-width: 90vw;
+	margin: 0 auto;
+	padding: 1.5rem 0 3.5rem 0;
+}
+article.product > section.related > .slick-slider button.slick-next.slick-arrow{
+	right: -3vw;
+}
+article.product > section.related > .slick-slider button.slick-prev.slick-arrow{
+	left: -3vw;
+}
+article.product > section.related > .slick-slider .item > figure{
+	position: relative;
+	padding: 0 .5rem;
+}
+article.product > section.related > .slick-slider .item > figure figcaption{
+	position: absolute;
+	bottom: 0;
+	min-width: 20%;
+	padding: .5rem;
+	color: var(--white);
+	background-color: var(--brand-2nd);
+}
 article.product > section.extra > div.d-flex{
 	flex: 1 1 0px;
 	flex-direction: column;
+}
+/*Machines page - Listing*/
+article.products > .banner > figure{
+	position: relative;
+	min-height: 35rem;
+}
+article.products > .banner > figure.bobinas{
+	background: url('../uploads/machines/banner-cat.png') center center no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+article.products > .banner > figure.chapas{
+	background: url('../uploads/machines/banner-cat2.png') center center no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+article.products > .banner > figure figcaption{
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	max-width: 31.25rem;
+	height: 100%;
+	align-items: center;
+	padding: 0 4rem;
+}
+article.products > .banner > figure figcaption h1{
+	color: var(--white);
+}
+article.products > .type-changer{
+	justify-content: space-between;
+	align-items: center;
+	color: var(--white);
+	font-weight: 600;
+}
+article.products > .type-changer > a{
+	flex-basis: 50%;
+	text-decoration: none;
+	padding: 1rem 2rem;
+	background-color: var(--brand-2nd);
+}
+article.products > .type-changer > a:hover{
+	filter: brightness(.9);
+}
+article.products > .type-changer > a:nth-child(1){
+	text-align: left;
+}
+article.products > .type-changer > a:nth-child(2){
+	text-align: right;
+}
+article.products > .type-changer a span{
+	font-size: 1.5rem;
+}
+article.products > .list{
+	width: 80vw;
+	margin: 0 auto;
+	padding: 2rem 0;
+}
+article.products > .list > div.d-flex{
+	flex-wrap: wrap;
+	justify-content: center;
+	grid-gap: 2rem;
+	gap: 2rem;
+}
+article.products > .list > div.d-flex > figure{
+	position: relative;
+	flex-basis: calc(50% - 1rem);
+	opacity: 0.9;
+	overflow: hidden;
+}
+article.products > .list > div.d-flex > figure:hover{
+	opacity: 1;
+}
+article.products > .list > div.d-flex > figure::before{
+	content: '';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: -75%;
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+	z-index: 2;
+}
+article.products > .list > div.d-flex > figure:hover::before{
+	-webkit-animation: shine 1s;
+	animation: shine 1s;
+}
+@-webkit-keyframes shine{
+	100%{
+		left: 125%;
+	}
+}
+@keyframes shine{
+	100%{
+		left: 125%;
+	}
+}
+article.products > .list > div.d-flex > figure a{
+	text-decoration: none;
+}
+article.products > .list > div.d-flex > figure a:hover *{
+	color: var(--brand-2nd);
+}
+article.products > .list > div.d-flex > figure figcaption *{
+	font-size: 1.1rem !important;
 }
 /*Painel - Login*/
 .loginPanel{
@@ -1810,6 +1944,12 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		padding: 1rem .5rem;
 		background-color: rgba(230 230 230 / 80%);
 	}
+	article.products > .banner > figure figcaption{
+		max-width: 31.25rem;
+		height: 100%;
+		align-items: center;
+		padding: 0 1rem;
+	}
 	article.product > section.image > picture > figcaption > .catalog > a > i{
 		font-size: 1.5rem;
 	}
@@ -1859,6 +1999,13 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	article.product > section.extra > div.d-flex{
 		flex: 1 1 0px;
 		flex-direction: column;
+	}
+	/*Machines page - Listing*/
+	article.products > .banner > figure{
+		min-height: 30rem;
+	}
+	article.products > .list{
+		padding: 2rem .5rem;
 	}
 	/*Footer*/
 	footer{

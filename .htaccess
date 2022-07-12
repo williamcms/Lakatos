@@ -30,3 +30,20 @@ RewriteRule ^m/(.+)$ ./machines.php?pagename=$1 [NE,QSA,L]
 RewriteRule ^pt/m/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
 RewriteRule ^en/m/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
 RewriteRule ^es/m/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
+
+RewriteRule ^pt/maquinas/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
+RewriteRule ^en/maquinas/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
+RewriteRule ^es/maquinas/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
+
+RewriteRule ^pt/maquina/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
+RewriteRule ^en/maquina/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
+RewriteRule ^es/maquina/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
+
+RewriteRule ^maquinas/bobinas ./machines.php?type=bobinas [NE,QSA,L]
+RewriteRule ^maquina/bobinas ./machines.php?type=bobinas [NE,QSA,L]
+
+RewriteRule ^maquinas/chapas ./machines.php?type=chapas [NE,QSA,L]
+RewriteRule ^maquina/chapas ./machines.php?type=chapas [NE,QSA,L]
+
+RewriteRule ^maquinas ./machines.php [NE,QSA,L]
+RewriteRule ^maquina ./machines.php [NE,QSA,L]
