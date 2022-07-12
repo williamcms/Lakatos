@@ -37,15 +37,6 @@ $(document).ready(function(){
 		slidesToShow: 1,
 		slidesToScroll: 1
 	});
-	// Menu Hover
-	$("header nav.menu ul li").hover(
-		function(){
-			$(this).addClass('hover');
-		},
-		function(){
-			$(this).removeClass('hover');
-		}
-	);
 	// IsMobile
 	var isMobile = (isMobile = () => {
 		let mobile = false; //initiate as false

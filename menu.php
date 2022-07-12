@@ -34,7 +34,13 @@
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#home" role="menuitem"><?php echo LANG_HOME_MENU_LINK1 ?></a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aboutus" role="menuitem">Sobre nós</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aplicacoes" role="menuitem">Aplicações</a></li>
-				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#maquinas" role="menuitem">Máquinas</a></li>
+				<li role="none" class="menuitem" aria-haspopup="true">
+					<a href="<?php echo url(); ?>/index#maquinas" role="menuitem">Máquinas</a>
+					<ul class="dropdown">
+						<li><a href="<?php echo url(); ?>/maquinas/bobinas" role="menuitem">Bobinas</a></li>
+						<li><a href="<?php echo url(); ?>/maquinas/chapas" role="menuitem">Chapas</a></li>
+					</ul>
+				</li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#blog" role="menuitem">Blog</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#contato" role="menuitem">Contato</a></li>
