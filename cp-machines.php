@@ -117,7 +117,7 @@ $account->sessionLogin();
 							<i class="far fa-edit"></i></button>
 					</div>
 					</form></div>
-					<hr><div class="card-result-content"><img src="'.$row[$i]['mac_image'].'" class="w-100" /></div></div>';
+					<hr><div class="card-result-content"><img src="'.$row[$i]['mac_banner'].'" class="w-100" /></div></div>';
 				}
 
 			} else{
@@ -185,24 +185,75 @@ $account->sessionLogin();
 					<div class="form-group"><label>Id da máquina <span class="text-muted">(não editável)</span></label>
 						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly />
 					</div>
+					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome abaixo)</span>
+						<div class="input-group">
+							<div class="input-group-append"><label class="input-group-text">'. url() .'/m/</label></div>
+							<input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly />
+						</div>
+					</div>
 					<div class="form-group"><label>Nome da máquina</label>
 						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required/>
 					</div>
-					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
-						<input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly />
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Subtítulo da máquina</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<input type="text" name="mac_title" value="'.$row[0]['mac_title'].'" maxlength="255" />
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<input type="text" name="mac_title_en" value="'.$row[0]['mac_title_en'].'" maxlength="255" />
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<input type="text" name="mac_title_es" value="'.$row[0]['mac_title_es'].'" maxlength="255" />
+						</div>
 					</div>
 					<div class="form-group"><label>Imagem</label>
 						<input type="text" name="mac_image" value="'.$row[0]['mac_image'].'" required/>
 					</div>
-					<div class="form-group"><label>Imagem de Sobreposição</label>
-						<input type="text" name="mac_image_hover" value="'.$row[0]['mac_image_hover'].'" />
+					<div class="form-group"><label>Banner da Home</label>
+						<input type="text" name="mac_banner" value="'.$row[0]['mac_banner'].'" required/>
+					</div>
+					<div class="form-group"><label>Imagem de Sobreposição do Banner na Home</label>
+						<input type="text" name="mac_banner_hover" value="'.$row[0]['mac_banner_hover'].'" />
 					</div>
 
-					<div class="form-group"><label>Descrição Curta</label>
-						<textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea>
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Descrição Curta para Banner</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea>
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<textarea name="mac_short_desc_en" class="summernote" maxlength="390">'.$row[0]['mac_short_desc_en'].'</textarea>
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<textarea name="mac_short_desc_es" class="summernote" maxlength="390">'.$row[0]['mac_short_desc_es'].'</textarea>
+						</div>
 					</div>
-					<div class="form-group"><label>Descrição Completa</label>
-						<textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea>
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Descrição</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea>
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<textarea name="mac_desc_en" class="summernote" maxlength="9990">'.$row[0]['mac_desc_en'].'</textarea>
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<textarea name="mac_desc_es" class="summernote" maxlength="9990">'.$row[0]['mac_desc_es'].'</textarea>
+						</div>
 					</div>';
 
 					$maxFeatures = 6;
@@ -245,18 +296,36 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_pagename = ?, mac_image = ?, mac_image_hover = ?, mac_desc = ?, mac_short_desc = ?, mac_active = ? WHERE mac_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_title = ?, mac_title_en = ?, mac_title_es = ?, mac_pagename = ?, mac_image = ?, mac_banner = ?, mac_banner_hover = ?, mac_desc = ?, mac_desc_en = ?, mac_desc_es= ?, mac_short_desc = ?, mac_short_desc_en = ?, mac_short_desc_es = ?, mac_type = ?, mac_active = ?, mac_active = ? WHERE mac_id = ?")){
 
 				try{
-					$stmt->bind_param('ssssssii', $mac_name, $mac_pagename, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active, $mac_id);
+					$stmt->bind_param('ssssssssssssssssii', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_series, $mac_type, $mac_active, $mac_id);
+
 					$mac_name = $_POST['mac_name'];
+					$mac_title = $_POST['mac_title'];
+					$mac_title_en = $_POST['mac_title_en'];
+					$mac_title_es = $_POST['mac_title_es'];
 					$mac_pagename = $_POST['mac_pagename'];
 					$mac_image = $_POST['mac_image'];
-					$mac_image_hover = $_POST['mac_image_hover'];
+					$mac_banner = $_POST['mac_banner'];
+					$mac_banner_hover = $_POST['mac_banner_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
 					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
+					$mac_short_desc_en = $_POST['mac_short_desc_en'];
+					$mac_short_desc_en = str_replace("&quot;", "'", $mac_short_desc_en);
+					$mac_short_desc_es = $_POST['mac_short_desc_es'];
+					$mac_short_desc_es = str_replace("&quot;", "'", $mac_short_desc_es);
+
 					$mac_desc = $_POST['mac_desc'];
 					$mac_desc = str_replace("&quot;", "'", $mac_desc);
+					$mac_desc_en = $_POST['mac_desc_en'];
+					$mac_desc_en = str_replace("&quot;", "'", $mac_desc_en);
+					$mac_desc_es = $_POST['mac_desc_es'];
+					$mac_desc_es = str_replace("&quot;", "'", $mac_desc_es);
+
+					$mac_series = $_POST['mac_series'];
+					$mac_type = $_POST['mac_type'];
+
 					$mac_active = $_POST['mac_active'];
 					$mac_id = $_POST['mac_id'];
 
@@ -365,24 +434,72 @@ $account->sessionLogin();
 				<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST">
 					<h2 class="text-center">Nova máquina</h2>
+					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
+						<input type="text" name="mac_pagename" readonly />
+					</div>
 					<div class="form-group"><label>Nome da máquina</label>
 						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required/>
 					</div>
-					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
-						<input type="text" name="mac_pagename" readonly />
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Subtítulo da máquina</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<input type="text" name="mac_title" maxlength="255" />
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<input type="text" name="mac_title_en" maxlength="255" />
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<input type="text" name="mac_title_es" maxlength="255" />
+						</div>
 					</div>
 					<div class="form-group"><label>Imagem</label>
 						<input type="text" name="mac_image" required/>
 					</div>
-					<div class="form-group"><label>Imagem de Sobreposição</label>
-						<input type="text" name="mac_image_hover" />
+					<div class="form-group"><label>Banner da Home</label>
+						<input type="text" name="mac_banner" required/>
+					</div>
+					<div class="form-group"><label>Imagem de Sobreposição do Banner na Home</label>
+						<input type="text" name="mac_banner_hover" />
 					</div>
 
-					<div class="form-group"><label>Descrição Curta</label>
-						<textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea>
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Descrição Curta para Banner</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea>
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<textarea name="mac_short_desc_en" class="summernote" maxlength="390"></textarea>
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<textarea name="mac_short_desc_es" class="summernote" maxlength="390"></textarea>
+						</div>
 					</div>
-					<div class="form-group"><label>Descrição Completa</label>
-						<textarea name="mac_desc" class="summernote" maxlength="9990"></textarea>
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Descrição</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<textarea name="mac_desc" class="summernote" maxlength="9990"></textarea>
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<textarea name="mac_desc_en" class="summernote" maxlength="9990"></textarea>
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<textarea name="mac_desc_es" class="summernote" maxlength="9990"></textarea>
+						</div>
 					</div>';
 
 					$maxFeatures = 6;
@@ -428,18 +545,36 @@ $account->sessionLogin();
 
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_pagename, mac_image, mac_image_hover, mac_desc, mac_short_desc, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_title, mac_title_en, mac_title_es, mac_pagename, mac_image, mac_banner, mac_banner_hover, mac_desc, mac_desc_en, mac_desc_es, mac_short_desc, mac_short_desc_en, mac_short_desc_es, mac_series, mac_type, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){
 
 				try{
-					$stmt->bind_param('ssssssi', $mac_name, $mac_pagename, $mac_image, $mac_image_hover, $mac_desc, $mac_short_desc, $mac_active);
+					$stmt->bind_param('ssssssssssssssssi', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_series, $mac_type, $mac_active);
+					
 					$mac_name = $_POST['mac_name'];
+					$mac_title = $_POST['mac_title'];
+					$mac_title_en = $_POST['mac_title_en'];
+					$mac_title_es = $_POST['mac_title_es'];
 					$mac_pagename = $_POST['mac_pagename'];
 					$mac_image = $_POST['mac_image'];
-					$mac_image_hover = $_POST['mac_image_hover'];
+					$mac_banner = $_POST['mac_banner'];
+					$mac_banner_hover = $_POST['mac_banner_hover'];
 					$mac_short_desc = $_POST['mac_short_desc'];
 					$mac_short_desc = str_replace("&quot;", "'", $mac_short_desc);
+					$mac_short_desc_en = $_POST['mac_short_desc_en'];
+					$mac_short_desc_en = str_replace("&quot;", "'", $mac_short_desc_en);
+					$mac_short_desc_es = $_POST['mac_short_desc_es'];
+					$mac_short_desc_es = str_replace("&quot;", "'", $mac_short_desc_es);
+
 					$mac_desc = $_POST['mac_desc'];
 					$mac_desc = str_replace("&quot;", "'", $mac_desc);
+					$mac_desc_en = $_POST['mac_desc_en'];
+					$mac_desc_en = str_replace("&quot;", "'", $mac_desc_en);
+					$mac_desc_es = $_POST['mac_desc_es'];
+					$mac_desc_es = str_replace("&quot;", "'", $mac_desc_es);
+
+					$mac_series = $_POST['mac_series'];
+					$mac_type = $_POST['mac_type'];
+
 					$mac_active = $_POST['mac_active'];
 
 					$stmt->execute();

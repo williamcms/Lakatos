@@ -108,7 +108,6 @@ $(document).ready(function(){
 	});
 	//Summernote
 	$('.summernote').summernote({
-		height: 450,
 		tabsize: 2,
 		lang: 'pt-BR',
 		colors: [
@@ -195,5 +194,12 @@ $(document).ready(function(){
 		}else{
 			$(this).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-'))
 		}
-	})
+	});
+	$('.lang-selector > [data-lang]').on('click', function(){
+		$(this).closest('.form-group').find('[data-lang]').removeClass('selected');
+		$(this).addClass('selected');
+
+		$(this).closest('.form-group').find(`[data-thislang]`).addClass('d-none');
+		$(this).closest('.form-group').find(`[data-thislang="${$(this).data('lang')}"]`).removeClass('d-none');
+	});
 });

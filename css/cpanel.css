@@ -4,17 +4,16 @@
 	--brand:  #033B58;
 	--brand-light: #2187BD;
 	--brand-2nd: #D22C33;
-	--menu-bg-color: var(--light);
+	--menu-bg-color: #F8F9FA;
 	--menu-text-color: #000000;
-	--body-txt-color: var(--light);
+	--body-txt-color: #F8F9FA;
 	--body-bg-color: #313131;
-	--focus-color: #FFDE59;
-	--focus-color-lower: #FDD392;
+
 	--blue: #4680FF;
 	--indigo: #6610f2;
 	--purple: #6F42C1;
 	--pink: #E83E8C;
-	--red: #FF5252;
+	--red: #EF1818;
 	--orange: #FD7E14;
 	--yellow: #FFBA57;
 	--green: #3CB371;
@@ -23,9 +22,7 @@
 	--white: #FFFFFF;
 	--black: #000000;
 	--gray: #6C757D;
-	--gray-dark: #343A40;
-	--primary: #4680FF;
-	--secondary: #6C757D;
+	--gray-lighter: #E2E4E5;
 	--success: #9CCC65;
 	--info: #00ACC1;
 	--warning: #FFBA57;
@@ -1318,6 +1315,26 @@ main.icons .card-result-content img{
 .table-list .buttonsContainer{
 	grid-column-gap: 2rem;
 	column-gap: 2rem;
+}
+/* Language Selector - Input */
+.lang > div:not(.lang-selector) > *{
+	border-top-left-radius: 0;
+}
+.lang > .lang-selector{
+	display: flex;
+	grid-gap: 1rem;
+	gap: 1rem;
+	width: max-content;
+	padding: 0.2rem 1rem;
+	background-color: #E2E4E5;
+	border-radius: 0.6rem 0.6rem 0 0;
+}
+.lang > .lang-selector > div{
+	cursor: pointer;
+}
+.lang > .lang-selector > div.selected{
+	font-weight: 600;
+	color: var(--brand-2nd);
 }
 footer{
 	margin: 3.75rem 0rem 0rem var(--menu-size);
