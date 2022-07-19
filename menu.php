@@ -3,10 +3,18 @@
 		<div class="language-wrapper">
 			<div class="row">
 				<div class="col">
-					<ul class="info" aria-label="Informações de contato">
-						<li><a href="mailto:info@lakatos.com"><i class="far fa-envelope"></i> info@lakatos.com</a></li>
-						<li><a href="tel:551147043699"><i class="fas fa-phone"></i> +55 (11) 4704-3699</a></li>
-					</ul>
+					<?php
+						if($email->address || $location->phoneNumber){
+							echo '<ul class="info" aria-label="Informações de contato">
+								'. (isNotEmptyNull($email->address) ? 
+								'<li><a href="mailto:'. $email->address .'"><i class="far fa-envelope"></i> '. $email->address .'</a></li>
+								' : '') . (isNotEmptyNull($location->phoneNumber) ? '
+								<li><a href="tel:'. $location->phoneNumber .'"><i class="fas fa-phone"></i> '. $location->phoneNumber .'</a></li>
+								' : '') .'
+							</ul>';
+						}
+						
+					?>
 				</div>
 				<div class="col">
 					<div class="language text-right">
