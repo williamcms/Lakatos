@@ -54,6 +54,27 @@ var isMobile = (isMobile = () => {
 	}
 	return mobile;
 });
+var getLangs = (getLangs = () =>{
+	let progressbar = $('#allLangsProgress > .progress-bar');
+	// Inserir Código para pegar textos
+
+	$('#allLangsProgress').removeClass('d-none');
+
+	var progressInterval = setInterval(function(){
+		let increment = parseInt(progressbar.attr('aria-increment')),
+			value = parseInt(progressbar.attr('aria-valuenow')) + increment,
+			valueMax = parseInt(progressbar.attr('aria-valuemax'));
+
+		progressbar.attr('aria-valuenow', value);
+		progressbar.css('width', `${value}%`);
+		progressbar.text(`${value}%`);
+
+		if(value >= valueMax){
+			clearInterval(progressInterval);
+			// $('#formAllLangs').submit();
+		}
+	}, 200);
+});
 $(document).ready(function(){
 	var darkMode = (() =>{
 		if($('#darkmode').is(':checked')){

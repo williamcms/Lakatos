@@ -40,13 +40,13 @@
 	        </button>
 			<ul role="menu" tabindex="-1" class="navigation" id="navigation">
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#home" role="menuitem"><?php echo LANG_HOME_MENU_LINK1 ?></a></li>
-				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aboutus" role="menuitem">Sobre nós</a></li>
-				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aplicacoes" role="menuitem">Aplicações</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aboutus" role="menuitem"><?php echo LANG_HOME_MENU_LINK2 ?></a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#aplicacoes" role="menuitem"><?php echo LANG_HOME_MENU_LINK3 ?></a></li>
 				<li role="none" class="menuitem" aria-haspopup="true">
-					<a href="<?php echo url(); ?>/index#maquinas" role="menuitem">Máquinas</a>
+					<a href="<?php echo url(); ?>/index#maquinas" role="menuitem"><?php echo LANG_HOME_MENU_LINK4 ?></a>
 					<ul class="dropdown">
-						<li><a href="<?php echo url(); ?>/maquinas/bobinas" role="menuitem">Bobinas</a></li>
-						<li><a href="<?php echo url(); ?>/maquinas/chapas" role="menuitem">Chapas</a></li>
+						<li><a href="<?php echo url(); ?>/maquinas/bobinas" role="menuitem"><?php echo LANG_HOME_MENU_LINK4_SUB1 ?></a></li>
+						<li><a href="<?php echo url(); ?>/maquinas/chapas" role="menuitem"><?php echo LANG_HOME_MENU_LINK4_SUB2 ?></a></li>
 					</ul>
 				</li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
