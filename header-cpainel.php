@@ -3,10 +3,10 @@
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!-- Styles -->
-<link rel="stylesheet" href="<?php echo url(); ?>/css/cpanel.css?v=2.0">
+<link rel="stylesheet" href="<?php echo url(); ?>/css/cpanel.css">
 <!-- Scripts -->	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<?php echo url(); ?>/js/cpanel.js?v=1.8"></script>
+<script src="<?php echo url(); ?>/js/cpanel.js"></script>
 <!-- Fontawesome -->
 <script src="https://kit.fontawesome.com/631d8d6355.js" crossorigin="anonymous"></script>
 <!-- Icons -->
