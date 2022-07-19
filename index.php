@@ -92,6 +92,10 @@
 								$result = get_result($stmt);
 
 								foreach($result as $i => $v){
+									if($_SESSION['lang'] != 'pt_BR'){
+										$v['mac_short_desc'] = ($_SESSION['lang'] == 'en_US' ? $v['mac_short_desc_en'] : $v['mac_short_desc_es']);
+									}
+
 									echo '<div data-apId="'. $v['mac_id'] .'">
 									<a href="'. url() .'/m/'. $v['mac_pagename'] .'" target="_self" title="Máquina '. $v['mac_name'] .'"><img src="'. $v['mac_banner'] .'" mouseout="'. $v['mac_banner'] .'" mousein="'. $v['mac_banner_hover'] .'" aria-label="'. $v['mac_name'] .'" title="'. $v['mac_name'] .'" width="800" height="533" /></a>
 									<div class="desc w-75">'. $v['mac_short_desc'] .'</div></div>';

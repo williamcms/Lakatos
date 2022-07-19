@@ -1453,14 +1453,21 @@ main > div.section > form > div.fornecedores{
 /*Machines page - Machine*/
 article.product > section.image > picture{
 	position: relative;
+	display: block;
+	min-height: 40rem;
+	max-width:100vw;
+	background-attachment: fixed !important;
+	background-position: center !important;
+	background-size: cover !important;
 }
 article.product > section.image > picture > figcaption{
 	position: absolute;
-	bottom: 0.3rem;
+	bottom: 0rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	min-height: 4.75rem;
 	padding: 1rem 3rem;
 	background-color: rgba(230 230 230 / 50%);
 }
@@ -1476,6 +1483,10 @@ article.product > section.image > picture > figcaption > .catalog > a > i{
 }
 article.product > section.image > picture > figcaption > .catalog > a > span{
 	font-weight: 600;
+}
+article.product > section.image > picture > figcaption > .video:nth-child(1){
+	flex-basis: 100%;
+	text-align: right;
 }
 article.product > section.image > picture > figcaption > .video > a{
 	color: var(--light);
@@ -1939,9 +1950,14 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		max-width: 100%;
 	}
 	/*Machines page*/
+	article.product > section.image > picture{
+		min-height: 14rem;
+		width: 100vw;
+		background-attachment: initial !important;
+		background-position: initial !important;
+		background-size: contain !important;
+	}
 	article.product > section.image > picture > figcaption{
-		position: initial;
-		margin-top: -.3rem;
 		padding: 1rem .5rem;
 		background-color: rgba(230 230 230 / 80%);
 	}
@@ -1952,7 +1968,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		padding: 0 1rem;
 	}
 	article.product > section.image > picture > figcaption > .catalog > a > i{
-		font-size: 1.5rem;
+		font-size: 2rem;
 	}
 	article.product > section.image > picture > figcaption > .catalog > a > span{
 		font-size: .9rem;

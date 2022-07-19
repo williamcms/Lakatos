@@ -81,12 +81,21 @@
 				
 				echo '<article class="product">
 						<section class="image">
-							<picture>
-								<img src="'. $row[0]['mac_image'] .'" alt="" width="" height="" />
-								<figcaption>
-									<div class="catalog"><a href=""><i class="fa-solid fa-book"></i><span>Acesse o <br/>catálogo digital</span></a></div>
-									<div class="video"><a href="">Reproduzir vídeo</a></div>
-								</figcaption>
+							<picture style="background: url('. $row[0]['mac_image'] .') no-repeat;">
+								'. (isNotEmptyNull($row[0]['mac_catalog']) || isNotEmptyNull($row[0]['mac_video']) ? '
+									<figcaption>
+									'. (isNotEmptyNull($row[0]['mac_catalog']) ? '
+									<div class="catalog">
+										<a href="'. $row[0]['mac_catalog'] .'">
+											<i class="fa-solid fa-book"></i><span>Acesse o <br/>catálogo digital</span>
+										</a>
+									</div>
+									' : '') . (isNotEmptyNull($row[0]['mac_video']) ? '
+									<div class="video">
+										<a href="'. $row[0]['mac_video'] .'">Ver vídeo</a>
+									</div>
+									' : '') .'
+								</figcaption>' : '') .'
 							</picture>
 						</section>
 
