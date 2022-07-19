@@ -720,7 +720,25 @@ $account->sessionLogin();
 				<button class="closebtn" onclick="formOff(7);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST">
 					<h2 class="text-center">Editar Feature</h2>
-					<div class="form-group"><label>Nome da Feature</label> <input type="text" name="feat_name" value="'. $row[0]['feat_name'] .'" required/></div>
+
+					<div class="form-group lang">
+						<div class="lang-selector">
+							<label>Texto da Feature</label>
+							<div data-lang="PT_BR" class="selected">PT</div>
+							<div data-lang="EN_US">EN</div>
+							<div data-lang="ES_ES">ES</div>
+						</div>
+						<div data-thislang="PT_BR" class="">
+							<textarea type="text" name="feat_name" class="summernote" required/>'. $row[0]['feat_name'] .'</textarea>
+						</div>
+						<div data-thislang="EN_US" class="d-none">
+							<textarea type="text" name="feat_name_en" class="summernote" required/>'. $row[0]['feat_name_en'] .'</textarea>
+						</div>
+						<div data-thislang="ES_ES" class="d-none">
+							<textarea type="text" name="feat_name_es" class="summernote" required/>'. $row[0]['feat_name_es'] .'</textarea>
+						</div>
+					</div>
+
 					<div class="form-group"><label>Ícone</label>
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -742,13 +760,20 @@ $account->sessionLogin();
 
 		if(isset($_POST['CONFIRM_EDIT_FEATURE'])){
 			$feat_id = $_POST['CONFIRM_EDIT_FEATURE'];
+
 			$feat_name = $_POST['feat_name'];
+			$feat_name = str_replace("&quot;", "'", $feat_name);
+			$feat_name_en = $_POST['feat_name_en'];
+			$feat_name_en = str_replace("&quot;", "'", $feat_name_en);
+			$feat_name_es = $_POST['feat_name_es'];
+			$feat_name_es = str_replace("&quot;", "'", $feat_name_es);
+
 			$feat_image = $_POST['feat_image'];
 			$feat_active = $_POST['feat_active'];
 
-			if($stmt = $conn->link->prepare("UPDATE features SET feat_name = ?, feat_image = ?, feat_active = ? WHERE feat_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE features SET feat_name = ?, feat_name_en = ?, feat_name_es = ?, feat_image = ?, feat_active = ? WHERE feat_id = ?")){
 				try{
-					$stmt->bind_param('ssii', $feat_name, $feat_image, $feat_active, $feat_id);
+					$stmt->bind_param('ssssii', $feat_name, $feat_name_en, $feat_name_es, $feat_image, $feat_active, $feat_id);
 					$stmt->execute();
 				}
 				catch(Exception $e){
@@ -775,7 +800,25 @@ $account->sessionLogin();
 			<button class="closebtn" onclick="formOff(8);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST">
 				<h2 class="text-center">Editar Feature</h2>
-				<div class="form-group"><label>Nome da Feature</label> <input type="text" name="feat_name" required/></div>
+				
+				<div class="form-group lang">
+					<div class="lang-selector">
+						<label>Texto da Feature</label>
+						<div data-lang="PT_BR" class="selected">PT</div>
+						<div data-lang="EN_US">EN</div>
+						<div data-lang="ES_ES">ES</div>
+					</div>
+					<div data-thislang="PT_BR" class="">
+						<textarea type="text" name="feat_name" class="summernote" required/></textarea>
+					</div>
+					<div data-thislang="EN_US" class="d-none">
+						<textarea type="text" name="feat_name_en" class="summernote" required/></textarea>
+					</div>
+					<div data-thislang="ES_ES" class="d-none">
+						<textarea type="text" name="feat_name_es" class="summernote" required/></textarea>
+					</div>
+				</div>
+
 				<div class="form-group"><label>Ícone</label>
 					<div class="input-group icon-selector-group">
 						<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -797,13 +840,20 @@ $account->sessionLogin();
 
 		if(isset($_POST['CONFIRM_NEW_FEATURE'])){
 			$feat_id = $_POST['CONFIRM_NEW_FEATURE'];
+			
 			$feat_name = $_POST['feat_name'];
+			$feat_name = str_replace("&quot;", "'", $feat_name);
+			$feat_name_en = $_POST['feat_name_en'];
+			$feat_name_en = str_replace("&quot;", "'", $feat_name_en);
+			$feat_name_es = $_POST['feat_name_es'];
+			$feat_name_es = str_replace("&quot;", "'", $feat_name_es);
+
 			$feat_image = $_POST['feat_image'];
 			$feat_active = $_POST['feat_active'];
 
-			if($stmt = $conn->link->prepare("INSERT INTO features(feat_name, feat_image, feat_active) VALUES(?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO features(feat_name, feat_name_en, feat_name_es, feat_image, feat_active) VALUES(?, ?, ?, ?, ?)")){
 				try{
-					$stmt->bind_param('ssi', $feat_name, $feat_image, $feat_active);
+					$stmt->bind_param('ssssi', $feat_name, $feat_name_en, $feat_name_es, $feat_image, $feat_active);
 					$stmt->execute();
 				}
 				catch(Exception $e){
