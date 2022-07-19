@@ -272,7 +272,15 @@ $account->sessionLogin();
 					}
 
 										
-					echo '<div class="form-group"><label>Linha de máquinas</label>
+					echo '<div class="form-group"><label>Catálogo</label>
+						<input type="text" name="mac_catalog" value="'.$row[0]['mac_catalog'].'" />
+					</div>
+
+					<div class="form-group"><label>Vídeo da máquina</label>
+						<input type="text" name="mac_video" value="'.$row[0]['mac_video'].'" />
+					</div>
+
+					<div class="form-group"><label>Linha de máquinas</label>
 						<input type="text" name="mac_series" value="'.$row[0]['mac_series'].'" />
 					</div>
 					<div class="form-group"><label>Aplicações</label><div class="link-listage">';
@@ -285,6 +293,14 @@ $account->sessionLogin();
 					}
 					
 					echo '</div></div>
+
+					<div class="form-group"><label>Qual o tipo de máquina? Isso influencia o local onde aparece</label>
+						<select name="mac_type">
+							<option value="bobinas" '. ($row[0]['mac_type'] == 'bobinas' ? 'selected' : '') .'>Bobinas</option>
+							<option value="chapas" '. ($row[0]['mac_type'] == 'chapas' ? 'selected' : '') .'>Chapas</option>
+						</select>
+					</div>
+
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site. <span id="range_input_value">'.$row[0]['mac_active'].'</span>/1</label><input type="range" min="0" max="1" value="'.$row[0]['mac_active'].'" name="mac_active" id="range_input" /></div>
 
 					
@@ -296,10 +312,10 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_title = ?, mac_title_en = ?, mac_title_es = ?, mac_pagename = ?, mac_image = ?, mac_banner = ?, mac_banner_hover = ?, mac_desc = ?, mac_desc_en = ?, mac_desc_es= ?, mac_short_desc = ?, mac_short_desc_en = ?, mac_short_desc_es = ?, mac_type = ?, mac_active = ?, mac_active = ? WHERE mac_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE machines SET mac_name = ?, mac_title = ?, mac_title_en = ?, mac_title_es = ?, mac_pagename = ?, mac_image = ?, mac_banner = ?, mac_banner_hover = ?, mac_desc = ?, mac_desc_en = ?, mac_desc_es= ?, mac_short_desc = ?, mac_short_desc_en = ?, mac_short_desc_es = ?, mac_catalog = ?, mac_video = ?, mac_series = ?, mac_type = ?, mac_active = ? WHERE mac_id = ?")){
 
 				try{
-					$stmt->bind_param('ssssssssssssssssii', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_series, $mac_type, $mac_active, $mac_id);
+					$stmt->bind_param('ssssssssssssssssssii', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_catalog, $mac_video, $mac_series, $mac_type, $mac_active, $mac_id);
 
 					$mac_name = $_POST['mac_name'];
 					$mac_title = $_POST['mac_title'];
@@ -323,6 +339,8 @@ $account->sessionLogin();
 					$mac_desc_es = $_POST['mac_desc_es'];
 					$mac_desc_es = str_replace("&quot;", "'", $mac_desc_es);
 
+					$mac_catalog = $_POST['mac_catalog'];
+					$mac_video = $_POST['mac_video'];
 					$mac_series = $_POST['mac_series'];
 					$mac_type = $_POST['mac_type'];
 
@@ -517,7 +535,15 @@ $account->sessionLogin();
 						echo '</select></div></div>';
 					}
 
-					echo '<div class="form-group"><label>Linha de máquinas</label>
+					echo '<div class="form-group"><label>Catálogo</label>
+						<input type="text" name="mac_catalog" />
+					</div>
+
+					<div class="form-group"><label>Vídeo da máquina</label>
+						<input type="text" name="mac_video" />
+					</div>
+
+					<div class="form-group"><label>Linha de máquinas</label>
 						<input type="text" name="mac_series" />
 					</div>
 
@@ -531,6 +557,14 @@ $account->sessionLogin();
 						}
 						
 						echo '</div></div>
+
+					<div class="form-group"><label>Qual o tipo de máquina? Isso influencia o local onde aparece</label>
+						<select name="mac_type">
+							<option value="bobinas">Bobinas</option>
+							<option value="chapas">Chapas</option>
+						</select>
+					</div>
+
 					<div class="form-group"><label>Ativo? Isto afetara a visibilidade deste item no site</label> <span class="range_input_value">1</span>/1
 						<input type="range" min="0" max="1" value="1" name="mac_active" class="range_input" />
 					</div>
@@ -545,10 +579,10 @@ $account->sessionLogin();
 
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_title, mac_title_en, mac_title_es, mac_pagename, mac_image, mac_banner, mac_banner_hover, mac_desc, mac_desc_en, mac_desc_es, mac_short_desc, mac_short_desc_en, mac_short_desc_es, mac_series, mac_type, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO machines (mac_name, mac_title, mac_title_en, mac_title_es, mac_pagename, mac_image, mac_banner, mac_banner_hover, mac_desc, mac_desc_en, mac_desc_es, mac_short_desc, mac_short_desc_en, mac_short_desc_es, mac_catalog, mac_video, mac_series, mac_type, mac_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){
 
 				try{
-					$stmt->bind_param('ssssssssssssssssi', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_series, $mac_type, $mac_active);
+					$stmt->bind_param('ssssssssssssssssssi', $mac_name, $mac_title, $mac_title_en, $mac_title_es, $mac_pagename, $mac_image, $mac_banner, $mac_banner_hover, $mac_desc, $mac_desc_en, $mac_desc_es, $mac_short_desc, $mac_short_desc_en, $mac_short_desc_es, $mac_catalog, $mac_video, $mac_series, $mac_type, $mac_active);
 					
 					$mac_name = $_POST['mac_name'];
 					$mac_title = $_POST['mac_title'];
@@ -572,6 +606,8 @@ $account->sessionLogin();
 					$mac_desc_es = $_POST['mac_desc_es'];
 					$mac_desc_es = str_replace("&quot;", "'", $mac_desc_es);
 
+					$mac_catalog = $_POST['mac_catalog'];
+					$mac_video = $_POST['mac_video'];
 					$mac_series = $_POST['mac_series'];
 					$mac_type = $_POST['mac_type'];
 
