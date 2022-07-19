@@ -91,7 +91,7 @@ $account->sessionLogin();
 	<?php
 		$conn->link = $conn->connect();
 
-		echo '<p class="text-muted" style="position: absolute; margin-top:-20px;">Ordenando por: '. $sqlOpt .' '. $sqlOptOrder .'</p>';
+		echo '<p class="text-muted orderby">Ordenando por: '. $sqlOpt .' '. $sqlOptOrder .'</p>';
 
 		if($stmt = $conn->link->prepare("SELECT * FROM machines ORDER BY ".$sqlOpt." ". $sqlOptOrder)){
 			try{
