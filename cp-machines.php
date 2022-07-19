@@ -202,13 +202,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<input type="text" name="mac_title" value="'.$row[0]['mac_title'].'" maxlength="255" />
+							<input type="text" name="mac_title" value="'.$row[0]['mac_title'].'" maxlength="500" />
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<input type="text" name="mac_title_en" value="'.$row[0]['mac_title_en'].'" maxlength="255" />
+							<input type="text" name="mac_title_en" value="'.$row[0]['mac_title_en'].'" maxlength="500" />
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<input type="text" name="mac_title_es" value="'.$row[0]['mac_title_es'].'" maxlength="255" />
+							<input type="text" name="mac_title_es" value="'.$row[0]['mac_title_es'].'" maxlength="500" />
 						</div>
 					</div>
 					<div class="form-group"><label>Imagem</label>
@@ -229,13 +229,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<textarea name="mac_short_desc" class="summernote" maxlength="390">'.$row[0]['mac_short_desc'].'</textarea>
+							<textarea name="mac_short_desc" class="summernote">'.$row[0]['mac_short_desc'].'</textarea>
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<textarea name="mac_short_desc_en" class="summernote" maxlength="390">'.$row[0]['mac_short_desc_en'].'</textarea>
+							<textarea name="mac_short_desc_en" class="summernote">'.$row[0]['mac_short_desc_en'].'</textarea>
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<textarea name="mac_short_desc_es" class="summernote" maxlength="390">'.$row[0]['mac_short_desc_es'].'</textarea>
+							<textarea name="mac_short_desc_es" class="summernote">'.$row[0]['mac_short_desc_es'].'</textarea>
 						</div>
 					</div>
 					<div class="form-group lang">
@@ -246,13 +246,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<textarea name="mac_desc" class="summernote" maxlength="9990">'.$row[0]['mac_desc'].'</textarea>
+							<textarea name="mac_desc" class="summernote">'.$row[0]['mac_desc'].'</textarea>
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<textarea name="mac_desc_en" class="summernote" maxlength="9990">'.$row[0]['mac_desc_en'].'</textarea>
+							<textarea name="mac_desc_en" class="summernote">'.$row[0]['mac_desc_en'].'</textarea>
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<textarea name="mac_desc_es" class="summernote" maxlength="9990">'.$row[0]['mac_desc_es'].'</textarea>
+							<textarea name="mac_desc_es" class="summernote">'.$row[0]['mac_desc_es'].'</textarea>
 						</div>
 					</div>';
 
@@ -466,13 +466,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<input type="text" name="mac_title" maxlength="255" />
+							<input type="text" name="mac_title" maxlength="500" />
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<input type="text" name="mac_title_en" maxlength="255" />
+							<input type="text" name="mac_title_en" maxlength="500" />
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<input type="text" name="mac_title_es" maxlength="255" />
+							<input type="text" name="mac_title_es" maxlength="500" />
 						</div>
 					</div>
 					<div class="form-group"><label>Imagem</label>
@@ -493,13 +493,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<textarea name="mac_short_desc" class="summernote" maxlength="390"></textarea>
+							<textarea name="mac_short_desc" class="summernote"></textarea>
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<textarea name="mac_short_desc_en" class="summernote" maxlength="390"></textarea>
+							<textarea name="mac_short_desc_en" class="summernote"></textarea>
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<textarea name="mac_short_desc_es" class="summernote" maxlength="390"></textarea>
+							<textarea name="mac_short_desc_es" class="summernote"></textarea>
 						</div>
 					</div>
 					<div class="form-group lang">
@@ -510,13 +510,13 @@ $account->sessionLogin();
 							<div data-lang="ES_ES">ES</div>
 						</div>
 						<div data-thislang="PT_BR" class="">
-							<textarea name="mac_desc" class="summernote" maxlength="9990"></textarea>
+							<textarea name="mac_desc" class="summernote"></textarea>
 						</div>
 						<div data-thislang="EN_US" class="d-none">
-							<textarea name="mac_desc_en" class="summernote" maxlength="9990"></textarea>
+							<textarea name="mac_desc_en" class="summernote"></textarea>
 						</div>
 						<div data-thislang="ES_ES" class="d-none">
-							<textarea name="mac_desc_es" class="summernote" maxlength="9990"></textarea>
+							<textarea name="mac_desc_es" class="summernote"></textarea>
 						</div>
 					</div>';
 
