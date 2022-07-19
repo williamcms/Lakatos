@@ -10,6 +10,12 @@
 				$stmt->bind_param('s', $pagename);
 				$stmt->execute();
 				$row = get_result($stmt);
+
+				if($_SESSION['lang'] != 'pt_BR'){
+					$row[0]['mac_title'] = ($_SESSION['lang'] == 'en_US' ? $row[0]['mac_title_en'] : $row[0]['mac_title_es']);
+					$row[0]['mac_short_desc'] = ($_SESSION['lang'] == 'en_US' ? $row[0]['mac_short_desc_en'] : $row[0]['mac_short_desc_es']);
+					$row[0]['mac_desc'] = ($_SESSION['lang'] == 'en_US' ? $row[0]['mac_desc_en'] : $row[0]['mac_desc_es']);
+				}
 			}
 			catch(Exception $e){
 				throw new Exception('Erro ao conectar com a base de dados: '. $e);
@@ -75,7 +81,10 @@
 				}
 
 				foreach($features_result as $key => $value){
-					$features[$value['feat_id']]['feat_name'] = $value['feat_name'];
+					$features[$value['feat_id']]['feat_name'] = 
+						$value[(
+							$_SESSION['lang'] != 'pt_BR' ? ($_SESSION['lang'] == 'en_US' ? 'feat_name_en' : 'feat_name_es') : 'feat_name'
+						)];
 					$features[$value['feat_id']]['feat_image'] = $value['feat_image'];
 				}
 				
