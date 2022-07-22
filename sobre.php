@@ -20,7 +20,80 @@
 				<p>Os departamentos de Engenharia e Produção da Lakatos são equipados com softwares (CAE, CAD 3D, EPLAN e CAM) de última geração. Um sistema ERP integra as diversas áreas da companhia.</p>
 			</div>
 			<div class="col-auto">
-				<img src="_prototype/images/lakatos_empresa.jpg" alt="Foto Aérea" width="800" height="540" />
+				<img src="./images/lakatos_empresa.jpg" alt="Foto Aérea" width="800" height="540" />
+			</div>
+		</div>
+		<div class="institutional-photo-1"></div>
+		<div class="institutional-photo-2">
+			<img src="./images/lakatos-pelo-mundo.png" class="w-100" alt="Lakatos pelo mundo" width="1247" height="686" />
+		</div>
+		<div class="in-numbers">
+			<h2>Lakatos<br/> em números</h2>
+
+			<div class="d-flex">
+				<div class="circle d-flex">
+					<p>49</p>
+					<p>Anos de<br/> atuação</p>
+				</div>
+				<div class="circle d-flex">
+					<p>2000</p>
+					<p>Projetos<br/> desenvolvidos</p>
+				</div>
+				<div class="circle d-flex">
+					<p>500</p>
+					<p>Moldes<br/> produzidos</p>
+				</div>
+				<div class="circle d-flex">
+					<p>1000</p>
+					<p>Clientes<br/> atendidos</p>
+				</div>
+				<div class="circle d-flex">
+					<p>2500</p>
+					<p>m² de área<br/> fabril</p>
+				</div>
+			</div>
+		</div>
+		<div class="clientes">
+			<div class="row">
+				<div class="text-wrapper col-auto">
+					<div class="text">
+						<h2>Nossos <br/>Clientes</h2>
+					</div>
+				</div>
+				<div class="selection col">
+					<?php
+						(function(){
+							global $conn;
+							$conn->link = $conn->connect();
+
+							if($stmt = $conn->link->prepare("SELECT * FROM clientes WHERE cliente_active = 1 LIMIT 15")){
+								try{
+									$stmt->execute();
+									$result = get_result($stmt);
+
+									foreach($result as $i => $v){
+										echo '<div data-cliente="'. $v['cliente_id'] .'"><img src="'. $v['cliente_image'] .'" alt="'. $v['cliente_name'] .'" width="" height="" /></div>';
+									}
+								}catch(Exception $e){
+									throw new Exception('Erro ao conectar com a base de dados: '. $e);
+								}
+							}
+						})();
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="gallery">
+			<div class="text-wrapper">
+				<div class="text">
+					<h2>Galeria de fotos</h2>
+				</div>
+			</div>
+			<div class="slick-carousel-arrows" data-slick='{"slidesToShow": 3, "responsive": [{"breakpoint": 831, "settings":{"slidesToShow": 1}}]}'>
+				<div class="gallery-item"><img src="./images/lakatos_empresa.jpg" width="" height="" /></div>
+				<div class="gallery-item"><img src="./images/lakatos_empresa.jpg" width="" height="" /></div>
+				<div class="gallery-item"><img src="./images/lakatos_empresa.jpg" width="" height="" /></div>
+				<div class="gallery-item"><img src="./images/lakatos_empresa.jpg" width="" height="" /></div>
 			</div>
 		</div>
 	</main>
