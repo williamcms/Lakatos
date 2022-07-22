@@ -1320,7 +1320,7 @@ main div.home-mid-categories > .row div[data-apid] a{
 	flex-direction: column;
 	text-decoration: none;
 }
-main div.home-mid-categories > .row div[data-apid] a:hover{
+main div.home-mid-categories > .row div[data-apid] a:hover span{
 	color: var(--brand-2nd) !important;
 }
 main > div.home-mid-categories > .row > .selection{
