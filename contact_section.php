@@ -1,6 +1,5 @@
 <div class="section contactus" id="contato">
 	<h2 class="center">Formulário de contato</h2>
-	<div class="section-separator-1"></div>
 	<form method="POST">
 		<div class="form-group row">
 			<div class="input-group col">

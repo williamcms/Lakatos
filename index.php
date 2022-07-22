@@ -14,7 +14,7 @@
 		<div class="home-top_video paused" id="home">
 			<div class="video">
 				<video muted loop id="homeVideo">
-					<source src="_prototype/video/video.mp4" type="video/mp4">
+					<source src="./uploads/video/video.mp4" type="video/mp4">
 				</video>                
 			</div>
 			<div class="info">
@@ -22,64 +22,49 @@
 				<button id="playVideo" aria-label="Reproduzir vídeo" title="Reproduzir vídeo"><span>Reproduzir vídeo</span></button>
 			</div>
 		</div>
-		<div class="section-separator"></div>
-		<div class="home-mid-aboutus" id="aboutus" name="aboutus">
-			<h2>Sobre nós</h2>
+		<div class="section home-mid-categories" id="aplicacoes">
 			<div class="row">
-				<div class="col">
+				<div class="text-wrapper col-auto">
 					<div class="text">
-						<div class="text-separator"></div><div class="text-separator"></div>
-						<p>Referência no mercado de manufatura de máquinas termoformadoras há mais de 45 anos, a Eletro-Forming passou a se chamar Lakatos. A mudança, ocorrida no início de 2019, aconteceu como parte de uma estratégia de reposicionamento da marca no mercado. O antigo nome deu lugar ao sobrenome Lakatos. </p>
-						<div class="text-separator"></div>
-						<p>Sediada no município de Embu das Artes (SP), a Lakatos conta com uma área de produção de 2500 m². O espaço conta com departamento de usinagem, caldeiraria, serralheria, montagem, pintura, metrologia e, também, um estoque de peças para pronto-atendimento.</p>
-						<div class="text-separator"></div>
-						<p>A empresa conta com uma equipe altamente habilitada para desenvolvimento de projetos e incorporação das mais modernas tecnologias. Sua linha de produção engloba máquinas de usinagem CNC capazes de manufaturar variadas peças e moldes complexos. </p>
-						<div class="text-separator"></div>
-						<p>Os departamentos de Engenharia e Produção da Lakatos são equipados com softwares (CAE, CAD 3D, EPLAN e CAM) de última geração. Um sistema ERP integra as diversas áreas da companhia.</p>
+						<h2>Qual a sua <br/><span>necessidade?</span></h2>
+						<p>A Lakatos Termoformadoras possui <br/>know-how para desenvolver moldes <br/>
+						e máquinas capazes de produzir <br/>aplicações para diversas áreas!</p>
 					</div>
 				</div>
-				<div class="col">
-					<img src="_prototype/images/lakatos_empresa.jpg" alt="Foto Aérea" width="800" height="540" />
-				</div>
-			</div>
-		</div>
-		<div class="section-separator"></div>
-		<div class="section home-mid-categories row" id="aplicacoes">
-			<div class="text-wrapper col">
-				<div class="text">
-					<h2>Qual a sua <br/><span style="background-color: var(--brand-2nd);padding: 0 .5rem; line-height: 3rem;">necessidade?</span></h2>
-					<p>A Lakatos Termoformadoras possui <br/>know-how para desenvolver moldes <br/>
-					e máquinas capazes de produzir <br/>aplicações para diversas áreas!</p>
-				</div>
-			</div>
-			<div class="selection col">
-				<?php
-					(function(){
-						global $conn;
-						$conn->link = $conn->connect();
+				<div class="selection col">
+					<?php
+						(function(){
+							global $conn;
+							$conn->link = $conn->connect();
 
-						if($stmt = $conn->link->prepare("SELECT * FROM applications WHERE ap_active = 1 AND ap_icon > 0")){
-							try{
-								$stmt->execute();
-								$result = get_result($stmt);
+							if($stmt = $conn->link->prepare("SELECT * FROM applications WHERE ap_active = 1 AND ap_icon > 0")){
+								try{
+									$stmt->execute();
+									$result = get_result($stmt);
 
-								foreach($result as $i => $v){
-									echo '<div data-apId="'. $v['ap_id'] .'">
-									<a href="#'. $v['ap_name'] .'">
-										<img src="'. constant('WEBSITE_ICON_NUMBER_' . $v['ap_icon']) .'" alt="'. $v['ap_name'] .'" width="" height=" />"
-									<span>'. $v['ap_name'] .'</span>
-									</a></div>';
+									foreach($result as $i => $v){
+										echo '<div data-apId="'. $v['ap_id'] .'">
+										<a href="#'. $v['ap_name'] .'">
+											<img src="'. constant('WEBSITE_ICON_NUMBER_' . $v['ap_icon']) .'" alt="'. $v['ap_name'] .'" width="" height=" />"
+										<span>'. $v['ap_name'] .'</span>
+										</a></div>';
+									}
+								}catch(Exception $e){
+									throw new Exception('Erro ao conectar com a base de dados: '. $e);
 								}
-							}catch(Exception $e){
-								throw new Exception('Erro ao conectar com a base de dados: '. $e);
 							}
-						}
-					})();
-				?>
+						})();
+					?>
+				</div>
 			</div>
 		</div>
-		<div class="section-separator"></div>
 		<div class="section home-mid-machines" id="maquinas">
+			<div class="text-wrapper m-view">
+				<div class="text">
+					<h2>Últimas máquinas</h2>
+					<p>Temos a solução ideal</p>
+				</div>
+			</div>
 			<div class="slick-carousel-arrows">
 				<?php
 					(function(){
@@ -108,7 +93,6 @@
 				?>
 			</div>
 		</div>
-		<div class="section-separator"></div>
 		<div class="section home-mid-chart" id="sustentabilidade">
 			<div class="text-wrapper">
 				<div class="text">
@@ -116,7 +100,6 @@
 					<p>Economia circular e onde a Lakatos se encontra no ciclo</p>
 				</div>
 			</div>
-			<div class="section-separator-1"></div>
 			<div class="row">
 				<div class="col">
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
@@ -242,7 +225,6 @@
 					
 			</div>
 		</div>
-		<div class="section-separator"></div>
 		<div class="section home-mid-blog" id="blog">
 			<div class="text-wrapper">
 				<div class="text">
@@ -250,7 +232,6 @@
 				</div>
 				<div class="seemore bolder"><a href="#" role="button" class="button2" aria-label="Ver mais notícias" title="Ver mais notícias"><span>Ver mais</span></a></div>
 			</div>
-			<div class="section-separator-1"></div>
 			<div class="row">
 				<div class="col"><img src="./uploads/blog/blog-last.png" /></div>
 				<div class="col">
@@ -259,10 +240,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="section-separator"></div>
 		<?php include_once('contact_section.php'); ?>
 		<div class="section contactnetwork" id="redecontato">
-			<div class="section-separator"></div>
 			<div class="text-wrapper" id="redesContato">
 				<div class="text">
 					<h2>Redes de contato</h2>
@@ -270,7 +249,6 @@
 					<p>Selecione a região abaixo e veja as opções de contato</p>
 				</div>
 			</div>
-			<div class="section-separator-2"></div>
 			<form>
 				<div class="form-group center_m fornecedores">
 					<div class="input-group">
@@ -284,7 +262,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="section-separator-2"></div>
 
 				<div class="contact-options">
 
@@ -316,7 +293,6 @@
 			</form>
 		</div>
 	</main>
-	<div class="section-separator"></div>
 
 	<?php require_once('footer.php'); ?>
 </body>
