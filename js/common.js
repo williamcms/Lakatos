@@ -63,10 +63,10 @@ $(document).ready(function(){
 		$('header nav.menu ul.navigation, header nav.menu > button.js--open-menu').toggleClass('change');
 		$('body').toggleClass('noscroll');
 		// Atributos para Leitores de tela
-		$x = $(this).hasClass('change');
+		let $x = $(this).hasClass('change');
 		$(this).attr('aria-expanded', $x);
 	});
-	var closeMenu = $('main, header nav.menu ul li').on('click', function(){
+	var closeMenu = $('main, header nav.menu ul li:not([aria-haspopup="true"])').on('click', function(){
 		$('body').removeClass('noscroll');
 		$('header nav.menu ul.navigation, header nav.menu > button.js--open-menu').removeClass('change');
 	})
@@ -77,6 +77,9 @@ $(document).ready(function(){
 			top = $(window).scrollTop();
 		});
 	})();
+	var menuSubonMobile = $('ul > li.menuitem[aria-haspopup="true"]').on('click', function(evt){
+		isMobile() && evt.target == $(this).find('a').get(0) && evt.preventDefault();
+	});
 	// Home - Play Video
 	var playVideo = $('#playVideo').on('click', function(){
 		var video = $('#homeVideo').get(0);

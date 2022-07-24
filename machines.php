@@ -137,14 +137,14 @@
 
 						<section class="related">
 							<div class="title pt-3 pl-3 pr-4">
-								<h2>Mais soluções da linha '. $mac_series .'</h2>
+								<h2>Mais soluções da linha <span class="highlight uppercase">'. $mac_series .'</span></h2>
 							</div>
 							<div class="slick-carousel-arrows" data-slick=\'{"slidesToShow": 3, "responsive": [{"breakpoint": 831, "settings":{"slidesToShow": 1}}]}\'>';
 
 							for($i = 0; $i < $stmt4->num_rows; $i++){
 								echo '<div class="item"><figure class="image">';
-								echo '<img src="'. $relatedSeries[$i]['mac_image'] .'" alt="" width="" height="" />';
-								echo '<a href="./'. $relatedSeries[$i]['mac_pagename'] .'"><figcaption class="title center bold">'. $relatedSeries[$i]['mac_name'] .'&nbsp;&nbsp;&#10148;</figcaption></a></figure>';
+								echo '<a href="./'. $relatedSeries[$i]['mac_pagename'] .'"><img src="'. $relatedSeries[$i]['mac_image'] .'" alt="" width="" height="" />';
+								echo '<figcaption class="title center bold">'. $relatedSeries[$i]['mac_name'] .'&nbsp;&nbsp;&#10148;</figcaption></figure></a>';
 								echo '</div>';
 							}
 
@@ -196,17 +196,21 @@
 						<a href="'. url() .'/maquinas/chapas">Chapas <span>&#8250;</span></a>
 					</section>
 
-					<section class="list">
-						<div class="d-flex">';
-						for($i = 0; $i < $stmt->num_rows; $i++){
-							echo '<figure>
-								<a href="'. url() .'/m/'. $row[$i]['mac_pagename'] .'">
-								<img src="'. $row[$i]['mac_image'] .'" alt="" width="" height="" />
-								<figcaption><h3>'. $row[$i]['mac_name'] .'</h3></figcaption></a>
-							</figure>';
-						}
-					echo '</div>
-					</section>
+					<section class="list">';
+					if($stmt->num_rows > 0){
+						echo '<div class="d-flex">';
+							for($i = 0; $i < $stmt->num_rows; $i++){
+								echo '<figure>
+									<a href="'. url() .'/m/'. $row[$i]['mac_pagename'] .'">
+									<img src="'. $row[$i]['mac_image'] .'" alt="" width="" height="" />
+									<figcaption><h3>'. $row[$i]['mac_name'] .'</h3></figcaption></a>
+								</figure>';
+							}
+						echo '</div>';
+					}else{
+						echo '<p class="text-muted italic center">'. ERROR_QUERY_NORESULT .'</p>';
+					}
+				echo '</section>
 				</article>';
 
 				include_once('contact_section.php');

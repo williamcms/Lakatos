@@ -1904,6 +1904,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	}
 	header nav.menu ul li{
 		display: block;
+		padding: 0.7rem;
 	}
 	header nav.menu button.js--open-menu{
 		display: block;
@@ -1944,6 +1945,17 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		-moz-transform: rotate(45deg) translate(-0.5rem, -0.5rem);
 		-ms-transform: rotate(45deg) translate(-0.5rem, -0.5rem);
 		background-color: var(--brand) !important;
+	}
+	header nav.menu ul:not(.dropdown) > li:focus, 
+	header nav.menu ul:not(.dropdown) > li:focus-within, 
+	header nav.menu ul:not(.dropdown) > li:hover{
+		color: var(--brand);
+		background-color: transparent;
+	}
+	header nav.menu ul li[aria-haspopup] > .dropdown{
+		position: relative;
+		background: transparent;
+	    box-shadow: none;
 	}
 	/* Limita a exibição baseada no dispositivo */
 	.m-view{
@@ -2141,12 +2153,18 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		flex: 1 1 0px;
 		flex-direction: column;
 	}
+	article.product > section.related > .slick-slider{
+		padding: 1.5rem 0;
+	}
 	/*Machines page - Listing*/
 	article.products > .banner > figure{
 		min-height: 30rem;
 	}
 	article.products > .list{
 		padding: 2rem .5rem;
+	}
+	article.products > .list > div.d-flex > figure{
+		flex-basis: 100%;
 	}
 	/*Aboutus*/
 	main.aboutus .row .col:nth-child(1){

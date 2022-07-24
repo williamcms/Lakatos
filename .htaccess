@@ -25,19 +25,8 @@ RewriteRule ^en ./index?lang=en_US [NE,QSA,L]
 RewriteRule ^es/(.+)$ ./$1?lang=es_ES [NE,QSA,L]
 RewriteRule ^es ./index?lang=es_ES [NE,QSA,L]
 
-#Redireciona para a máquina
+#Máquinas
 RewriteRule ^m/(.+)$ ./machines.php?pagename=$1 [NE,QSA,L]
-RewriteRule ^pt/m/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
-RewriteRule ^en/m/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
-RewriteRule ^es/m/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
-
-RewriteRule ^pt/maquinas/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
-RewriteRule ^en/maquinas/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
-RewriteRule ^es/maquinas/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
-
-RewriteRule ^pt/maquina/(.+)$ ./machines.php?lang=pt_BR&pagename=$1 [NE,QSA,L]
-RewriteRule ^en/maquina/(.+)$ ./machines.php?lang=en_US&pagename=$1 [NE,QSA,L]
-RewriteRule ^es/maquina/(.+)$ ./machines.php?lang=es_ES&pagename=$1 [NE,QSA,L]
 
 RewriteRule ^maquinas/bobinas ./machines.php?type=bobinas [NE,QSA,L]
 RewriteRule ^maquina/bobinas ./machines.php?type=bobinas [NE,QSA,L]
@@ -47,3 +36,19 @@ RewriteRule ^maquina/chapas ./machines.php?type=chapas [NE,QSA,L]
 
 RewriteRule ^maquinas ./machines.php [NE,QSA,L]
 RewriteRule ^maquina ./machines.php [NE,QSA,L]
+
+#Moldes
+RewriteRule ^molde/(.+)$ ./molds.php?pagename=$1 [NE,QSA,L]
+
+RewriteRule ^moldes/(.+)$ ./molds.php?type=$1 [NE,QSA,L]
+
+RewriteRule ^moldes ./molds.php [NE,QSA,L]
+RewriteRule ^molde ./molds.php [NE,QSA,L]
+
+#Aplicações
+RewriteRule ^aplicacao/(.+)$ ./applications.php?pagename=$1 [NE,QSA,L]
+
+RewriteRule ^aplicacoes/(.+)$ ./applications.php?type=$1 [NE,QSA,L]
+
+RewriteRule ^aplicacoes ./applications.php [NE,QSA,L]
+RewriteRule ^aplicacao ./applications.php [NE,QSA,L]
