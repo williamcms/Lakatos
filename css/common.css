@@ -1521,7 +1521,11 @@ article.product > section.info > .description{
 	margin: 0 auto;
 	padding: 3rem 0;
 }
-article.product > section.info > .description > .col:nth-child(2):before{
+article.product > section.info > .description > .col-auto{
+	min-width: 20vw;
+}
+article.product > section.info > .description > .col:nth-child(2):before,
+article.product > section.info > .description > .col-auto:before{
 	position: absolute;
 	content: '';
 	border-left: 0.125rem solid var(--brand);
@@ -1534,10 +1538,12 @@ article.product > section.info > .description > .col:nth-child(2) > div{
 	grid-column-gap: 1rem;
 	column-gap: 1rem;
 }
-article.product > section.info > .description > .col:nth-child(2) > div:not(:last-child){
+article.product > section.info > .description > .col:nth-child(2) > div:not(:last-child),
+article.product > section.info > .description > .col-auto > div:not(:last-child){
 	margin-bottom: .5rem;
 }
-article.product > section.info > .description > .col:nth-child(2) > div > .image{
+article.product > section.info > .description > .col:nth-child(2) > div > .image,
+article.product > section.info > .description > .col-auto > div > .image{
 	min-width: 5.125rem;
 }
 article.product > section.extra{
@@ -1595,6 +1601,9 @@ article.products > .banner > figure figcaption{
 	height: 100%;
 	align-items: center;
 	padding: 0 4rem;
+}
+article.products > .banner > figure figcaption.right{
+	right: 0;
 }
 article.products > .banner > figure figcaption h1{
 	color: var(--white);
@@ -1955,7 +1964,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	header nav.menu ul li[aria-haspopup] > .dropdown{
 		position: relative;
 		background: transparent;
-	    box-shadow: none;
+		box-shadow: none;
 	}
 	/* Limita a exibição baseada no dispositivo */
 	.m-view{
@@ -2088,12 +2097,15 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	/*Machines page*/
 	article.product > section.image > picture{
 		min-height: 14rem;
+		min-height: max-content;
 		width: 100vw;
 		background-attachment: initial !important;
 		background-position: initial !important;
 		background-size: contain !important;
 	}
 	article.product > section.image > picture > figcaption{
+		position: relative;
+		margin-top: -.5rem;
 		padding: 1rem .5rem;
 		background-color: rgba(230 230 230 / 80%);
 	}
@@ -2128,7 +2140,8 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		margin: 0 auto;
 		padding: 3rem 0;
 	}
-	article.product > section.info > .description > .col:nth-child(2):before{
+	article.product > section.info > .description > .col:nth-child(2):before,
+	article.product > section.info > .description > .col-auto:before{
 		position: absolute;
 		content: '';
 		border-left: none;
@@ -2136,6 +2149,9 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		width: 100%;
 		top: -1rem;
 		left: initial;
+	}
+	article.product > section.info > .description > .col-auto{
+		flex-basis: 100%;
 	}
 	article.product > section.info > .description > .col:nth-child(2) > div{
 		flex-direction: column;

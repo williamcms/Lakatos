@@ -90,7 +90,8 @@
 				
 				echo '<article class="product">
 						<section class="image">
-							<picture style="background: url('. $row[0]['mac_image'] .') no-repeat;">
+							'. (!$browser->isMobile() ? '<picture style="background: url('. $row[0]['mac_image'] .') no-repeat;">' : 
+								'<picture><img src="'. $row[0]['mac_image'] .'" alt="'. $row[0]['mac_name'] .'" />') .'
 								'. (isNotEmptyNull($row[0]['mac_catalog']) || isNotEmptyNull($row[0]['mac_video']) ? '
 									<figcaption>
 									'. (isNotEmptyNull($row[0]['mac_catalog']) ? '
@@ -142,9 +143,9 @@
 							<div class="slick-carousel-arrows" data-slick=\'{"slidesToShow": 3, "responsive": [{"breakpoint": 831, "settings":{"slidesToShow": 1}}]}\'>';
 
 							for($i = 0; $i < $stmt4->num_rows; $i++){
-								echo '<div class="item"><figure class="image">';
-								echo '<a href="./'. $relatedSeries[$i]['mac_pagename'] .'"><img src="'. $relatedSeries[$i]['mac_image'] .'" alt="" width="" height="" />';
-								echo '<figcaption class="title center bold">'. $relatedSeries[$i]['mac_name'] .'&nbsp;&nbsp;&#10148;</figcaption></figure></a>';
+								echo '<div class="item"><figure class="image"><a href="./'. $relatedSeries[$i]['mac_pagename'] .'">';
+								echo '<img src="'. $relatedSeries[$i]['mac_image'] .'" alt="" width="" height="" />';
+								echo '<figcaption class="title center bold">'. $relatedSeries[$i]['mac_name'] .'&nbsp;&nbsp;&#10148;</figcaption></a></figure>';
 								echo '</div>';
 							}
 

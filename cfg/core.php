@@ -25,6 +25,8 @@ if(ini_set('session.name', 'SEUCOOKIE') === false || !session_name('SEUCOOKIE'))
 {
 	die('Unable to set sesssion scope');
 }
+require_once('BrowserDetection.php');
+$browser = new Wolfcast\BrowserDetection();
 
 session_start();
 
