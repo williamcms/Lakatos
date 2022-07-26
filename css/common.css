@@ -941,6 +941,13 @@ textarea#whatsapp-input-message:focus{
 	top: 50%;
 	z-index: 1;
 }
+.slick-slider button.slick-next.slick-arrow:after,
+.slick-slider button.slick-prev.slick-arrow:after{
+	content: '';
+	position: absolute;
+	padding: 2rem;
+	transform: rotate(45deg) translate(-2.5rem,0);
+}
 .slick-slider button.slick-next.slick-arrow:hover,
 .slick-slider button.slick-prev.slick-arrow:hover{
 	border-color: var(--brand);
