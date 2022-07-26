@@ -177,6 +177,36 @@ $account->sessionLogin();
 						throw new Exception('Erro ao conectar com a base de dados: '. $e);
 					}
 				}
+				if($stmt6 = $conn->link->prepare("SELECT * FROM packaging")){
+					try{
+						$stmt6->execute();
+						$packaging = get_result($stmt6);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+				if($stmt7 = $conn->link->prepare("SELECT * FROM machine_packaging WHERE mp_mac = ?")){
+					try{
+						$stmt7->bind_param('i', $mac_id);
+						$stmt7->execute();
+						$machine_packaging = get_result($stmt7);
+						$mp_ids = array_map(function($value){return $value['mp_pack'];}, $machine_packaging);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+				if($stmt8 = $conn->link->prepare("SELECT mac_pagename FROM machines WHERE mac_id != ?")){
+					try{
+						$stmt8->bind_param('i', $mac_id);
+						$stmt8->execute();
+						$existing_pagenames = array_map(function($value){return $value['mac_pagename'];}, get_result($stmt8));
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
 
 				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
@@ -185,12 +215,15 @@ $account->sessionLogin();
 					<div class="form-group"><label>Id da máquina <span class="text-muted">(não editável)</span></label>
 						<input type="text" name="mac_id" value="'.$row[0]['mac_id'].'" readonly />
 					</div>
+					<textarea id="existing_pagenames" hidden>'. json_encode($existing_pagenames) .'</textarea>
 					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome abaixo)</span>
 						<div class="input-group">
 							<div class="input-group-append"><label class="input-group-text">'. url() .'/m/</label></div>
-							<input type="text" name="mac_pagename" value="'.$row[0]['mac_pagename'].'" readonly />
+							<input type="text" name="mac_pagename" data-checkexisting="#existing_pagenames" value="'.$row[0]['mac_pagename'].'" readonly />
 						</div>
+						<p class="text-muted">Este campo não pode ser repetido pois é utilizado com identificador</p>
 					</div>
+
 					<div class="form-group"><label>Nome da máquina</label>
 						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" value="'.$row[0]['mac_name'].'" required/>
 					</div>
@@ -294,6 +327,17 @@ $account->sessionLogin();
 					
 					echo '</div></div>
 
+					<div class="form-group"><label>Embalagens</label><div class="link-listage">';
+
+					for($x = 0; $x < $stmt6->num_rows; $x++){
+						echo '<div class="item">
+								<img src="'.$packaging[$x]['pack_image'].'" />
+								<input type="checkbox" name="mac_pack_link[]" id="pack'.$packaging[$x]['pack_id'].'" class="d-none" value="'.$packaging[$x]['pack_id'].'" '.(in_array($packaging[$x]['pack_id'], $mp_ids) ? 'checked=""' : '').'" />
+								<label for="pack'.$packaging[$x]['pack_id'].'">'.$packaging[$x]['pack_goal'].' ('.$packaging[$x]['pack_name'].')</label></div>';
+					}
+					
+					echo '</div></div>
+
 					<div class="form-group"><label>Qual o tipo de máquina? Isso influencia o local onde aparece</label>
 						<select name="mac_type">
 							<option value="bobinas" '. ($row[0]['mac_type'] == 'bobinas' ? 'selected' : '') .'>Bobinas</option>
@@ -349,13 +393,14 @@ $account->sessionLogin();
 
 					$stmt->execute();
 
+					
+					// Remove conexões existentes antes de adiconar novas se houver alguma
+					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
+						$stmt2->bind_param('i', $mac_id);
+						$stmt2->execute();
+					}
 					if(isset($_POST['mac_ap_link'])){
 						$mac_ap_ids = $_POST['mac_ap_link'];
-
-						if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
-							$stmt2->bind_param('i', $mac_id);
-							$stmt2->execute();
-						}
 						foreach($mac_ap_ids as $key => $value){
 							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
 								$stmt3->bind_param('ii', $mac_id, $value);
@@ -364,17 +409,32 @@ $account->sessionLogin();
 						}
 					}
 
+					// Remove conexões existentes antes de adiconar novas se houver alguma
+					if($stmt4 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
+						$stmt4->bind_param('i', $mac_id);
+						$stmt4->execute();
+					}
 					if(isset($_POST['mac_feature'])){
 						$mac_feat_ids = $_POST['mac_feature'];
-
-						if($stmt4 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
-							$stmt4->bind_param('i', $mac_id);
-							$stmt4->execute();
-						}
 						foreach($mac_feat_ids as $key => $value){
 							if($stmt5 = $conn->link->prepare("INSERT INTO machine_features(mac_id, feat_id) VALUES(?, ?)")){
 								$stmt5->bind_param('ii', $mac_id, $value);
 								$stmt5->execute();
+							}
+						}
+					}
+
+					// Remove conexões existentes antes de adiconar novas se houver alguma
+					if($stmt6 = $conn->link->prepare("DELETE FROM machine_packaging WHERE mp_mac = ?")){
+						$stmt6->bind_param('i', $mac_id);
+						$stmt6->execute();
+					}
+					if(isset($_POST['mac_pack_link'])){
+						$mac_pack_ids = $_POST['mac_pack_link'];
+						foreach($mac_pack_ids as $key => $value){
+							if($stmt7 = $conn->link->prepare("INSERT INTO machine_packaging(mp_pack, mp_mac) VALUES(?, ?)")){
+								$stmt7->bind_param('ii', $value, $mac_id);
+								$stmt7->execute();
 							}
 						}
 					}
@@ -398,19 +458,29 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_MACHINE_REM'])){
 			$conn->link = $conn->connect();
 			$mac_id = stripslashes($_POST['CONFIRM_MACHINE_REM']);
-			if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
+
+			if($stmt4 = $conn->link->prepare("DELETE FROM machine_packaging WHERE mp_mac = ?")){
 				try{
-					$stmt2->bind_param('i', $mac_id);
-					$stmt2->execute();
+					$stmt4->bind_param('i', $mac_id);
+					$stmt4->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
 			}
-			if($stmt3 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
+			if($stmt3 = $conn->link->prepare("DELETE FROM machine_applications WHERE mac_id = ?")){
 				try{
 					$stmt3->bind_param('i', $mac_id);
 					$stmt3->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
+			if($stmt2 = $conn->link->prepare("DELETE FROM machine_features WHERE mac_id = ?")){
+				try{
+					$stmt2->bind_param('i', $mac_id);
+					$stmt2->execute();
 				}
 				catch(Exception $e){
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
@@ -448,12 +518,37 @@ $account->sessionLogin();
 					}
 				}
 
+				if($stmt3 = $conn->link->prepare("SELECT * FROM packaging")){
+					try{
+						$stmt3->execute();
+						$packaging = get_result($stmt3);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+
+				if($stmt4 = $conn->link->prepare("SELECT mac_pagename FROM machines")){
+					try{
+						$stmt4->execute();
+						$existing_pagenames = array_map(function($value){return $value['mac_pagename'];}, get_result($stmt4));
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+
 				echo '<div class="overlayform" id="form5"><div class="modalform"><div class="modaldados">
 				<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST">
 					<h2 class="text-center">Nova máquina</h2>
-					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome acima)</span>
-						<input type="text" name="mac_pagename" readonly />
+					<textarea id="existing_pagenames" hidden>'. json_encode($existing_pagenames) .'</textarea>
+					<div class="form-group"><label>Nome no Link</label> <span class="text-muted">(gerado com base no nome abaixo)</span>
+						<div class="input-group">
+							<div class="input-group-append"><label class="input-group-text">'. url() .'/m/</label></div>
+							<input type="text" name="mac_pagename" data-checkexisting="#existing_pagenames" readonly />
+						</div>
+						<p class="text-muted">Este campo não pode ser repetido pois é utilizado com identificador</p>
 					</div>
 					<div class="form-group"><label>Nome da máquina</label>
 						<input type="text" class="nosymbolinput" data-copy="mac_pagename" name="mac_name" required/>
@@ -558,6 +653,17 @@ $account->sessionLogin();
 						
 						echo '</div></div>
 
+						<div class="form-group"><label>Embalagens</label><div class="link-listage">';
+
+						for($x = 0; $x < $stmt3->num_rows; $x++){
+							echo '<div class="item">
+									<img src="'.$packaging[$x]['pack_image'].'" />
+									<input type="checkbox" name="mac_pack_link[]" id="pack'.$packaging[$x]['pack_id'].'" class="d-none" value="'.$packaging[$x]['pack_id'].'" />
+									<label for="pack'.$packaging[$x]['pack_id'].'">'.$packaging[$x]['pack_goal'].' ('.$packaging[$x]['pack_name'].')</label></div>';
+						}
+						
+						echo '</div></div>
+
 					<div class="form-group"><label>Qual o tipo de máquina? Isso influencia o local onde aparece</label>
 						<select name="mac_type">
 							<option value="bobinas">Bobinas</option>
@@ -614,10 +720,10 @@ $account->sessionLogin();
 					$mac_active = $_POST['mac_active'];
 
 					$stmt->execute();
+					$mac_id = $stmt->insert_id;
 
 					if(isset($_POST['mac_ap_link'])){
 						$mac_ap_ids = $_POST['mac_ap_link'];
-						$mac_id = $stmt->insert_id;
 						foreach($mac_ap_ids as $key => $value){
 							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
 								$stmt3->bind_param('ii', $mac_id, $value);
@@ -632,6 +738,15 @@ $account->sessionLogin();
 							if($stmt4 = $conn->link->prepare("INSERT INTO machine_features(mac_id, feat_id) VALUES(?, ?)")){
 								$stmt4->bind_param('ii', $mac_id, $value);
 								$stmt4->execute();
+							}
+						}
+					}
+					if(isset($_POST['mac_pack_link'])){
+						$mac_pack_ids = $_POST['mac_pack_link'];
+						foreach($mac_pack_ids as $key => $value){
+							if($stmt3 = $conn->link->prepare("INSERT INTO machine_packaging(mp_pack, mp_mac) VALUES(?, ?)")){
+								$stmt3->bind_param('ii', $value, $mac_id);
+								$stmt3->execute();
 							}
 						}
 					}

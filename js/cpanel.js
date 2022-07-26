@@ -211,10 +211,30 @@ $(document).ready(function(){
 		if(!!$(this).data('copy')){
 			let copy = `input[name="${$(this).data('copy')}"]`;
 
-			$(copy).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-'))
+			$(copy).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-').toLowerCase());
+			$(copy).trigger('change');
 		}else{
-			$(this).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-'))
+			$(this).val($(this).val().replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\? _]/g, '-').toLowerCase());
+			$(this).trigger('change');
 		}
+	});
+	$('input[data-checkexisting]').on('change keyup', function(){
+		let value = $(this).val().toLowerCase(),
+			field = $(this).attr('data-checkexisting'),
+			exists = JSON.parse($(field).val()),
+			existsMap = $.map(exists, function(el, i){return el.toLowerCase()});
+
+		let button = $(this).closest('form').find('button.button');
+
+			if($.inArray(value, existsMap) != -1){
+				$(this).css('border', '1px solid var(--warning)');
+				$(this).css('box-shadow', '0 0 3px 2px var(--danger)');
+				button.prop('disabled', true);
+			}else{
+				$(this).css('border', '1px solid var(--green)');
+				$(this).css('box-shadow', '0 0 3px 2px var(--success)');
+				button.prop('disabled', false);
+			}
 	});
 	$('.lang-selector > [data-lang]').on('click', function(){
 		$(this).closest('.form-group').find('[data-lang]').removeClass('selected');

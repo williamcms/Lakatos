@@ -159,12 +159,27 @@ $account->sessionLogin();
 						throw new Exception('Erro ao conectar com a base de dados: '. $e);
 					}
 				}
+				if($stmt7 = $conn->link->prepare("SELECT ap_name FROM applications WHERE ap_id != ?")){
+					try{
+						$stmt7->bind_param('i', $ap_id);
+						$stmt7->execute();
+						$existing_pagenames = array_map(function($value){return $value['ap_name'];}, get_result($stmt7));
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
 				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST" id="form">
 					<h2 class="text-center">Editar aplicação</h2>
 					<div class="form-group"><label>Id da Aplicação <span class="text-muted">(não editável)</span></label> <input type="text" name="ap_id" value="'.$row[0]['ap_id'].'" readonly/></div>
-					<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" value="'.$row[0]['ap_name'].'" required/></div>
+
+					<textarea id="existing_pagenames" hidden>'. json_encode($existing_pagenames) .'</textarea>
+					<div class="form-group"><label>Nome da Aplicação</label> 
+						<input type="text" name="ap_name" data-checkexisting="#existing_pagenames" value="'.$row[0]['ap_name'].'" required/>
+						<p class="text-muted">Este campo não pode ser repetido pois é utilizado com identificador</p>
+					</div>
 					<div class="form-group"><label>Ícone</label>
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -246,8 +261,8 @@ $account->sessionLogin();
 						$stmt4->execute();
 					}
 					if(isset($_POST['appack_link'])){
-					$appack_link = $_POST['appack_link'];
-						foreach($appack_link as $key => $value){
+					$appack_ids = $_POST['appack_link'];
+						foreach($appack_ids as $key => $value){
 							if($stmt5 = $conn->link->prepare("INSERT INTO application_packaging(appack_ap, appack_pack) VALUES(?, ?)")){
 								$stmt5->bind_param('ii', $ap_id, $value);
 								$stmt5->execute();
@@ -333,11 +348,24 @@ $account->sessionLogin();
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
 			}
+			if($stmt4 = $conn->link->prepare("SELECT ap_name FROM applications")){
+					try{
+						$stmt4->execute();
+						$existing_pagenames = array_map(function($value){return $value['ap_name'];}, get_result($stmt4));
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
 			echo '<div class="overlayform" id="form5"><div class="modalform"><div class="modaldados">
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
 				<h2 class="text-center">Nova Aplicação</h2>
-				<div class="form-group"><label>Nome da Aplicação</label> <input type="text" name="ap_name" required/></div>
+				<textarea id="existing_pagenames" hidden>'. json_encode($existing_pagenames) .'</textarea>
+				<div class="form-group"><label>Nome da Aplicação</label> 
+					<input type="text" name="ap_name" data-checkexisting="#existing_pagenames" required/>
+					<p class="text-muted">Este campo não pode ser repetido pois é utilizado com identificador</p>
+				</div>
 				<div class="form-group"><label>Ícone</label>
 						<div class="input-group icon-selector-group">
 							<div class="input-group-text"><img src="./uploads/icons/applications_icon_0.png" /></div>
@@ -397,19 +425,23 @@ $account->sessionLogin();
 					$stmt->execute();
 					$ap_id = $stmt->insert_id;
 
-					$mac_ap_ids = $_POST['mac_ap_link'];
-					foreach($mac_ap_ids as $key => $value){
-						if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
-							$stmt3->bind_param('ii', $value, $ap_id);
-							$stmt3->execute();
+					if(isset($_POST['mac_ap_link'])){
+						$mac_ap_ids = $_POST['mac_ap_link'];
+						foreach($mac_ap_ids as $key => $value){
+							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
+								$stmt3->bind_param('ii', $value, $ap_id);
+								$stmt3->execute();
+							}
 						}
 					}
 
-					$appack_link = $_POST['appack_link'];
-					foreach($appack_link as $key => $value){
-						if($stmt3 = $conn->link->prepare("INSERT INTO application_packaging(appack_ap, appack_pack) VALUES(?, ?)")){
-							$stmt3->bind_param('ii', $ap_id, $value);
-							$stmt3->execute();
+					if(isset($_POST['appack_link'])){
+						$appack_ids = $_POST['appack_link'];
+						foreach($appack_ids as $key => $value){
+							if($stmt3 = $conn->link->prepare("INSERT INTO application_packaging(appack_ap, appack_pack) VALUES(?, ?)")){
+								$stmt3->bind_param('ii', $ap_id, $value);
+								$stmt3->execute();
+							}
 						}
 					}
 				}
