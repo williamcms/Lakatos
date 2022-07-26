@@ -1256,7 +1256,7 @@ main > div.section{
 	flex-direction: column;
 	justify-content: center;
 }
-main > div.section:not(.contactus, .contactnetwork){
+main > div.section:not(.contactus,.contactnetwork, .home-mid-machines, .home-mid-chart){
 	min-height: 100vh;
 }
 main > div.section.contactus, 
