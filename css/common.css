@@ -1519,6 +1519,10 @@ article.product > section > .title{
 	border-bottom: 0.0625rem solid var(--brand);
 	margin-right: 3rem;
 }
+article.product > section > .title h2{
+	font-size: 1.3rem;
+	color: var(--dark);
+}
 article.product > section.info > .description{
 	justify-content: center;
 	align-items: center;

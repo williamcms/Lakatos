@@ -112,6 +112,7 @@
 						<section class="info">
 							<div class="title pt-3 pl-3 pr-4">
 								<h1>'. $row[0]['mac_name'] .'</h1>
+								<h2>'. $row[0]['mac_title'] .'</h2>
 							</div>
 
 							<div class="description row">
