@@ -27,13 +27,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title><?php echo $website->title .': '. (isset($pagename) ? $row[0]['mac_name'] : 'Máquinas') ?></title>
+	<title><?php echo $website->title .': '. (isset($pagename) && $stmt->num_rows ? $row[0]['mac_name'] : 'Máquinas') ?></title>
 	<?php require_once('header-front.php'); ?>
 </head>
 <body>
 	<?php require_once('menu.php'); ?>
 
-	<main>
+	<main class="machines">
 		<?php
 			if(isset($_GET['pagename']) && $stmt->num_rows){
 				$mac_id = $row[0]['mac_id'];
