@@ -26,6 +26,8 @@
 	--danger: #FF5252;
 	--light: #F8F9FA;
 	--dark: #343A40;
+
+	--header-m: 8.375rem;
 }
 *{
 	font-family: 'Open Sans', sans-serif;
@@ -291,7 +293,7 @@ body.noscroll{
 	overflow: hidden;
 }
 header{
-	height: 8.375rem;
+	height: var(--header-m);
 	background-color: var(--white);
 }
 header .wrapper{
@@ -303,7 +305,7 @@ header .wrapper{
 	flex-direction: row;
 	width: 100%;
 	background-color: var(--white);
-	height: 8.375rem;
+	height: var(--header-m);
 	z-index: 9;
 }
 main{
@@ -1355,6 +1357,9 @@ main > div.home-mid-categories > .row > .selection > div p{
 	padding-top: .85rem;
 }
 /*Últimas Máquinas*/
+main > div.home-mid-machines{
+	padding: 2rem 0;
+}
 main > div.home-mid-machines .slick-slide{
 	position: relative;
 }
@@ -1367,6 +1372,9 @@ main > div.home-mid-machines .slick-slide div.desc *{
 	line-height: initial;
 }
 /*Sustentabilidade*/
+main > div.home-mid-chart{
+	padding: 2rem 0;
+}
 main > div.home-mid-chart div.row{
 	grid-gap: 2rem;
 	gap: 2rem;
@@ -1829,6 +1837,9 @@ main.aboutus .gallery > .text-wrapper .text{
 	padding: 0 .5rem 1rem 0;
 	border-bottom: .025rem solid var(--brand);
 }
+main.aboutus .gallery > .text-wrapper .text > *{
+	margin-left: 2rem;
+}
 main.aboutus .gallery .slick-carousel-arrows{
 	width: 90vw;
 	margin: 0 auto;
@@ -1910,8 +1921,10 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 }
 @media screen and (max-width: 831px) and (orientation : portrait){
 	/*Default*/
-	body{
+	body,
+	main{
 		overflow-x: hidden;
+		max-width: 100vw;
 	}
 	.col{
 		flex-basis: auto;
@@ -2014,6 +2027,9 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 		height: auto;
 		flex-direction: column;
 	}
+	main div.home-top_video.paused{
+		height: calc(100vh - var(--header-m));
+	}
 	main div.home-top_video .video video#homeVideo{
 		position: relative;
 		min-width: auto;
@@ -2093,6 +2109,7 @@ footer .footer-wrapper > div.social > .social-icons-wrapper > a:hover{
 	/*Últimas Máquinas*/
 	main > div.home-mid-machines{
 		min-height: initial !important;
+		padding: 0;
 		margin: 2rem 0;
 	}
 	main > div.home-mid-machines > .slick-slider img{
