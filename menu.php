@@ -50,6 +50,7 @@
 					</ul>
 				</li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/moldes" role="menuitem">Moldes</a></li>
+				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/embalagens" role="menuitem">Embalagens</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#sustentabilidade" role="menuitem">Sustentabilidade</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#blog" role="menuitem">Blog</a></li>
 				<li role="none" class="menuitem"><a href="<?php echo url(); ?>/index#contato" role="menuitem">Contato</a></li>

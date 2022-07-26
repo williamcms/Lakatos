@@ -1589,7 +1589,7 @@ article.product > section.extra > div.d-flex{
 	flex: 1 1 0px;
 	flex-direction: column;
 }
-/*Machines page - Listing*/
+/*Products page - Listing*/
 article.products > .banner > figure{
 	position: relative;
 	min-height: 35rem;
@@ -1694,11 +1694,36 @@ article.products > .list > div.d-flex > figure:hover::before{
 article.products > .list > div.d-flex > figure a{
 	text-decoration: none;
 }
-article.products > .list > div.d-flex > figure a:hover *{
+article.products > .list > div.d-flex > figure a:hover h3{
 	color: var(--brand-2nd);
 }
 article.products > .list > div.d-flex > figure figcaption *{
 	font-size: 1.1rem !important;
+}
+/*Packaging only*/
+main.packaging article.product > section.info > .description{
+	align-items: flex-start;
+}
+main.packaging article.products > .list > div.d-flex > figure:hover::before{
+	animation: none;
+}
+main.packaging article.products > .list > div.d-flex > figure a.d-flex{
+	justify-content: center;
+	align-items: center;
+	grid-gap: 1rem;
+	gap: 1rem;
+}
+main.packaging article.products > .list > div.d-flex > figure a.d-flex > *{
+	flex: 1 1 50%;
+	max-width: 100%;
+	min-width: 50%;
+}
+/*Applications only*/
+main.applications article.product > section.related > .slick-slider .item > figure{
+	position: relative;
+	padding: 0;
+	border: 1px solid var(--gray-lighter);
+	margin: 0 0.5rem;
 }
 /*Aboutus*/
 main.aboutus > .row{

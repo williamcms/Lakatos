@@ -52,3 +52,11 @@ RewriteRule ^aplicacoes/(.+)$ ./applications.php?type=$1 [NE,QSA,L]
 
 RewriteRule ^aplicacoes ./applications.php [NE,QSA,L]
 RewriteRule ^aplicacao ./applications.php [NE,QSA,L]
+
+#Embalagens
+RewriteRule ^embalagem/(.+)$ ./packaging.php?pagename=$1 [NE,QSA,L]
+
+RewriteRule ^embalagens/(.+)$ ./packaging.php?type=$1 [NE,QSA,L]
+
+RewriteRule ^embalagens ./packaging.php [NE,QSA,L]
+RewriteRule ^embalagem ./packaging.php [NE,QSA,L]
