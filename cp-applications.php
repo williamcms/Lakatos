@@ -139,6 +139,26 @@ $account->sessionLogin();
 						throw new Exception('Erro ao conectar com a base de dados: '. $e);
 					}
 				}
+				if($stmt5 = $conn->link->prepare("SELECT * FROM packaging")){
+					try{
+						$stmt5->execute();
+						$packaging = get_result($stmt5);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
+				if($stmt6 = $conn->link->prepare("SELECT * FROM application_packaging WHERE appack_ap = ?")){
+					try{
+						$stmt6->bind_param('i', $ap_id);
+						$stmt6->execute();
+						$appack = get_result($stmt6);
+						$pack_ids = array_map(function($value){return $value['appack_pack'];}, $appack);
+					}
+					catch(Exception $e){
+						throw new Exception('Erro ao conectar com a base de dados: '. $e);
+					}
+				}
 				echo '<div class="overlayform" id="form1"><div class="modalform"><div class="modaldados">
 				<button class="closebtn" onclick="formOff(1);" aria-label="Fechar Janela">&times;</button>
 				<form method="POST" id="form">
@@ -156,6 +176,7 @@ $account->sessionLogin();
 					}
 					echo '</select></div></div>
 					<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" value="'.$row[0]['ap_image'].'" required/></div>
+					<div class="form-group"><label>Banner de página</label><input type="text" name="ap_banner" value="'.$row[0]['ap_banner'].'" required/></div>
 					<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote">'.$row[0]['ap_desc'].'</textarea></div>
 					<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
@@ -164,6 +185,17 @@ $account->sessionLogin();
 								<img src="'.$machines[$j]['mac_image'].'" />
 								<input type="checkbox" name="mac_ap_link[]" id="mac'.$machines[$j]['mac_id'].'" class="d-none" value="'.$machines[$j]['mac_id'].'" '.(in_array($machines[$j]['mac_id'], $mac_ids) ? 'checked=""' : '').'"/>
 								<label for="mac'.$machines[$j]['mac_id'].'">'.$machines[$j]['mac_name'].'</label></div>';
+					}
+					
+					echo '</div></div>
+
+					<div class="form-group"><label>Embalagens desta aplicação</label><div class="link-listage">';
+
+					for($x = 0; $x < $stmt5->num_rows; $x++){
+						echo '<div class="item">
+								<img src="'.$packaging[$x]['pack_image'].'" />
+								<input type="checkbox" name="appack_link[]" id="pack'.$packaging[$x]['pack_id'].'" class="d-none" value="'.$packaging[$x]['pack_id'].'" '.(in_array($packaging[$x]['pack_id'], $pack_ids) ? 'checked=""' : '').'"/>
+								<label for="pack'.$packaging[$x]['pack_id'].'">'.$packaging[$x]['pack_goal'].' ('.$packaging[$x]['pack_name'].')</label></div>';
 					}
 					
 					echo '</div></div>
@@ -178,13 +210,14 @@ $account->sessionLogin();
 		if(isset($_POST['CONFIRM_APPLICATION_EDIT'])){
 
 			$conn->link = $conn->connect();
-			if($stmt = $conn->link->prepare("UPDATE applications SET ap_icon = ?, ap_name = ?, ap_image = ?, ap_desc = ?, ap_active = ? WHERE ap_id = ?")){
+			if($stmt = $conn->link->prepare("UPDATE applications SET ap_icon = ?, ap_name = ?, ap_image = ?, ap_banner = ?, ap_desc = ?, ap_active = ? WHERE ap_id = ?")){
 
 				try{
-					$stmt->bind_param('ssssii', $ap_icon, $ap_name, $ap_image, $ap_desc, $ap_active, $ap_id);
+					$stmt->bind_param('sssssii', $ap_icon, $ap_name, $ap_image, $ap_banner, $ap_desc, $ap_active, $ap_id);
 					$ap_name = $_POST['ap_name'];
 					$ap_icon = $_POST['ap_icon'];
 					$ap_image = $_POST['ap_image'];
+					$ap_banner = $_POST['ap_banner'];
 					$ap_desc = $_POST['ap_desc'];
 					$ap_desc = str_replace("&quot;", "'", $ap_desc);
 					$ap_active = $_POST['ap_active'];
@@ -192,17 +225,32 @@ $account->sessionLogin();
 
 					$stmt->execute();
 
+					// Remove conexões existentes antes de adiconar novas se houver alguma
+					if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
+						$stmt2->bind_param('i', $ap_id);
+						$stmt2->execute();
+					}
 					if(isset($_POST['mac_ap_link'])){
-						$mac_ap_ids = $_POST['mac_ap_link'];
-
-						if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
-							$stmt2->bind_param('i', $ap_id);
-							$stmt2->execute();
-						}
+					$mac_ap_ids = $_POST['mac_ap_link'];
 						foreach($mac_ap_ids as $key => $value){
 							if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
 								$stmt3->bind_param('ii', $value, $ap_id);
 								$stmt3->execute();
+							}
+						}
+					}
+					
+					// Remove conexões existentes antes de adiconar novas se houver alguma
+					if($stmt4 = $conn->link->prepare("DELETE FROM application_packaging WHERE appack_ap = ?")){
+						$stmt4->bind_param('i', $ap_id);
+						$stmt4->execute();
+					}
+					if(isset($_POST['appack_link'])){
+					$appack_link = $_POST['appack_link'];
+						foreach($appack_link as $key => $value){
+							if($stmt5 = $conn->link->prepare("INSERT INTO application_packaging(appack_ap, appack_pack) VALUES(?, ?)")){
+								$stmt5->bind_param('ii', $ap_id, $value);
+								$stmt5->execute();
 							}
 						}
 					}
@@ -227,6 +275,15 @@ $account->sessionLogin();
 			$conn->link = $conn->connect();
 			$ap_id = stripslashes($_POST['CONFIRM_APPLICATION_REM']);
 
+			if($stmt3 = $conn->link->prepare("DELETE FROM application_packaging WHERE appack_ap = ?")){
+				try{
+					$stmt3->bind_param('i', $ap_id);
+					$stmt3->execute();
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
 			if($stmt2 = $conn->link->prepare("DELETE FROM machine_applications WHERE ap_id = ?")){
 				try{
 					$stmt2->bind_param('i', $ap_id);
@@ -267,6 +324,15 @@ $account->sessionLogin();
 					throw new Exception('Erro ao conectar com a base de dados: '. $e);
 				}
 			}
+			if($stmt3 = $conn->link->prepare("SELECT * FROM packaging")){
+				try{
+					$stmt3->execute();
+					$packaging = get_result($stmt3);
+				}
+				catch(Exception $e){
+					throw new Exception('Erro ao conectar com a base de dados: '. $e);
+				}
+			}
 			echo '<div class="overlayform" id="form5"><div class="modalform"><div class="modaldados">
 			<button class="closebtn" onclick="formOff(5);" aria-label="Fechar Janela">&times;</button>
 			<form method="POST" id="form">
@@ -283,6 +349,7 @@ $account->sessionLogin();
 					}
 					echo '</select></div></div>
 				<div class="form-group"><label>Imagem</label><input type="text" name="ap_image" required/></div>
+				<div class="form-group"><label>Banner de página</label><input type="text" name="ap_banner" required/></div>
 				<div class="form-group"><label>Descrição</label><textarea name="ap_desc" class="summernote"></textarea></div>
 				<div class="form-group"><label>Máquinas em que está</label><div class="link-listage">';
 
@@ -291,6 +358,17 @@ $account->sessionLogin();
 								<img src="'.$machines[$j]['mac_image'].'" />
 								<input type="checkbox" name="mac_ap_link[]" id="mac'.$machines[$j]['mac_id'].'" class="d-none" value="'.$machines[$j]['mac_id'].'" />
 								<label for="mac'.$machines[$j]['mac_id'].'">'.$machines[$j]['mac_name'].'</label></div>';
+					}
+					
+					echo '</div></div>
+
+					<div class="form-group"><label>Embalagens desta aplicação</label><div class="link-listage">';
+
+					for($x = 0; $x < $stmt3->num_rows; $x++){
+						echo '<div class="item">
+								<img src="'.$packaging[$x]['pack_image'].'" />
+								<input type="checkbox" name="appack_link[]" id="pack'.$packaging[$x]['pack_id'].'" class="d-none" value="'.$packaging[$x]['pack_id'].'" />
+								<label for="pack'.$packaging[$x]['pack_id'].'">'.$packaging[$x]['pack_goal'].' ('.$packaging[$x]['pack_name'].')</label></div>';
 					}
 					
 					echo '</div></div>
@@ -305,23 +383,32 @@ $account->sessionLogin();
 
 			$conn->link = $conn->connect();
 
-			if($stmt = $conn->link->prepare("INSERT INTO applications (ap_name, ap_icon, ap_image, ap_desc, ap_active) VALUES (?, ?, ?, ?, ?)")){
+			if($stmt = $conn->link->prepare("INSERT INTO applications (ap_name, ap_icon, ap_image, ap_banner, ap_desc, ap_active) VALUES (?, ?, ?, ?, ?, ?)")){
 				try{
-					$stmt->bind_param('ssssi', $ap_name, $ap_icon, $ap_image, $ap_desc, $ap_active);
+					$stmt->bind_param('sssssi', $ap_name, $ap_icon, $ap_image, $ap_banner, $ap_desc, $ap_active);
 					$ap_name = $_POST['ap_name'];
 					$ap_icon = $_POST['ap_icon'];
 					$ap_image = $_POST['ap_image'];
+					$ap_banner = $_POST['ap_banner'];
 					$ap_desc = $_POST['ap_desc'];
 					$ap_desc = str_replace("&quot;", "'", $ap_desc);
 					$ap_active = $_POST['ap_active'];
 					
 					$stmt->execute();
+					$ap_id = $stmt->insert_id;
 
 					$mac_ap_ids = $_POST['mac_ap_link'];
-					$ap_id = $stmt->insert_id;
 					foreach($mac_ap_ids as $key => $value){
 						if($stmt3 = $conn->link->prepare("INSERT INTO machine_applications(mac_id, ap_id) VALUES(?, ?)")){
 							$stmt3->bind_param('ii', $value, $ap_id);
+							$stmt3->execute();
+						}
+					}
+
+					$appack_link = $_POST['appack_link'];
+					foreach($appack_link as $key => $value){
+						if($stmt3 = $conn->link->prepare("INSERT INTO application_packaging(appack_ap, appack_pack) VALUES(?, ?)")){
+							$stmt3->bind_param('ii', $ap_id, $value);
 							$stmt3->execute();
 						}
 					}
