@@ -298,7 +298,7 @@ class _account {
 		echo '<script>window.location = "./cpanel?return='.($this->getFileName()).'";</script>';
 	}
 
-	public function closeThisSession($session_id){
+	public function closeThisSession($session_number){
 		global $conn;		
 		$conn->link = $conn->connect();
 
@@ -307,9 +307,8 @@ class _account {
 		}
 
 		if(session_status() == PHP_SESSION_ACTIVE){
-			if($stmt = $conn->link->prepare("DELETE FROM users_sessions WHERE session_id = ? AND user_id = ?")){
-				$stmt->bind_param('si', $session_id, $user_id);
-				$session_id = $session_id;
+			if($stmt = $conn->link->prepare("DELETE FROM users_sessions WHERE session_number = ? AND user_id = ?")){
+				$stmt->bind_param('si', $session_number, $user_id);
 				$user_id = $this->id;
 
 				try{

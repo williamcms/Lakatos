@@ -86,7 +86,7 @@ $account->sessionLogin();
 					echo '<div class="row col-auto pb-2">';
 					echo (session_id() == $row[$i]['session_id'] ? 
 						'<p class="box-msg success">Esta sessão</p>' : 
-						'<button class="closebtn smallbtn" name="REMOVE_SESSION" value="'.$row[$i]['session_id'].'">
+						'<button class="closebtn smallbtn" name="REMOVE_SESSION" value="'.$row[$i]['session_number'].'">
 							<i class="far fa-trash-alt"></i></button>');
 					echo '</form></div>';
 				}
