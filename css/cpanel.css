@@ -1204,7 +1204,7 @@ input:checked+.slider:before{
 	transform: translateX(1.625rem);
 }
 input:checked+.slider{
-	background: var(--focus-color);
+	background: var(--green);
 }
 .extra .switch{
 	float: right;
