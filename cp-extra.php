@@ -74,7 +74,7 @@ $account->sessionLogin();
 
 			if($stmt->num_rows > 0){
 				for($i = 0; $i < $stmt->num_rows; $i++){
-					echo '<div class="card-box row">';
+					echo '<form method="POST" class="card-box row">';
 					echo '<div class="col pb-2">';
 					echo '<div class="row">';
 					echo '<p class="col-auto">Navegador: ' .$row[$i]['user_browser']. '</p>';
@@ -84,15 +84,39 @@ $account->sessionLogin();
 					echo '<details><summary>Ver mais</summary><p class="text-muted">' .$row[$i]['user_agent']. '</p></details>';
 					echo '</div>';
 					echo '<div class="row col-auto pb-2">';
-					echo (session_id() == $row[$i]['session_id'] ? '<p class="box-msg success">Esta sessão</p>' : '<p class="box-msg error">Remover</p>');
-					echo '</div></div>';
+					echo (session_id() == $row[$i]['session_id'] ? 
+						'<p class="box-msg success">Esta sessão</p>' : 
+						'<button class="closebtn smallbtn" name="REMOVE_SESSION" value="'.$row[$i]['session_id'].'">
+							<i class="far fa-trash-alt"></i></button>');
+					echo '</form></div>';
 				}
 			}else{
 				echo '<div class="box-msg error center">'.ERROR_QUERY_NORESULT.'</div>';
 			}
 		}
 	?>
-	</div>
+	<form method="POST" class="d-flex buttonsContainer">
+		<button class="closebtn smallbtn" name="REMOVE_ALL_SESSION">
+			<i class="far fa-trash-alt"></i> Remover todas (você será deslogado)</button>
+
+		<button class="closebtn smallbtn" name="REMOVE_OTHER_SESSION">
+			<i class="far fa-trash-alt"></i> Remover sessões com exceção desta</button>
+	</form>
+
+	<?php
+		if(isset($_POST['REMOVE_SESSION'])){
+			$account->closeThisSession($_POST['REMOVE_SESSION']);
+			echo '<script>reload();</script>';
+		}
+		if(isset($_POST['REMOVE_ALL_SESSION'])){
+			$account->closeAllSessions();
+			echo '<script>reload();</script>';
+		}
+		if(isset($_POST['REMOVE_OTHER_SESSION'])){
+			$account->closeOtherSessions();
+			echo '<script>reload();</script>';
+		}
+	?>
 
 </main>
 <?php include('cpanel_footer.php'); ?>

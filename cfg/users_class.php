@@ -307,7 +307,7 @@ class _account {
 		}
 
 		if(session_status() == PHP_SESSION_ACTIVE){
-			if($stmt = $conn->link->prepare("DELETE FROM users_sessions WHERE session_id == ? AND user_id = ?")){
+			if($stmt = $conn->link->prepare("DELETE FROM users_sessions WHERE session_id = ? AND user_id = ?")){
 				$stmt->bind_param('si', $session_id, $user_id);
 				$session_id = $session_id;
 				$user_id = $this->id;
@@ -356,10 +356,10 @@ class _account {
 		return TRUE;
 	}
 
-	public function closeAllSessionsFrom($id){
+	public function closeAllSessions(){
 		global $conn;		
 		$conn->link = $conn->connect();
-		$id = stripslashes($id);
+		$id = stripslashes($this->id);
 
 		if(is_null($this->id)){
 			return;
